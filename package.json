@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-star-ratings": "^2.3.1",
+    "axios": "^1.5.1",
     "mongoose": "^7.5.3",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-star-ratings": "^2.3.0"
   },
   "devDependencies": {
     "@types/node": "latest",

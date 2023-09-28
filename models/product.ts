@@ -1,5 +1,23 @@
 import mongoose from "mongoose";
 
+type IImage = {
+    public_id: string;
+    url: string;
+}
+
+export interface IProduct {
+    _id: string;
+    name: string;
+    description?: string;
+    price: number;
+    images: Array<IImage>;
+    category: string;
+    stock: number;
+    seller: string;
+    ratings?: number;
+    productreviews?:[]
+}
+
 const productSchema = new mongoose.Schema({
     name: { type: String, required: [true, "Enter product name"] },
     description: { type: String, required: [false, "Enter product description"] },
@@ -34,7 +52,8 @@ const productSchema = new mongoose.Schema({
             createdAt: { type: Date, default: Date.now}
         }
     ],
-    createdAt: { type: Date, default: Date.now}
+}, {
+    timestamps: true
 })
 
 export default mongoose.models.Product || mongoose.model("Product", productSchema)
