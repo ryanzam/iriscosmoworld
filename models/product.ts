@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Categories } from "./categories";
 
 type IImage = {
     public_id: string;
@@ -32,13 +33,7 @@ const productSchema = new mongoose.Schema({
         type: String, 
         required: [true, "Select product category"],
         enum: {
-            values: [
-                "Footwear",
-                "Fragrances",
-                "Hobbies",
-                "Haircare",
-                "Skincare"
-            ]
+            values: Categories
         },
         message: "Select a category"
     },

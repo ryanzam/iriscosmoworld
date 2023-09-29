@@ -16,15 +16,17 @@ interface IProductCardProps {
 
 const ProductCard: FC<IProductCardProps> = ({ product }) => {
     return (
-        <div className="grid border mb-5 grid-cols-[250px_1.5fr_.5fr]">
-            <Image alt="product"
-                src={product.images.length > 0 ? product.images[0].url : "/placeholder.jpg"} 
-                height={200}
-                width={200}
-            />
+        <div className="card bg-base-100 shadow-md grid border mb-5 grid-cols-[250px_1.5fr_.5fr]">
+            <figure>
+                <Image alt="product"
+                    src={product.images.length > 0 ? product.images[0].url : "/placeholder.jpg"} 
+                    height={200}
+                    width={200}
+                />
+            </figure>
 
             <div className="flex flex-col items-start justify-center gap-3">
-                <Link href={`/products/${product._id}`} className="text-lg font-bold hover:text-neutral-600">{product.name}</Link>
+                <Link href={`/products/${product._id}`} className="text-lg font-bold hover:text-neutral-400">{product.name}</Link>
                 <div className="flex">
                     <StarRatings rating={product?.ratings}
                         numberOfStars={5}
@@ -38,11 +40,11 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
                 <div className="text-sm">{product?.description}</div>
             </div>
 
-            <div className="flex flex-col items-start justify-center gap-3">
+            <div className="flex flex-col items-start justify-center gap-2">
                 <div className="text-green-600">Free Shipping</div>
                 <div className="text-md text-lg font-semibold">€{product.price}</div>
-                <div className="mt-2">
-                    <a className="bg-blue-900 hover:bg-blue-700 text-white px-5 py-3 rounded-md cursor-pointer">Add to cart</a>
+                <div className="">
+                    <button className="btn btn-primary">Add to cart</button>
                 </div>
             </div>
         </div>
