@@ -3,7 +3,7 @@
 import { IProduct } from "@/models/product"
 import { FC } from "react"
 import ProductCard from "@/app/components/products/ProductCard"
-import ProductFilters from "../components/ProductFilters"
+import ProductFilters from "../components/products/ProductFilters"
 
 interface IProductsProps {
     products: IProduct[]

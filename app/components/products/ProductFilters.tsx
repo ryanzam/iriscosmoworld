@@ -1,7 +1,11 @@
 "use client"
 
 import { Categories } from "@/models/categories";
-import StarRatings from "react-star-ratings"
+import dynamic from "next/dynamic";
+
+const StarRatings = dynamic(() => import("react-star-ratings"), {
+    ssr: false,
+  });
 
 const ProductFilters = () => {
 
@@ -63,7 +67,7 @@ const ProductFilters = () => {
                 <div className="font-semibold">Category</div>
                 <div>
                     {Categories.map((c: string, idx) => (
-                        <div className="flex items-center">
+                        <div key={idx} className="flex items-center">
                             <input id={`${idx}`} type="checkbox" 
                                 className="w-4 h-4 focus:ring-blue-500"
                                 value={`${idx}`}
