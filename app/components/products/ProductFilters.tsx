@@ -2,52 +2,79 @@
 
 import { Categories } from "@/models/categories";
 import dynamic from "next/dynamic";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useCallback, useState } from "react";
 
 const StarRatings = dynamic(() => import("react-star-ratings"), {
     ssr: false,
-  });
+});
 
 const ProductFilters = () => {
 
-    let searchParams: URLSearchParams;
+    const [minPrice, setMinPrice] = useState(0)
+    const [maxPrice, setMaxPrice] = useState(0)
 
-    const onChecked = (filterType: string, filterValue: string) => {
-        if(typeof window != "undefined") {
-            searchParams = new URLSearchParams(window.location.search)
+    const searchParams = useSearchParams()
+    const router = useRouter()
+    const pathname = usePathname()
 
-            const value = searchParams.get(filterType)
-
-            if(filterValue === value) {
-                return true
-            }
-            return false
+    const handleChangeMinPrice = (e: any) => {
+        const val = parseInt(e.target.value)
+        setMinPrice(val)
+        if(maxPrice <= val) {
+            setMaxPrice(val + 1)
         }
+    }
+
+    const handleBtnClick = () => {
+        router.push(pathname + `?min=${minPrice}&max=${maxPrice}`)
+    }
+
+    const handleChecked = (checkType: string, checkValue: string) => {
+        const value = searchParams.get(checkType)
+        return value === checkValue
+    }
+
+    const handleChange = (checkType: string, checkValue: string) => {
+        router.push(pathname + `?${checkType}=${checkValue}`)
     }
 
     return (
         <div className="border p-5">
-              <div className="mb-5">
+            <div className="mb-5">
                 <div className="font-semibold">Price</div>
                 <div className="grid grid-cols-3 gap-1">
                     <div className="">
-                        <input className="w-full p-2 border rounded-sm" type="number" min={0} placeholder="Min"/>
+                        <input className="w-full p-2 border rounded-sm" type="number"
+                            min={0} placeholder="Min" value={minPrice} onChange={e => handleChangeMinPrice(e)}
+                        />
+                        <label className="label">
+                            <span className="label-text-alt">Min</span>
+                        </label>
                     </div>
                     <div className="">
-                        <input className="w-full p-2 border rounded-sm" type="number" min={0} placeholder="Max" />
+                        <input className="w-full p-2 border rounded-sm" type="number"
+                            min={0} placeholder="Max" value={maxPrice} onChange={e => setMaxPrice(parseInt(e.target.value))}
+                        />
+                        <label className="label">
+                            <span className="label-text-alt">Max</span>
+                        </label>
                     </div>
-                    <button className="btn btn-primary">Filter</button>
+                    <button className="btn btn-primary" onClick={handleBtnClick}>Filter</button>
                 </div>
             </div>
 
             <div className="mb-5">
                 <div className="font-semibold">Ratings</div>
                 <div>
-                    {[1,2,3,4,5].map(r => (
+                    {[1, 2, 3, 4, 5].map(r => (
                         <div key={r} className="flex items-center">
-                            <input id={`rating-${r}`} type="checkbox" 
+                            <input id={`rating-${r}`} type="checkbox"
+                                name="ratings"
                                 className="w-4 h-4 focus:ring-blue-500"
                                 value={r}
-                                defaultChecked={onChecked("ratings", `${r}`)}
+                                checked={handleChecked("ratings", `${r}`)}
+                                onChange={() => handleChange("ratings", `${r}`)}
                             />
                             <label htmlFor={`rating-${r}`}>
                                 <StarRatings rating={r}
@@ -68,10 +95,12 @@ const ProductFilters = () => {
                 <div>
                     {Categories.map((c: string, idx) => (
                         <div key={idx} className="flex items-center">
-                            <input id={`${idx}`} type="checkbox" 
+                            <input id={`${c}`} type="checkbox"
+                                name="category"
                                 className="w-4 h-4 focus:ring-blue-500"
                                 value={`${idx}`}
-                                defaultChecked={onChecked("category", `${c}`)}
+                                checked={handleChecked("category", c)}
+                                onChange={() => handleChange("category", c)}
                             />
                             <label htmlFor={`${c}`} className="ml-1">{c}</label>
                         </div>

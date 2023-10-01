@@ -1,12 +1,39 @@
 "use client"
 
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
 const Nav = () => {
+
+    const [search, setSearch] = useState("")
+
+    const router = useRouter();
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+
+        if(search) {
+            router.push("/?search="+search);
+            setSearch("")
+        }
+    }
+
     return (
-        <div className="navbar bg-base-200 shadow-md mb-5">
-            <div className="flex-1">
-                <a className="btn btn-ghost normal-case text-xl">E<span className="text-neutral-500">Kauppa</span></a>
+        <div className="navbar bg-base-200 shadow-md mb-5 flex justify-between">
+            <div className="flex">
+                <a href="/" className="btn btn-ghost normal-case text-xl">E<span className="text-neutral-500">Kauppa</span></a>
             </div>
-            <div className="flex-none">
+
+            <form onSubmit={handleSubmit}>
+                <div className="join">
+                    <input type="text" className="input input-bordered join-item" placeholder="Search..." 
+                        value={search} onChange={e => setSearch(e.target.value)}
+                    />
+                    <button className="btn border-gray-300 join-item rounded-r-full">Search</button>
+                </div>
+            </form>
+
+            <div className="flex-none gap-3">
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle">
                         <div className="indicator">

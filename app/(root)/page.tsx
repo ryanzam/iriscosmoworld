@@ -1,18 +1,27 @@
 import axios from 'axios'
 import Products from '../products/Products'
 
-const fetchProducts = async () => {
-  const { data } = await axios.get(`${process.env.BASE_URL}/api/products`)
+interface IParams {
+  search?: string;
+  ratings?: string;
+  category?: string;
+  min?: number;
+  max?: number;
+  page?: number;
+}
+
+const fetchProducts = async (params: IParams) => {
+  const { data } = await axios.get(`${process.env.BASE_URL}/api/products`, { params })
   return data
 }
 
-export default async function Home() {
+export default async function Home({ searchParams }: { searchParams : IParams}) {
 
-  const products = await fetchProducts()
+  const data = await fetchProducts(searchParams);
 
   return (
     <main>
-      <Products products={products} />
+      <Products data={data} />
     </main>
   )
 }

@@ -8,7 +8,7 @@ interface IParams {
 
 export async function GET(request: Request, {params}: {params: IParams}) {
     await mongoConnect()
-    console.log(params)
+
     const { productId } = params;
     if(!productId || typeof productId !== "string") throw new Error("Invalid product id.")
 
