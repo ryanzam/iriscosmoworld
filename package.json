@@ -13,10 +13,12 @@
     "axios": "^1.5.1",
     "mongoose": "^7.5.3",
     "next": "latest",
+    "next-auth": "^4.23.2",
     "query-string": "^8.1.0",
     "rc-pagination": "^3.6.1",
     "react": "latest",
     "react-dom": "latest",
+    "react-hot-toast": "^2.4.1",
     "react-star-ratings": "^2.3.0"
   },
   "devDependencies": {

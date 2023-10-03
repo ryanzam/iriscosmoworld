@@ -2,8 +2,10 @@
 
 import { IProduct } from "@/models/product"
 import dynamic from "next/dynamic";
-import { FC, useState } from "react"
+import { FC, useContext, useState } from "react"
 import Breadcrums from "../Breadcrums";
+import { CartItemType, CartItemsContext } from "@/context/CartContext";
+import toast from "react-hot-toast";
 
 const StarRatings = dynamic(() => import("react-star-ratings"), {
     ssr: false,
@@ -17,10 +19,26 @@ const ProductDetails: FC<IProductDetailsProps> = ({ product }: IProductDetailsPr
 
     const [imagePreview, setImagePreview] = useState(product.images.length > 0 ? product.images[0].url : "/placeholder.jpg")
 
+    const { addToCart } = useContext(CartItemsContext)
+
     const breadcrumbs = [
         { name: "Home", path: "/"},
         { name: `${product.name}` , path: `/products/${product._id}`}
     ]
+
+    const handleAddToCart = () => {
+        const itemToAdd: CartItemType = {
+            id: product._id,
+            image: product.images.length > 0 ? product.images[0].url : "/placeholder.jpg",
+            name: product.name,
+            price: product.price,
+            seller: product.seller,
+            stock: product.stock,
+            quantity: 0
+        }
+        addToCart(itemToAdd)
+        toast.success(`${product.name} added to cart`)
+    }
 
     return (
         <>
@@ -70,7 +88,7 @@ const ProductDetails: FC<IProductDetailsProps> = ({ product }: IProductDetailsPr
                     </div>
 
                     <div className="card-actions">
-                        <button className="btn btn-primary">Add to cart</button>
+                        <button className="btn btn-primary" onClick={handleAddToCart}>Add to cart</button>
                     </div>
                 </div>
             </div>

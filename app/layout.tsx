@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
 import Nav from './components/navbar/Nav'
 import Container from './components/Container'
+import CartContextProvider from '@/context/CartContext'
+import { Toaster } from 'react-hot-toast'
 
 const nunito = Nunito({ subsets: ['latin'] })
 
@@ -19,10 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
-        <Nav />
-        <Container>
-          {children}
-        </Container>
+        <Toaster />
+        <CartContextProvider>
+          <Nav />
+          <Container>
+            {children}
+          </Container>
+        </CartContextProvider>
       </body>
     </html>
   )
