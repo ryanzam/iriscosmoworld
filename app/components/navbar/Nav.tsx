@@ -2,6 +2,7 @@
 
 import { CartItemsContext } from "@/context/CartContext";
 import { getGrossTotal } from "@/utils/getProductsCalc";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
@@ -12,6 +13,7 @@ const Nav = () => {
     const { cartItems } = useContext(CartItemsContext)
 
     const router = useRouter();
+    const { data } = useSession()
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -60,21 +62,29 @@ const Nav = () => {
                     </div>
                 </div>
                 <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                        </div>
-                    </label>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li>
-                            <a className="justify-between">
-                                Profile
-                                <span className="badge">New</span>
-                            </a>
-                        </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
-                    </ul>
+                    {!data?.user ?
+                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar" onClick={() => router.push("/signin")}>
+                            <div className="indicator">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                </svg>
+                            </div>
+                        </label> :
+                        <>
+                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                            {data.user.image ? <img src={data.user.image} className="w-4 h-4" alt="profile" /> : <p>{data.user.name}</p>}
+                        </label>
+                        <ul tabIndex={0} className="menu menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <li>
+                                <a className="justify-between" href="/user">
+                                    Dashboard
+                                    <span className="badge">New</span>
+                                </a>
+                            </li>
+                            <li><a>Settings</a></li>
+                            <li><a>Logout</a></li>
+                        </ul>
+                    </>}
                 </div>
             </div>
         </div>
