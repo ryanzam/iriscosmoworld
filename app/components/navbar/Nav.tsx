@@ -1,19 +1,27 @@
 "use client"
 
+import { AuthenticationContext } from "@/context/AuthenticationContext";
 import { CartItemsContext } from "@/context/CartContext";
 import { getGrossTotal } from "@/utils/getProductsCalc";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const Nav = () => {
 
     const [search, setSearch] = useState("")
 
     const { cartItems } = useContext(CartItemsContext)
+    const { user, setUser } = useContext(AuthenticationContext)
 
     const router = useRouter();
     const { data } = useSession()
+
+    useEffect(() => {
+        if(data) {
+            setUser(data?.user)
+        }
+    }, [data])
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -82,7 +90,7 @@ const Nav = () => {
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li><a onClick={() => signOut({callbackUrl: "/"})}>Signout</a></li>
                         </ul>
                     </>}
                 </div>

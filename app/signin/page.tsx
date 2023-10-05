@@ -1,7 +1,7 @@
 "use client"
 
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
@@ -14,6 +14,8 @@ const SigninPage = () => {
     const [password, setPassword] = useState("");
 
     const router = useRouter()
+    const params = useSearchParams()
+    const callBackURL = params?.get("callbackUrl") ?? undefined
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
@@ -21,10 +23,9 @@ const SigninPage = () => {
         setLoading(true)
 
         signIn("credentials", {
-            email, password, redirect: false
+            email, password, callbackUrl: callBackURL
         }).then(cb => {
             setLoading(false)
-            console.log(cb)
             if (cb?.ok) {
                 toast.success("Successfully signed in")
                 router.push("/")

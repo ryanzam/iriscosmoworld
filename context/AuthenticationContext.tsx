@@ -3,7 +3,7 @@
 import User from "@/models/user";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+import { createContext, useState } from "react";
 import toast from "react-hot-toast";
 
 type RegisterUserType = {
@@ -13,8 +13,8 @@ type RegisterUserType = {
 }
 
 export interface IAuthenticationContext {
-    user: typeof User | null;
-    setUser:Dispatch<SetStateAction<null>>;
+    user: any;
+    setUser: any;
     registerUser:(usr: RegisterUserType) => void;
 }
 
@@ -30,8 +30,8 @@ const AuthenticationContextProvider = ({ children }: any) => {
         axios.post(`/api/register`, {
             name, email, password
         }).then(() => {
-            toast.success("Account created.")
-            router.push("/")
+            toast.success("Account created. You can signin now.")
+            router.push("/signin")
         })
         .catch(error => {
             toast.error(error.message)
