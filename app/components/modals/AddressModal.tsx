@@ -8,38 +8,58 @@ import { BsSend } from "react-icons/bs"
 import axios from "axios";
 import toast from "react-hot-toast";
 
+export type AddressType = {
+    _id?: string;
+    phone: string,
+    street: string,
+    city: string,
+    postalCode: string,
+    country: string,
+}
 
 interface IAddressModalProps {
     title: string;
     isOpen: boolean;
     onClose: () => void;
     onSubmit?: () => void;
+    address: AddressType
 }
 
-const AddressModal: FC<IAddressModalProps> = ({ title, isOpen, onClose }) => {
+const AddressModal: FC<IAddressModalProps> = ({ title, isOpen, onClose, address }) => {
 
     const cntrs = Object.values(countries);
 
-    const [phone, setPhone] = useState("")
-    const [street, setStreet] = useState("")
-    const [city, setCity] = useState("")
-    const [postalCode, setPostalCode] = useState("")
-    const [country, setCountry] = useState("")
+    const [phone, setPhone] = useState(address?.phone || "")
+    const [street, setStreet] = useState(address?.street || "")
+    const [city, setCity] = useState(address?.city ||"" )
+    const [postalCode, setPostalCode] = useState(address?.postalCode ||"")
+    const [country, setCountry] = useState(address?.country ||"")
+
+    const emptyAddress =  Object.keys(address).length === 0;
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
-        const postAddr = axios.post(`/api/address`, { phone, street, city, postalCode, country })
+        let apiAddr
+        
+        if(emptyAddress) {
+            apiAddr = axios.post(`/api/address`, { phone, street, city, postalCode, country })
+        } else {
+            console.log("===" , address)
+            apiAddr = axios.put(`/api/address`, { id: address._id, phone, street, city, postalCode, country })
+        }
 
-        toast.promise(postAddr, {
+        toast.promise(apiAddr, {
             loading: "Submitting Address",
             success: () => {
                 onClose()
-                return "Address added"
+                return "Address saved"
             },
             error: "Error when adding address"
         })
     }
+
+
 
     const modalAddrForm = (
         <form className="flex flex-col gap-3" onSubmit={handleSubmit}>

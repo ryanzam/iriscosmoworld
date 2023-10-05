@@ -2,34 +2,28 @@
 
 import { useContext, useEffect, useState } from "react";
 import { AuthenticationContext } from "@/context/AuthenticationContext";
-import AddressModal from "../components/modals/AddressModal";
+import AddressModal, { AddressType } from "../components/modals/AddressModal";
 import axios from "axios";
 import toast from "react-hot-toast";
-
-type AddressType = {
-    phone: string,
-    street: string,
-    city: string,
-    postalCode: string,
-    country: string,
-}
 
 const UserPage = () => {
 
     const { user } = useContext(AuthenticationContext);
     const [showAddrModal, setShowAddrModal] = useState(false)
-    const [address, setDAddress] = useState<AddressType[]>([]);
+    const [address, setDAddress] = useState<AddressType>({} as AddressType);
 
     useEffect(() => {
         axios.get(`/api/address`)
             .then((res: any) => {
-                setDAddress(res.data)
+                setDAddress({...res.data[0]})
             }).catch(err => toast.error("Error fetching address :", err.nessage))
-    }, [])
+    }, [address.city, address.country, address.phone, address.postalCode, address.street, showAddrModal])
 
     const onAddrModalClose = () => {
         setShowAddrModal(!showAddrModal)
     }
+
+    const emptyAddress =  Object.keys(address).length === 0;
 
     return (
         <>
@@ -50,26 +44,26 @@ const UserPage = () => {
                         <hr className="my-4" />
 
                         <div className="flex items-center">
-                            {address.length === 0 ?
+                            {emptyAddress ?
                                 <p className="italic">No address found</p> :
                                 <div>
-                                    <h6 className="font-medium">{address[0]?.phone}</h6>
-                                    <h6 className="font-medium">{address[0]?.street}</h6>
-                                    <h6 className="font-medium">{address[0]?.city}, {address[0]?.postalCode}, {address[0]?.country}</h6>
+                                    <h6 className="font-medium">{address?.phone}</h6>
+                                    <h6 className="font-medium">{address?.street}</h6>
+                                    <h6 className="font-medium">{address?.city}, {address?.postalCode}, {address?.country}</h6>
                                 </div>
                             }
                             <button className={`btn ml-auto
-                                ${address.length === 0 ? "btn-primary" : ""}
+                                ${emptyAddress ? "btn-primary" : ""}
                                 `} onClick={() => setShowAddrModal(true)}
                                 >
-                                {address.length === 0 ? "Add new address" : "Update address"}
+                                {emptyAddress ? "Add new address" : "Update address"}
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
             {showAddrModal &&
-                <AddressModal isOpen={showAddrModal} title="Add new address" onClose={onAddrModalClose} />
+                <AddressModal isOpen={showAddrModal} title= {emptyAddress ? "Add new address" : "Update address"} onClose={onAddrModalClose} address={address}/>
             }
         </>
     )
