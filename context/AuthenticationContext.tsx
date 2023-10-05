@@ -1,6 +1,5 @@
 "use client"
 
-import User from "@/models/user";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { createContext, useState } from "react";
