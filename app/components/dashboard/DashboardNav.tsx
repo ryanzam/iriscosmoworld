@@ -84,22 +84,6 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
                             Orders
                         </Link>
                     </li>
-                    <li>
-                        <Link
-                            href="/user/update"
-                            className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
-                        >
-                            Update Profile
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/user/update_password"
-                            className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
-                        >
-                            Update Password
-                        </Link>
-                    </li>
                     <hr />
                     <li>
                         <a

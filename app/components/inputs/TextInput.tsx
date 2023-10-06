@@ -8,9 +8,10 @@ interface IInputProps {
     placeHolder: string;
     type: string;
     minLength?: number
+    disabled?: boolean;
 }
 
-const TextInput: FC<IInputProps> = ({ label, required, value, onChange, placeHolder, type, minLength }) => {
+const TextInput: FC<IInputProps> = ({ label, required, value, onChange, placeHolder, type, minLength, disabled }) => {
     return (
         <div>
             <label className="label">
@@ -23,6 +24,7 @@ const TextInput: FC<IInputProps> = ({ label, required, value, onChange, placeHol
                 onChange={onChange}
                 required={required}
                 minLength={minLength}
+                disabled={disabled}
             />
         </div>
     )

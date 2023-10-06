@@ -31,7 +31,7 @@ const ProductFilters = () => {
     }
 
     const handleChecked = (checkType: string, checkValue: string) => {
-        const value = searchParams.get(checkType)
+        const value = searchParams?.get(checkType)
         return value === checkValue
     }
 

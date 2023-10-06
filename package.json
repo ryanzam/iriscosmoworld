@@ -9,16 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/bcryptjs": "^2.4.4",
-    "@types/react-star-ratings": "^2.3.1",
     "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
-    "cloudinary": "^1.41.0",
     "countries-list": "^3.0.5",
     "mongoose": "^7.5.3",
-    "multer": "^1.4.5-lts.1",
     "next": "latest",
     "next-auth": "^4.23.2",
+    "next-cloudinary": "^4.23.1",
     "query-string": "^8.1.0",
     "rc-pagination": "^3.6.1",
     "react": "latest",
@@ -28,9 +25,12 @@
     "react-star-ratings": "^2.3.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.4",
+    "@types/multer": "^1.4.8",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/react-star-ratings": "^2.3.1",
     "autoprefixer": "latest",
     "daisyui": "^3.8.1",
     "eslint": "latest",
