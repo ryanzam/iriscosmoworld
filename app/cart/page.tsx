@@ -2,6 +2,7 @@
 
 import { CartItemType, CartItemsContext } from "@/context/CartContext"
 import { getGrossTotal } from "@/utils/getProductsCalc"
+import Link from "next/link"
 import { useContext } from "react"
 import toast from "react-hot-toast"
 
@@ -19,28 +20,30 @@ const CartPage = () => {
     }
 
     const handleAddQuantity = (item: CartItemType) => {
-        addToCart({...item, quantity: item.quantity + 1   })
+        addToCart({ ...item, quantity: item.quantity + 1 })
     }
 
     const handleSubstractQuantity = (item: CartItemType) => {
         const qty = item.quantity - 1
 
-        if(qty < 1) {
+        if (qty < 1) {
             removeFromCart(item.id)
             return
         }
 
-        const newItem: CartItemType = {...item, quantity: qty}
+        const newItem: CartItemType = { ...item, quantity: qty }
         addToCart(newItem)
     }
 
     const handleRemoveProduct = (id: string) => {
         removeFromCart(id)
+        toast("Item removed")
     }
 
     const grossTotal = +(getGrossTotal(cartItems))
     const tax = +(grossTotal * .15).toFixed(2)
-    const netTotal = (grossTotal + tax).toFixed(2)
+    const netTotal = +(grossTotal + tax).toFixed(2)
+
     return (
         <div>
             <h3 className="mb-3">{cartItems.length} Items(s) in cart.</h3>
@@ -77,11 +80,12 @@ const CartPage = () => {
                 <div className="card  bg-base-100 shadow-xl p-5 flex flex-col gap-3">
                     <div className="grid grid-cols-2 gap-3">
                         <h3>Gross Total</h3><h3 className="text-end">{grossTotal}</h3>
-                        <h3>Tax (15%)</h3><h3 className="text-end">{tax}</h3>            
+                        <h3>Tax (15%)</h3><h3 className="text-end">{tax}</h3>
                         <h3 className="font-bold">Total</h3><h3 className="text-end font-bold">{netTotal}</h3>
                     </div>
-                    <button className="btn btn-primary">Checkout</button>
-                    <button className="btn">Return home</button>
+                    <hr className="my-3"/>
+                    <Link className="btn btn-primary" href={"/delivery"}>Proceed</Link>
+                    <Link className="btn" href={"/"}>Return home</Link>
                 </div>
             </div>
         </div>
