@@ -15,25 +15,26 @@ const SigninPage = () => {
 
     const router = useRouter()
     const params = useSearchParams()
-    const callBackURL = params?.get("callbackUrl") ?? undefined
+    const callBackURL = params?.get("callbackUrl") ?? "/"
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        
+
         setLoading(true)
 
         signIn("credentials", {
             email, password, callbackUrl: callBackURL
         }).then(cb => {
-            setLoading(false)
             if (cb?.ok) {
                 toast.success("Successfully signed in")
                 router.push("/")
             }
             if (cb?.error) {
                 toast.error(cb.error)
+                router.refresh()
             }
         })
+        setLoading(false)
     }
 
     return (

@@ -6,21 +6,24 @@ import Modal from "./Modal";
 import { BsSend, BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs"
 import axios from "axios";
 import toast from "react-hot-toast";
-import { ProfileType } from "./ProfileModal";
 import { signOut } from "next-auth/react";
+import { UserType } from "./ProfileModal";
 
 interface IPasswordChangeModalProps {
     title: string;
     isOpen: boolean;
     onClose: () => void;
     onSubmit?: () => void;
-    profile?: ProfileType
+    profile?: UserType
 }
 
 const PasswordChangeModal: FC<IPasswordChangeModalProps> = ({ title, isOpen, onClose, profile }) => {
 
+    const [currentPassword, setCurrentPassword] = useState("")
     const [password, setPassword] = useState("")
     const [password1, setPassword1] = useState("")
+
+    const [showCurrentPassword, setShowCurrentPassword] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
     const [showPassword1, setShowPassword1] = useState(false)
 
@@ -30,12 +33,12 @@ const PasswordChangeModal: FC<IPasswordChangeModalProps> = ({ title, isOpen, onC
         e.preventDefault()
 
         if (!samePassword) {
-            toast.error("Passwords do not match.")
+            toast.error("New passwords do not match.")
             return
         }
 
         if (samePassword) {
-            const updatePasswordChange = axios.put(`/api/passwordChange`, { id: profile?._id, password })
+            const updatePasswordChange = axios.put(`/api/password`, { id: profile?._id, currentPassword, password })
 
             toast.promise(updatePasswordChange, {
                 loading: "Submitting password",
@@ -51,6 +54,19 @@ const PasswordChangeModal: FC<IPasswordChangeModalProps> = ({ title, isOpen, onC
 
     const modalPasswordChangeForm = (
         <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
+            <div className="relative">
+                <TextInput label="Current Password"
+                    placeHolder="Enter current password"
+                    type={ showCurrentPassword ? "text" : "password"}
+                    required={true}
+                    value={currentPassword}
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                    minLength={8}
+                />
+                <div className="absolute right-3 bottom-3" onClick={() => setShowCurrentPassword(!showCurrentPassword)}>
+                    {!showCurrentPassword ? <BsFillEyeFill size={24} /> : <BsFillEyeSlashFill size={24} />}
+                </div>
+            </div>
             <div className="relative">
                 <TextInput label="New Password"
                     placeHolder="Enter new password"

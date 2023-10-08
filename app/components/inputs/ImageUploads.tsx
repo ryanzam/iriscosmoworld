@@ -27,7 +27,7 @@ const ImageUploads:FC<IImageUploadProps> = ({ value, onChange }) => {
                 return <div onClick={() => open?.()}
                     className='relative flex items-center justify-center cursor-pointer p-20 hover:opacity-60 border-neutral-300 border-2'>
                         <BiImageAdd size={60}/>
-                        <div className='font-semibold'>Click to upload images</div>
+                        <div className='font-semibold'>Click to upload avatar</div>
                         
                         { value && <div>
                                 <Image src={value} alt='image upload' fill style={{ objectFit: "cover"}}/>

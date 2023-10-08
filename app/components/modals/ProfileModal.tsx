@@ -7,10 +7,17 @@ import { BsSend } from "react-icons/bs"
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export type ProfileType = {
+export type AvatarType ={
+    url?: string;
+}
+
+export type UserType = {
     _id?: string;
-    name: string,
-    email: string
+    name: string;
+    email: string;
+    role: string;
+    avatar?: AvatarType;
+    createdAt: Date;
 }
 
 interface IProfileModalProps {
@@ -18,7 +25,7 @@ interface IProfileModalProps {
     isOpen: boolean;
     onClose: () => void;
     onSubmit?: () => void;
-    profile: ProfileType
+    profile: UserType
 }
 
 const ProfileModal: FC<IProfileModalProps> = ({ title, isOpen, onClose, profile }) => {

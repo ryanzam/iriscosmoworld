@@ -45,7 +45,6 @@ const AddressModal: FC<IAddressModalProps> = ({ title, isOpen, onClose, address 
         if(emptyAddress) {
             apiAddr = axios.post(`/api/address`, { phone, street, city, postalCode, country })
         } else {
-            console.log("===" , address)
             apiAddr = axios.put(`/api/address`, { id: address._id, phone, street, city, postalCode, country })
         }
 

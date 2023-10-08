@@ -7,7 +7,7 @@ import { GiHamburgerMenu } from "react-icons/gi"
 import { RiAdminLine } from "react-icons/ri"
 
 interface IDashboardNavProps {
-    content: any
+    content: any;
 }
 
 const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
