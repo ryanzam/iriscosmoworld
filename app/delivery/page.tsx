@@ -30,15 +30,26 @@ const DeliveryPage = () => {
     const tax = +(grossTotal * .15).toFixed(2)
     const netTotal = (grossTotal + tax).toFixed(2)
 
+    const handleCheckout = async () => {
+        try {
+            const { data } = await axios.post(`/api/checkout`, {
+                deliveryInfomation: address, items: cartItems
+            })
+            window.location.href = data
+        } catch (error: any) {
+            toast.error(error.message)
+        }
+    }
+
     const breadcrumbs = [
-        { name: "Home", path: "/"},
-        { name: "Cart" , path: "/cart"},
-        { name: "Order", path: "/order"}
+        { name: "Home", path: "/" },
+        { name: "Cart", path: "/cart" },
+        { name: "Order", path: "/order" }
     ]
 
     return (
         <div>
-            <Breadcrums breadcrums={breadcrumbs}/>
+            <Breadcrums breadcrums={breadcrumbs} />
             <div className="grid grid-cols-[1.3fr_.7fr] gap-5">
                 <div className="card bg-base-100 shadow-xl mb-1">
                     <div className="card-body">
@@ -63,7 +74,7 @@ const DeliveryPage = () => {
                         </div>
                         <div className="mt-auto">
                             <Link className="btn mr-2" href={"/cart"}>Back</Link>
-                            <button className="btn btn-primary" onClick={undefined} disabled={emptyAddress}>Checkout</button>
+                            <button className="btn btn-primary" onClick={handleCheckout} disabled={emptyAddress}>Checkout</button>
                         </div>
                     </div>
                 </div>
