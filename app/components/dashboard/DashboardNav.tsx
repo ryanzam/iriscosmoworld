@@ -73,7 +73,7 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
                             href="/user"
                             className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
                         >
-                            Your Profile
+                            My Profile
                         </Link>
                     </li>
                     <li>
@@ -81,7 +81,7 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
                             href="/user/orders"
                             className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
                         >
-                            Orders
+                            My Orders
                         </Link>
                     </li>
                     <hr />

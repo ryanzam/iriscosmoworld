@@ -16,6 +16,7 @@ export interface ICartContext {
     cartItems: CartItemType[];
     addToCart: (item: CartItemType) => void;
     removeFromCart: (id: string) => void;
+    clearCart: () => void;
 }
 
 export const CartItemsContext = createContext({ } as ICartContext);
@@ -52,9 +53,14 @@ const CartContextProvider = ({ children }: any) => {
         setCartItemsState()
     }
 
+    const clearCart = () => {
+        localStorage.clear()
+        setCartItemsState()
+    }
+
     return (
         <CartItemsContext.Provider
-            value={{ cartItems, addToCart, removeFromCart }}
+            value={{ cartItems, addToCart, removeFromCart, clearCart }}
         >
             {children}
         </CartItemsContext.Provider>

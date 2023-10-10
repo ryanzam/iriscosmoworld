@@ -74,7 +74,7 @@ const DeliveryPage = () => {
                         </div>
                         <div className="mt-auto">
                             <Link className="btn mr-2" href={"/cart"}>Back</Link>
-                            <button className="btn btn-primary" onClick={handleCheckout} disabled={emptyAddress}>Checkout</button>
+                            <button className="btn btn-primary" onClick={handleCheckout} disabled={cartItems.length === 0 && emptyAddress}>Checkout</button>
                         </div>
                     </div>
                 </div>

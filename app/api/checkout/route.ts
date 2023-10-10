@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     const user = await getSignedinUser()
     if (!user)
         return NextResponse.error()
-    
+
     const body = await request.json()
     const { deliveryInfomation, items } = body
 
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
     })
 
     try {
-        const session = await stripe.checkout.sessions.create({
+        const params: Stripe.Checkout.SessionCreateParams = {
             payment_method_types: ["card"],
             success_url: `${process.env.BASE_URL}/user/orders?order_confirm=true`,
             cancel_url: `${process.env.BASE_URL}`,
@@ -41,8 +41,13 @@ export async function POST(request: NextRequest) {
             shipping_options: [{
                 shipping_rate: "shr_1NyxvLBkufHaUMANvcpBwpgB"
             }],
+            metadata: {
+                deliveryId: deliveryInfomation._id,
+                userId: deliveryInfomation.user
+            },
             line_items: line_items
-        })
+        }
+        const session = await stripe.checkout.sessions.create(params)
 
         return new NextResponse(session.url);
     } catch (error: any) {
