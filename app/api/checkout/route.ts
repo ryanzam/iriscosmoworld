@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     try {
         const params: Stripe.Checkout.SessionCreateParams = {
             payment_method_types: ["card"],
-            success_url: `${process.env.BASE_URL}/user/orders?order_confirm=true`,
+            success_url: `${process.env.BASE_URL}/user/orders?confirmation=true`,
             cancel_url: `${process.env.BASE_URL}`,
             client_reference_id: user._id,
             customer_email: user.email,

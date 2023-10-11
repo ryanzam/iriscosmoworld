@@ -5,6 +5,9 @@ import Link from "next/link"
 import { FC } from "react"
 import { GiHamburgerMenu } from "react-icons/gi"
 import { RiAdminLine } from "react-icons/ri"
+import { GoPackageDependents } from "react-icons/go"
+import { BiUser } from "react-icons/bi"
+import { AiOutlineLogout } from "react-icons/ai"
 
 interface IDashboardNavProps {
     content: any;
@@ -13,7 +16,7 @@ interface IDashboardNavProps {
 const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
 
     const handleSignout = async () => {
-       await signOut({callbackUrl: "/"})
+        await signOut({ callbackUrl: "/" })
     }
 
     return (
@@ -35,7 +38,7 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
                             href="/admin/products/new"
                             className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
                         >
-                            New Product <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span>
+                            <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> New Product
                         </Link>
                     </li>
 
@@ -44,7 +47,7 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
                             href="/admin/products"
                             className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
                         >
-                            All Products <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span>
+                            <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> All Products
                         </Link>
                     </li>
 
@@ -53,7 +56,7 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
                             href="/admin/orders"
                             className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
                         >
-                            All Orders <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span>
+                            <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> All Orders
                         </Link>
                     </li>
 
@@ -62,7 +65,7 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
                             href="/admin/users"
                             className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
                         >
-                            All Users <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span>
+                            <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> All Users
                         </Link>
                     </li>
 
@@ -73,7 +76,7 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
                             href="/user"
                             className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
                         >
-                            My Profile
+                            <BiUser /> My Profile
                         </Link>
                     </li>
                     <li>
@@ -81,7 +84,7 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
                             href="/user/orders"
                             className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
                         >
-                            My Orders
+                            <GoPackageDependents /> My Orders
                         </Link>
                     </li>
                     <hr />
@@ -90,7 +93,7 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
                             className="font-bold px-3 py-2 text-red-800 hover:bg-red-300 hover:text-white-500 rounded-md cursor-pointer"
                             onClick={handleSignout}
                         >
-                            Sign out
+                            <AiOutlineLogout /> Sign out
                         </a>
                     </li>
                 </ul>

@@ -49,7 +49,7 @@ const User:FC<IUserPRops> = ({ user }) => {
 
     return (
         <>
-            <div className="p-3 border">
+            <div className="card p-3 border">
                 <div className="flex items-start sm:items-center p-3">
                     <img
                         className="w-20 h-20 rounded-full mb-auto"

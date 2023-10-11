@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import Order from "@/models/order";
 import Stripe from "stripe";
+import mongoConnect from "@/lib/mongoConnect";
+import getSignedinUser from "@/app/actions/getSignedinUser";
+import Address from "@/models/address";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     typescript: true,
@@ -9,20 +12,20 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 })
 
 export async function POST(request: NextRequest) {
-const body = await request.text();
+    const body = await request.text();
     const wbSecret = process.env.STRIPE_WEBHOOK_SECRET!;
     const signature = headers().get("stripe-signature") as string;
 
-    try {                
+    try {
         const event: any = stripe.webhooks.constructEvent(body, signature, wbSecret);
-        
+
         if (event.type === "checkout.session.completed") {
             const session = event.data.object;
 
             const line_items = await stripe.checkout.sessions.listLineItems(
                 event.data.object.id
             );
-            
+
             const itemsOrdered = await getItemsInCart(line_items);
             const paidAmount = session.amount_total / 100;
 
@@ -43,7 +46,7 @@ const body = await request.text();
             const order = await Order.create(data)
 
             return NextResponse.json(order)
-        } 
+        }
     } catch (err) {
         return NextResponse.error()
     }
@@ -70,4 +73,46 @@ async function getItemsInCart(line_items: any) {
             }
         });
     });
+}
+
+export async function GET(request: NextRequest) {
+    const user = await getSignedinUser()
+    if (!user)
+        return NextResponse.error()
+
+    const params: URLSearchParams = request.nextUrl.searchParams
+
+    let query
+    let pageSize = 4
+    let currentPage
+
+    await mongoConnect()
+    const total = await Order.countDocuments()
+
+    if (params.size > 0) {
+        if (params.has("page")) {
+            currentPage = Number(params.get("page")) || 1
+            const skip = pageSize * (currentPage - 1)
+            query = Order.find({ user: user._id })
+                .populate("user")
+                .populate({ path: "deliveryInfo", model: Address })
+                .sort({ createdAt: -1 }).skip(skip).limit(pageSize)
+        }
+
+    } else {
+        query = Order.find({ user: user._id })
+            .populate("user")
+            .populate({ path: "deliveryInfo", model: Address })
+            .sort({ createdAt: -1 })
+            .limit(pageSize)
+    }
+
+    const orders = await query?.exec()
+    const response = {
+        orders,
+        pageSize,
+        total
+    }
+
+    return NextResponse.json(response)
 }
