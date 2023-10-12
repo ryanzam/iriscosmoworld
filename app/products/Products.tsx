@@ -7,7 +7,7 @@ import ProductFilters from "../components/products/ProductFilters"
 import Empty from "../components/Empty"
 import Pagination from "../components/Pagination"
 
-type data = {
+export type data = {
     products: IProduct[],
     pageSize: number,
     total: number

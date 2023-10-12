@@ -1,11 +1,26 @@
 import Product from "@/models/product";
 import { NextRequest, NextResponse } from "next/server"
 import mongoConnect from "@/lib/mongoConnect"
-import getSignedinUser from "@/app/actions/getSignedinUser";
+import getAdminRole from "@/app/actions/getAdminRoles";
+
+export async function PUT(request: Request) {
+    const user = await getAdminRole()
+    if (!user)
+        return NextResponse.error()
+
+    await mongoConnect()
+
+    const body = await request.json()
+    const { id, ...newProduct } = body
+    if(!id || typeof id !== "string") throw new Error("Invalid product id.")
+
+    const product = await Product.findByIdAndUpdate(id, newProduct)
+    return NextResponse.json(product)
+}
 
 export async function POST(request: NextRequest) {
-
-    const user = await getSignedinUser()
+    
+    const user = await getAdminRole()
     if (!user)
         return NextResponse.error()
 
@@ -22,7 +37,7 @@ export async function GET(request: NextRequest) {
     const params: URLSearchParams = request.nextUrl.searchParams
 
     let query
-    let pageSize = 4
+    let pageSize = 5
     let currentPage
 
     const total = await Product.countDocuments()

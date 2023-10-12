@@ -1,6 +1,6 @@
 "use client"
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import Paginate from 'rc-pagination';
 import { FC, useCallback } from 'react';
 import "rc-pagination/assets/index.css";
@@ -14,13 +14,14 @@ const Pagination:FC<IPaginationProps> = ({ pageSize, total, }: IPaginationProps)
 
     const router = useRouter()
     const searchParams = useSearchParams()
+    const pathname = usePathname()
 
-    let page = searchParams.get("page") ?? 1
+    let page = searchParams?.get("page") ?? 1
     let current = Number(page)
 
     const createQueryString = useCallback(
         (name: string, value: string) => {
-          const params = new URLSearchParams(searchParams)
+          const params = new URLSearchParams(searchParams!)
           params.set(name, value)
      
           return params.toString()
@@ -28,8 +29,8 @@ const Pagination:FC<IPaginationProps> = ({ pageSize, total, }: IPaginationProps)
         [searchParams]
       )
       
-    const handlePageChange = (page: number, pageSize: number) => {
-        router.push("/" + '?' + createQueryString('page', page.toString()))
+    const handlePageChange = (page: number) => {
+        router.push(pathname + '?' + createQueryString('page', page.toString()))
     }
 
     return (

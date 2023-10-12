@@ -4,20 +4,22 @@ interface IInputProps {
     label: string;
     required?: boolean;
     value?: string | number;
-    onChange?:(e: any) => void
+    onChange?: (e: any) => void
     placeHolder: string;
     type: string;
+    id?: string;
     minLength?: number
     disabled?: boolean;
 }
 
-const TextInput: FC<IInputProps> = ({ label, required, value, onChange, placeHolder, type, minLength, disabled }) => {
+const TextInput: FC<IInputProps> = ({ id, label, required, value, onChange, placeHolder, type, minLength, disabled }) => {
     return (
         <div>
             <label className="label">
                 <span className="label-text">{label}</span>
             </label>
             <input className="input input-bordered w-full"
+                id={id}
                 type={type}
                 placeholder={placeHolder}
                 value={value}

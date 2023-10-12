@@ -11,7 +11,7 @@ interface IParams {
   page?: number;
 }
 
-const fetchProducts = async (params: IParams) => {
+export const fetchProducts = async (params: IParams) => {
   const { data } = await axios.get(`${process.env.BASE_URL}/api/products`, { params })
   return data
 }

@@ -1,17 +1,24 @@
+import { fetchProducts } from "@/app/(root)/page"
 import getAdminRole from "@/app/actions/getAdminRoles"
 import Empty from "@/app/components/Empty"
-import Table from "@/app/components/tables/Table"
+import ProductsTable from "@/app/components/tables/ProductsTable"
 
-const AdminProductsPage = async () => {
+interface IParams {
+    page?: number;
+}
+
+const AdminProductsPage = async ({ searchParams }: { searchParams : IParams}) => {
 
     const admin = await getAdminRole()
 
     if(!admin) {
-        return <Empty title="Unauthorized User" alertClass="alert-warning "/>
+        return <Empty title="You are unauthorized to access this page" alertClass="alert-warning"/>
     }
 
+    const data = await fetchProducts(searchParams);
+
     return (
-        <Table />
+        <ProductsTable data={data}/>
     )
 }
 
