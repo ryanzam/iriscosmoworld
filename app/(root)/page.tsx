@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Products from '../products/Products'
+import Footer from '../components/footer/Footer';
 
 interface IParams {
   search?: string;
@@ -20,8 +21,9 @@ export default async function Home({ searchParams }: { searchParams : IParams}) 
   const data = await fetchProducts(searchParams);
 
   return (
-    <main>
+    <>
       <Products data={data} />
-    </main>
+      <Footer />
+    </>
   )
 }

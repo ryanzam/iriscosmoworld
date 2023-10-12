@@ -6,6 +6,7 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FC, useContext, useState } from "react";
 import { UserType } from "../modals/ProfileModal";
+import { FaShopify } from "react-icons/fa";
 
 interface INavProps {
     user?: UserType | null
@@ -34,7 +35,9 @@ const Nav:FC<INavProps> = ({user}) => {
     return (
         <div className="navbar bg-base-200 shadow-md mb-5 flex justify-between">
             <div className="flex">
-                <a href="/" className="btn btn-ghost normal-case text-xl">E<span className="text-neutral-500">Kauppa</span></a>
+                <a href="/" className="btn btn-ghost normal-case text-xl">
+                    <FaShopify size={40} />
+                    <span className="text-neutral-500">Kauppa</span></a>
             </div>
 
             <form onSubmit={handleSubmit}>

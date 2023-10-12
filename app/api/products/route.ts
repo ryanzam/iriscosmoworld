@@ -11,8 +11,8 @@ export async function POST(request: NextRequest) {
 
     await mongoConnect()
     const body = await request.json()
-
-    const product = await Product.create(body)
+    
+    const product = await Product.create({...body, user: user._id})
     return NextResponse.json(product)
 }
 

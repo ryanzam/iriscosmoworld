@@ -22,7 +22,7 @@ const Products:FC<IProductsProps> = ({ data }: IProductsProps) => {
     const renderProducts = () => {
         if(data.products.length === 0) {
             return <div>
-                <Empty showResetBtn={true}/>
+                <Empty title="No product found" showResetBtn={true}/>
             </div>
           }
         return (

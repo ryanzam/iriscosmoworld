@@ -2,19 +2,21 @@ import { useRouter } from "next/navigation"
 import { FC } from "react"
 
 interface IEmptyProps {
+    title?: string,
+    alertClass?: string,
     showResetBtn?: boolean
 }
 
-const Empty: FC<IEmptyProps> = ({ showResetBtn = false }: IEmptyProps) => {
+const Empty: FC<IEmptyProps> = ({ title, alertClass = "", showResetBtn = false }: IEmptyProps) => {
 
     const router = useRouter()
 
     return (
-        <div className="alert">
+        <div className={`alert ` + alertClass}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             <div>
-                <h3 className="font-bold">Nothing found!</h3>
-                <div className="text-xs">Try changing filters</div>
+                <h3 className="font-bold">{title}</h3>
+                {showResetBtn && <div className="text-xs">Try changing filters</div>}
             </div>
             {showResetBtn && <button className="btn btn-sm" onClick={() => router.push("/")}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">

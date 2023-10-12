@@ -11,9 +11,10 @@ import { AiOutlineLogout } from "react-icons/ai"
 
 interface IDashboardNavProps {
     content: any;
+    admin: any;
 }
 
-const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
+const DashboardNav: FC<IDashboardNavProps> = ({ content, admin }) => {
 
     const handleSignout = async () => {
         await signOut({ callbackUrl: "/" })
@@ -32,42 +33,35 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content }) => {
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-60 h-full bg-base-200 text-base-content gap-3">
-                    <li>
+                    {admin &&
+                        <>
+                            <li>
+                                <Link
+                                    href="/user/admin/products"
+                                    className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
+                                >
+                                    <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> All Products
+                                </Link>
+                            </li>
 
-                        <Link
-                            href="/admin/products/new"
-                            className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
-                        >
-                            <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> New Product
-                        </Link>
-                    </li>
+                            <li>
+                                <Link
+                                    href="/user/admin/orders"
+                                    className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
+                                >
+                                    <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> All Orders
+                                </Link>
+                            </li>
 
-                    <li>
-                        <Link
-                            href="/admin/products"
-                            className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
-                        >
-                            <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> All Products
-                        </Link>
-                    </li>
-
-                    <li>
-                        <Link
-                            href="/admin/orders"
-                            className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
-                        >
-                            <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> All Orders
-                        </Link>
-                    </li>
-
-                    <li>
-                        <Link
-                            href="/admin/users"
-                            className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
-                        >
-                            <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> All Users
-                        </Link>
-                    </li>
+                            <li>
+                                <Link
+                                    href="/admin/users"
+                                    className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
+                                >
+                                    <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> All Users
+                                </Link>
+                            </li>
+                        </>}
 
                     <hr />
 

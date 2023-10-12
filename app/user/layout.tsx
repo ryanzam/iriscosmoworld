@@ -1,8 +1,12 @@
+import getAdminRole from "../actions/getAdminRoles"
 import DashboardNav from "../components/dashboard/DashboardNav"
 
-const UserLayout = ({children} : any) => {
+const UserLayout = async ({children} : any) => {
+
+    const admin = await getAdminRole()
+
     return (
-        <DashboardNav content={children} />
+        <DashboardNav content={children} admin={admin}/>
     )
 }
 
