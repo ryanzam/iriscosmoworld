@@ -56,7 +56,7 @@ const ProductDetails: FC<IProductDetailsProps> = ({ product }: IProductDetailsPr
                         ))}
                     </div>
                 </figure>
-                <div className="card-body gap-7">
+                <div className="card-body w-4/6 gap-7">
                     <div className="flex flex-col gap-2">
                         <h2 className="card-title">{product.name}</h2>
                         <p>{product.description}</p>

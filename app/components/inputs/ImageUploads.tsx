@@ -21,7 +21,7 @@ const ImageUploads:FC<IImageUploadProps> = ({ value, onChange }) => {
 
     return <CldUploadWidget onUpload={handleUpload}
                 uploadPreset='niueoylx'
-                options={{ maxFiles: 1}}
+                options={{ maxFiles: 2}}
             >
             {({ open }) => {
                 return <div onClick={() => open?.()}

@@ -98,6 +98,7 @@ const ProductsTable: FC<IProductsTableProps> = ({ data }: IProductsTableProps) =
                                     </div>
                                     <div>
                                         <div className="font-bold">{p.name}</div>
+                                        <span className="badge badge-ghost badge-sm">By {p.seller}</span>
                                     </div>
                                 </div>
                             </td>
@@ -105,15 +106,11 @@ const ProductsTable: FC<IProductsTableProps> = ({ data }: IProductsTableProps) =
                             <td>€{p.price}</td>
                             <td>{p.stock}</td>
                             <td className="join join-vertical lg:join-horizontal">
-                                <button className="btn join-item btn-ghost btn-sm" title="Edit image"
-                                >
-                                    <BsImage size={18} />
-                                </button>
-                                <button className="btn join-item btn-ghost btn-sm" title="Edit product"
+                                <button className="btn join-item btn-ghost" title="Edit product"
                                     onClick={() => onEditProduct(p)}>
                                     <AiOutlineEdit size={18} />
                                 </button>
-                                <button className="btn join-item btn-ghost btn-sm" title="Delete product"
+                                <button className="btn join-item btn-ghost" title="Delete product"
                                     onClick={() => onDeleteProduct(p._id)}
                                 >
                                     <AiOutlineDelete size={18} />
@@ -121,8 +118,10 @@ const ProductsTable: FC<IProductsTableProps> = ({ data }: IProductsTableProps) =
                             </td>
                         </tr>
                     ))}
-
                 </tbody>
+                <tfoot>
+                    <tr><th>Total products: {data?.total}</th></tr>
+                </tfoot>
             </table>
             <div className="mt-3">
                 <Pagination total={data.total} pageSize={data.pageSize} />

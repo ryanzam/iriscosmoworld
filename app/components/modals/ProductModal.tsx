@@ -6,7 +6,7 @@ import Modal from "./Modal";
 import { BsSend } from "react-icons/bs"
 import axios from "axios";
 import toast from "react-hot-toast";
-import { IProduct } from "@/models/product";
+import { IProduct, ImageType } from "@/models/product";
 import { Categories } from "@/models/categories";
 import ImageUploads from "../inputs/ImageUploads";
 
@@ -27,7 +27,7 @@ const AddProductModal: FC<IAddProductModalProps> = ({ title, isOpen, onClose, pr
         stock: "" || product?.stock,
         category: "" || product?.category,
         seller: "" || product?.seller,
-        images: [{ url: ""}] || product?.images[0]
+        images: [{} as ImageType] as Array<ImageType> || product?.images[0]
     });
 
     const { name, description, price, stock, category, seller } = item

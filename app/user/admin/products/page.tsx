@@ -1,7 +1,7 @@
 import { fetchProducts } from "@/app/(root)/page"
 import getAdminRole from "@/app/actions/getAdminRoles"
 import Empty from "@/app/components/Empty"
-import ProductsTable from "@/app/components/tables/ProductsTable"
+import ProductsTable from "@/app/components/products/ProductsTable"
 
 interface IParams {
     page?: number;

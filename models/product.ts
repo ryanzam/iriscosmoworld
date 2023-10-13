@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import { Categories } from "./categories";
 
-type IImage = {
-    public_id: string;
+export type ImageType = {
+    public_id?: string;
     url: string;
 }
 
@@ -11,7 +11,7 @@ export interface IProduct {
     name: string;
     description?: string;
     price: number;
-    images: Array<IImage>;
+    images: Array<ImageType>;
     category: string;
     stock: number;
     seller: string;

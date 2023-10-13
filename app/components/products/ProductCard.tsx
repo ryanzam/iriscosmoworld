@@ -55,7 +55,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
                         />
                         <div className="text-xs font-medium m-1">{product?.ratings}</div>
                     </div>
-                    <div className="text-sm">{product?.description}</div>
+                    <div className="text-sm md:w-4/5">{product?.description?.substring(1, 100) + "..."}</div>
                 </div>
 
                 <div className="flex flex-col items-end justify-center gap-2">
