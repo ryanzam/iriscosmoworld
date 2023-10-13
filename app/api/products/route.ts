@@ -76,11 +76,11 @@ export async function GET(request: NextRequest) {
         if (params.has("page")) {
             currentPage = Number(params.get("page")) || 1
             const skip = pageSize * (currentPage - 1)
-            query = Product.find().skip(skip).limit(pageSize)
+            query = Product.find().skip(skip).sort({ createdAt: -1 }).limit(pageSize)
         }
 
     } else {
-        query = Product.find().limit(pageSize)
+        query = Product.find().sort({ createdAt: -1 }).limit(pageSize)
     }
 
     const products = await query?.exec()

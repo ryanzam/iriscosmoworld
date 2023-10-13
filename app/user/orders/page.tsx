@@ -48,7 +48,7 @@ const Orders = async () => {
                 {data?.orders.map(order => (
                     <OrderCard order={order} />
                 ))}
-                <Pagination total={data!.total} pageSize={data!.pageSize} />
+                {data?.total && data?.pageSize  && <Pagination total={data!.total} pageSize={data!.pageSize} />}
             </div>
         )
     }

@@ -40,8 +40,7 @@ export async function POST(request: NextRequest) {
                 user: session.metadata.userId,
                 paymentInfo,
                 orderItems: itemsOrdered,
-                deliveryInfo: session.metadata.deliveryId,
-                orderStatus: session.status
+                deliveryInfo: session.metadata.deliveryId
             }
             const order = await Order.create(data)
 
