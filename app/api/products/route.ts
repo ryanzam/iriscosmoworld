@@ -1,11 +1,12 @@
 import Product from "@/models/product";
 import { NextRequest, NextResponse } from "next/server"
 import mongoConnect from "@/lib/mongoConnect"
-import getAdminRole from "@/app/actions/getAdminRoles";
+import getSignedinUser from "@/app/actions/getSignedinUser";
 
 export async function PUT(request: Request) {
-    const user = await getAdminRole()
-    if (!user)
+    const user = await getSignedinUser()
+
+    if (user.role !== "admin")
         return NextResponse.error()
 
     await mongoConnect()
@@ -20,26 +21,27 @@ export async function PUT(request: Request) {
 
 export async function POST(request: NextRequest) {
     
-    const user = await getAdminRole()
-    if (!user)
+    const user = await getSignedinUser()
+
+    if (user.role !== "admin")
         return NextResponse.error()
 
-    await mongoConnect()
     const body = await request.json()
     
+    await mongoConnect()    
     const product = await Product.create({...body, user: user._id})
     return NextResponse.json(product)
 }
 
 export async function GET(request: NextRequest) {
-    await mongoConnect()
-
     const params: URLSearchParams = request.nextUrl.searchParams
 
     let query
     let pageSize = 5
     let currentPage
 
+    await mongoConnect()
+    
     const total = await Product.countDocuments()
 
     if (params.size > 0) {

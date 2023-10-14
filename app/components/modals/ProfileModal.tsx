@@ -12,12 +12,12 @@ export type AvatarType ={
 }
 
 export type UserType = {
-    _id?: string;
+    _id: string;
     name: string;
     email: string;
     role: string;
     avatar?: AvatarType;
-    createdAt: Date;
+    createdAt?: Date;
 }
 
 interface IProfileModalProps {

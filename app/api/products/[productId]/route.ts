@@ -1,7 +1,7 @@
 import mongoConnect from "@/lib/mongoConnect"
 import { NextResponse } from "next/server"
 import Product from "@/models/product";
-import getAdminRole from "@/app/actions/getAdminRoles";
+import getSignedinUser from "@/app/actions/getSignedinUser";
 
 interface IParams {
     productId?: string
@@ -18,15 +18,14 @@ export async function GET(request: Request, {params}: {params: IParams}) {
 }
 
 export async function DELETE(request: Request, {params}: {params: IParams}) {
-    const user = await getAdminRole()
-    if (!user)
+    const user = await getSignedinUser()
+    if (user.role !== "admin")
         return NextResponse.error()
     
-    await mongoConnect()
-
     const { productId } = params;
     if(!productId || typeof productId !== "string") throw new Error("Invalid product id.")
 
+    await mongoConnect()
     const product = await Product.findByIdAndDelete(params.productId)
     return NextResponse.json(product)
 }

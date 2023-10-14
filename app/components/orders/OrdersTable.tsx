@@ -147,7 +147,7 @@ const OrdersTable = async () => {
                 </tfoot>
             </table>
             <div className="mt-3">
-                {data.pageSize && <Pagination total={data?.total} pageSize={data?.pageSize} />}
+                {data.total && data.pageSize && <Pagination total={data?.total} pageSize={data?.pageSize} />}
             </div>
         </div>
     )

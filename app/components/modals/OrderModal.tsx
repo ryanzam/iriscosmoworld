@@ -1,7 +1,6 @@
 "use client"
 
 import { FC, useState } from "react"
-import TextInput from "../inputs/TextInput"
 import Modal from "./Modal";
 import { BsSend } from "react-icons/bs"
 import axios from "axios";

@@ -14,11 +14,15 @@ const OrderCard: FC<IOrderCardProps> = ({ order, children }) => {
             <div className="card-body">
                 <div className="flex justify-between">
                     <div className="font-semibold">Order ID: {order?._id}
-                        <h4 className="badge badge-secondary ml-2">{order?.orderStatus}</h4>
+                        <h4 className={`badge ml-2
+                            ${order.orderStatus === "Delivered" ? "badge-secondary" : "badge-warning"}
+                        `}>
+                            {order?.orderStatus}
+                        </h4>
                     </div>
                     <div className="font-semibold">{order?.createdAt?.split("T")[0]}</div>
                 </div>
-                <hr className="my-2"/>
+                <hr className="my-2" />
                 <div className="grid grid-cols-3 gap-3">
                     <div className="">
                         <h4 className="font-bold">Customer Info</h4>
@@ -41,9 +45,9 @@ const OrderCard: FC<IOrderCardProps> = ({ order, children }) => {
                         <p>{order?.deliveryInfo?.country}</p>
                     </div>
                 </div>
-                <hr className="my-2"/>
+                <hr className="my-2" />
                 <h3 className="font-bold">Purchased Items</h3>
-                <hr className="my-2"/>
+                <hr className="my-2" />
                 {order?.orderItems?.map((oi: any) => (
                     <div className="flex items-center" key={oi._id}>
                         <img src="/placeholder.jpg" height={50} width={50} />

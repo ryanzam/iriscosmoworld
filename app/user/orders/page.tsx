@@ -29,7 +29,7 @@ const Orders = async () => {
             emptyCart()
             router.replace("/user/orders")
         }
-        async function fetch() {
+        function fetch() {
             axios.get(`/api/orders`, {})
                 .then(res => setData(res?.data))
                 .catch(err => toast.error(err.message))
