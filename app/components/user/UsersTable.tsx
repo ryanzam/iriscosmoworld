@@ -10,7 +10,6 @@ import toast from "react-hot-toast"
 
 import { UserType } from "../modals/ProfileModal"
 import UserModal, { UserRole } from "../modals/UserModal"
-import { Router } from "next/router"
 
 export type UsersDataType = {
     users: UserType[],
@@ -19,7 +18,7 @@ export type UsersDataType = {
 }
 
 
-const UsersTable = async () => {
+const UsersTable = () => {
 
     const [data, setData] = useState({} as UsersDataType)
     const [selectedUser, setSelectedUser] = useState<UserType>({} as UserType)
@@ -54,24 +53,25 @@ const UsersTable = async () => {
     }
 
     const onDeleteUser = (id: string) => {
-        const confirm = window.confirm("Are you sure, you want to delete this product?")
+        const confirm = window.confirm("Are you sure, you want to delete this user?")
         if (!confirm)
             return
 
-        let productPromise = axios.delete(`/api/admin/Users/` + id)
+        let productPromise = axios.delete(`/api/admin/users/` + id)
         toast.promise(productPromise, {
-            loading: "Deleting product",
+            loading: "Deleting user",
             success: () => {
-                fetchUsers()
-                return "Product deleted"
+                router.refresh()
+                return "User deleted"
             },
-            error: "Error while deleting product"
+            error: "Error while deleting user"
         })
     }
 
     const onCloseModal = (reload: boolean) => {
         setShowUserModal(false)
         if(reload) {
+            fetchUsers()
             router.refresh()
         }
     }

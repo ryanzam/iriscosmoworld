@@ -31,7 +31,6 @@ const SigninPage = () => {
             }
             if (cb?.error) {
                 toast.error(cb.error)
-                router.refresh()
             }
         })
         setLoading(false)

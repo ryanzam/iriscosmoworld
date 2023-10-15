@@ -12,6 +12,7 @@ import toast from "react-hot-toast"
 import { AddressType } from "@/app/components/modals/AddressModal";
 import { UserType } from "../modals/ProfileModal"
 import OrderModal from "../modals/OrderModal"
+import OrdersStats from "../stats/OrderStats"
 
 type PaymentInfoType = {
     id: string,
@@ -60,7 +61,7 @@ const OrdersTable = async () => {
             })
     }, [data.total])
 
-    if (loading) {
+    if (loading || !data.orders) {
         return
     }
 
@@ -95,7 +96,10 @@ const OrdersTable = async () => {
             {showOrderModal &&
                 <OrderModal title="Update Order" isOpen={showOrderModal} onClose={onCloseModal} order={selectedOrder} />
             }
-            <table className="table">
+
+            {data.orders && data.orders.length > 0 && <OrdersStats orders={data.orders}/>}
+
+            <table className="table mt-3">
                 <thead>
                     <tr>
                         <th>Order ID</th>

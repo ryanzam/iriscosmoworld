@@ -1,29 +1,34 @@
 "use client"
 
-import { IProduct } from "@/models/product"
+import { IProduct, ReviewType } from "@/models/product"
 import dynamic from "next/dynamic";
 import { FC, useContext, useState } from "react"
 import Breadcrums from "../Breadcrums";
 import { CartItemType, CartItemsContext } from "@/context/CartContext";
 import toast from "react-hot-toast";
+import PostReview from "../reviews/PostReview";
+import Reviews from "../reviews/Reviews";
+import { useSession } from "next-auth/react"
+import { UserType } from "../modals/ProfileModal";
 
 const StarRatings = dynamic(() => import("react-star-ratings"), {
     ssr: false,
 });
 
 interface IProductDetailsProps {
-    product: IProduct
+    product: IProduct,
+    user: UserType
 }
 
-const ProductDetails: FC<IProductDetailsProps> = ({ product }: IProductDetailsProps) => {
+const ProductDetails: FC<IProductDetailsProps> = ({ product, user }: IProductDetailsProps) => {
 
     const [imagePreview, setImagePreview] = useState(product.images.length > 0 ? product.images[0].url : "/placeholder.jpg")
 
     const { addToCart } = useContext(CartItemsContext)
 
     const breadcrumbs = [
-        { name: "Home", path: "/"},
-        { name: `${product.name}` , path: `/products/${product._id}`}
+        { name: "Home", path: "/" },
+        { name: `${product.name}`, path: `/products/${product._id}` }
     ]
 
     const handleAddToCart = () => {
@@ -40,17 +45,21 @@ const ProductDetails: FC<IProductDetailsProps> = ({ product }: IProductDetailsPr
         toast.success(`${product.name} added to cart`)
     }
 
+    const reviewAllowed = user ?
+        product.productreviews?.some((pr: ReviewType) => pr.user._id === user._id) : true
+
     return (
         <>
-            <Breadcrums breadcrums={breadcrumbs}/>
+            <Breadcrums breadcrums={breadcrumbs} />
             <div className="card card-side bg-base-100 shadow-md">
                 <figure className="flex flex-col w-2/6">
                     <img src={imagePreview} alt="product" />
 
                     <div className="flex items-center justify-center p-3">
                         {product.images.map(i => (
-                            <a className="inline-block border border-gray-100 p-1 rounded-lg
-                             hover:border-blue-400 cursor-pointer" onClick={() => setImagePreview(i.url)}>
+                            <a key={i.public_id} className="inline-block border border-gray-100 p-1 rounded-lg
+                             hover:border-blue-400 cursor-pointer" onClick={() => setImagePreview(i.url)}
+                            >
                                 <img className="h-16 w-16" src={i.url} alt="product" />
                             </a>
                         ))}
@@ -92,6 +101,12 @@ const ProductDetails: FC<IProductDetailsProps> = ({ product }: IProductDetailsPr
                     </div>
                 </div>
             </div>
+            {!reviewAllowed &&
+                <PostReview product={product} />
+            }
+            {product.productreviews.length > 0 &&
+                <Reviews reviews={product.productreviews} />
+            }
         </>
     )
 }

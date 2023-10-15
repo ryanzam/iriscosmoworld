@@ -4,13 +4,13 @@ import { data } from "@/app/products/Products"
 import { FC, useEffect, useState } from "react"
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai"
 import Pagination from "../Pagination"
-import { BsImage } from "react-icons/bs"
-import { GrFormAdd } from "react-icons/gr"
 import ProductModal from "../modals/ProductModal"
 import { IProduct } from "@/models/product"
 import { useRouter } from "next/navigation"
 import axios from "axios"
 import toast from "react-hot-toast"
+import ProductStats from "../stats/ProductStats"
+import Image from "next/image"
 
 interface IProductsTableProps {
     data: data
@@ -30,7 +30,7 @@ const ProductsTable: FC<IProductsTableProps> = ({ data }: IProductsTableProps) =
     const onCloseProductModal = (reload: boolean = false) => {
         setShowProductModal(false)
         setSelectedProduct(undefined)
-        if(reload) {
+        if (reload) {
             router.refresh()
         }
     }
@@ -64,12 +64,10 @@ const ProductsTable: FC<IProductsTableProps> = ({ data }: IProductsTableProps) =
                     product={selectedProduct}
                 />
             }
-            <button className="btn btn-outline btn-sm" onClick={onClickProduct}>
-                <GrFormAdd size={18} className="hover:text-neutral-50" />
-                Add product
-            </button>
-            <table className="table">
-                {/* head */}
+
+            <ProductStats data={data} />
+
+            <table className="table mt-3">
                 <thead>
                     <tr>
                         <th></th>
@@ -77,7 +75,11 @@ const ProductsTable: FC<IProductsTableProps> = ({ data }: IProductsTableProps) =
                         <th>Category</th>
                         <th>Price</th>
                         <th>On Stock</th>
-                        <th></th>
+                        <th>
+                            <button className="btn btn-outline btn-accent btn-sm mt-5" onClick={onClickProduct}>
+                                Add product
+                            </button>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -92,8 +94,11 @@ const ProductsTable: FC<IProductsTableProps> = ({ data }: IProductsTableProps) =
                                 <div className="flex items-center space-x-3">
                                     <div className="avatar">
                                         <div className="mask mask-squircle w-12 h-12">
-                                            <img src={p.images.length > 0 ? p.images[0].url : "/placeholder.jpg"}
-                                                alt="product image" />
+                                            <Image
+                                                src={p.images.length > 0 ? p.images[0].url : "/placeholder.jpg"}
+                                                alt="product image" 
+                                                height={48}
+                                                width={48}/>
                                         </div>
                                     </div>
                                     <div>

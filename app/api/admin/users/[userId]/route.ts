@@ -1,6 +1,6 @@
 import mongoConnect from "@/lib/mongoConnect"
 import { NextResponse } from "next/server"
-import User from "@/models/order";
+import User from "@/models/user";
 import getSignedinUser from "@/app/actions/getSignedinUser";
 
 interface IParams {
@@ -13,11 +13,11 @@ export async function DELETE(request: Request, {params}: {params: IParams}) {
     if (user.role !== "admin")
         return NextResponse.error()
     
-    await mongoConnect()
-
     const { userId } = params;
     if(!userId || typeof userId !== "string") throw new Error("Invalid user id.")
 
-    const users = await User.findByIdAndDelete(params.userId)
+    await mongoConnect()
+    const users = await User.findByIdAndDelete(userId)
+
     return NextResponse.json(users)
 }

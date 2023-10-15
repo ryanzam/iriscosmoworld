@@ -40,7 +40,7 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content, admin }) => {
                                     href="/admin/products"
                                     className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
                                 >
-                                    <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> All Products
+                                    <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> Products
                                 </Link>
                             </li>
 
@@ -49,7 +49,7 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content, admin }) => {
                                     href="/admin/orders"
                                     className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
                                 >
-                                    <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> All Orders
+                                    <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> Orders
                                 </Link>
                             </li>
 
@@ -58,7 +58,7 @@ const DashboardNav: FC<IDashboardNavProps> = ({ content, admin }) => {
                                     href="/admin/users"
                                     className="font-bold px-3 py-2 text-neutral-900 hover:bg-neutral-300 hover:text-neutral-500 rounded-md"
                                 >
-                                    <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> All Users
+                                    <span className="text-neutral-600-500"><RiAdminLine title="Admin" /></span> Users
                                 </Link>
                             </li>
                         </>}
