@@ -1,14 +1,41 @@
 import mongoConnect from "@/lib/mongoConnect";
 import User from "@/models/user";
 import { NextResponse } from "next/server";
+import bcrypt from "bcryptjs"
+import { RandomString } from "@/utils/stringGenerator";
+import { emailVerification } from "@/utils/mailer";
 
 export async function POST(request: Request) {
-    await mongoConnect()
+    try {
+        await mongoConnect()
 
-    const body = await request.json()
-    const { name, email, password } = body
-    
-    const user = await User.create({ name, email, password })
+        const body = await request.json()
+        const { name, email, password } = body
 
-    return NextResponse.json(user)
+        const userFound = await User.findOne({ email });
+        if (userFound) {
+            return NextResponse.json(
+                { message: "Email already exists" }, { status: 500});
+        }
+
+        const uniqueString = RandomString();
+        const user = new User({
+            name,
+            email,
+            password: password,
+            uniqueString
+        });
+
+        const savedUser = await user.save();
+        emailVerification(email, uniqueString)
+        return NextResponse.json(
+            {
+                name: savedUser.name,
+                email: savedUser.email,
+                createdAt: savedUser.createdAt,
+                updatedAt: savedUser.updatedAt,
+            });
+    } catch (error) {
+        return NextResponse.json({message: error}, {status: 500})
+    }
 }

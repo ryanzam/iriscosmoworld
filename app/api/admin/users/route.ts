@@ -45,11 +45,11 @@ export async function PUT(request: NextRequest) {
     const user = await getSignedinUser()
     if (user?.role !== "admin")
         return NextResponse.error()
-    
+
     const body = await request.json()
     const { id, ...newUser } = body
-    
-    if(!id || typeof id !== "string") throw new Error("Invalid order id.")
+
+    if (!id || typeof id !== "string") throw new Error("Invalid order id.")
 
     await mongoConnect()
     const order = await User.findByIdAndUpdate(id, newUser)

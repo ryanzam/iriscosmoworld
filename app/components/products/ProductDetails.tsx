@@ -8,7 +8,6 @@ import { CartItemType, CartItemsContext } from "@/context/CartContext";
 import toast from "react-hot-toast";
 import PostReview from "../reviews/PostReview";
 import Reviews from "../reviews/Reviews";
-import { useSession } from "next-auth/react"
 import { UserType } from "../modals/ProfileModal";
 
 const StarRatings = dynamic(() => import("react-star-ratings"), {
@@ -57,7 +56,7 @@ const ProductDetails: FC<IProductDetailsProps> = ({ product, user }: IProductDet
 
                     <div className="flex items-center justify-center p-3">
                         {product.images.map(i => (
-                            <a key={i.public_id} className="inline-block border border-gray-100 p-1 rounded-lg
+                            <a key={i?.public_id} className="inline-block border border-gray-100 p-1 rounded-lg
                              hover:border-blue-400 cursor-pointer" onClick={() => setImagePreview(i.url)}
                             >
                                 <img className="h-16 w-16" src={i.url} alt="product" />
@@ -70,7 +69,7 @@ const ProductDetails: FC<IProductDetailsProps> = ({ product, user }: IProductDet
                         <h2 className="card-title">{product.name}</h2>
                         <p>{product.description}</p>
 
-                        <h3 className="font-semibold">€{product.price}</h3>
+                        <h3 className="font-semibold">Rs.{product.price}</h3>
                     </div>
 
                     <div className="flex">
@@ -97,7 +96,7 @@ const ProductDetails: FC<IProductDetailsProps> = ({ product, user }: IProductDet
                     </div>
 
                     <div className="card-actions">
-                        <button className="btn btn-primary" onClick={handleAddToCart}>Add to cart</button>
+                        <button className="btn btn-primary btn-sm" onClick={handleAddToCart}>Add to cart</button>
                     </div>
                 </div>
             </div>

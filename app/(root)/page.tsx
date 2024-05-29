@@ -16,9 +16,9 @@ export const fetchProducts = async (params: IParams) => {
   return data
 }
 
-export default async function Home({ searchParams }: { searchParams : IParams}) {
+export default async function Home({ searchParams }: { searchParams: IParams }) {
 
-  const data = await fetchProducts(searchParams);
+  const data = await fetchProducts(searchParams)
 
   return (
     <>

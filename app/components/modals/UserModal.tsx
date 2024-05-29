@@ -63,7 +63,7 @@ const UserModal: FC<IUserModalProps> = ({ title, isOpen, onClose, User }) => {
                 <label className="label">
                     <span className="label-text">Select user role</span>
                 </label>
-                <select className="select select-primary w-full"
+                <select className="select select-secondary w-full"
                     value={role}
                     onChange={(e: any) => setRole(e.target.value)} required>
                     {Object.values(UserRole).map(s => (
@@ -71,7 +71,7 @@ const UserModal: FC<IUserModalProps> = ({ title, isOpen, onClose, User }) => {
                     ))}
                 </select>
             </div>
-            <button className="btn btn-primary mt-3" type="submit" >
+            <button className="btn btn-primary btn-sm mt-3" type="submit" >
                 <BsSend />
                 Submit
             </button>

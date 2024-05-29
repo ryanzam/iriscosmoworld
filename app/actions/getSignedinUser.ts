@@ -11,16 +11,16 @@ export default async function getSignedinUser() {
     try {
         const session = await getSession()
 
-        if(!session?.user?.email) 
-            return null
-        
-            await mongoConnect()
-            const signedinUser = await User.findOne({ email: session.user.email})
-
-            if(!signedinUser) 
+        if (!session?.user?.email)
             return null
 
-            return signedinUser
+        await mongoConnect()
+        const signedinUser = await User.findOne({ email: session.user.email })
+
+        if (!signedinUser)
+            return null
+
+        return signedinUser
 
     } catch (error) {
         return null

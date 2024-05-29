@@ -41,12 +41,15 @@ const CartPage = () => {
     }
 
     const grossTotal = +(getGrossTotal(cartItems))
-    const tax = +(grossTotal * .15).toFixed(2)
-    const netTotal = +(grossTotal + tax).toFixed(2)
+    const discount = grossTotal < 100 ? 0 : +(grossTotal * .10).toFixed(2)
+    const netTotal = +(grossTotal - discount).toFixed(2)
 
     return (
         <div>
-            <h3 className="mb-3">{cartItems.length} Items(s) in cart.</h3>
+            <div className="flex justify-between">
+                <h3 className="mb-3">{cartItems.length} Items(s) in cart.</h3>
+                {grossTotal < 100 && <div className="badge badge-secondary badge-outline">Get 10% off on Rs. 100 or more</div>}
+            </div>
             <div className="grid grid-cols-[1.5fr_.5fr] gap-5">
                 <div>
                     {cartItems.map(item => (
@@ -58,18 +61,18 @@ const CartPage = () => {
                                 <div className="flex flex-col justify-center">
                                     <h2 className="card-title">{item.name}</h2>
                                     <div className="text-sm">{item?.seller}</div>
-                                    <h3 className="font-semibold">€{item.price}</h3>
+                                    <h3 className="font-semibold">Rs.{item.price}</h3>
                                 </div>
 
                                 <div className="flex items-center justify-end">
-                                    <button className="btn" onClick={() => handleSubstractQuantity(item)}>-</button>
+                                    <button className="btn btn-sm" onClick={() => handleSubstractQuantity(item)}>-</button>
                                     <div className="px-2">{item.quantity}</div>
-                                    <button className="btn" disabled={item.quantity === item.stock} onClick={() => handleAddQuantity(item)}>+</button>
+                                    <button className="btn btn-sm" disabled={item.quantity === item.stock} onClick={() => handleAddQuantity(item)}>+</button>
                                 </div>
 
                                 <div className="flex flex-col items-end justify-center gap-2">
                                     <div className="card-actions justify-end">
-                                        <button className="btn btn-secondary" onClick={() => handleRemoveProduct(item.id)}>Remove</button>
+                                        <button className="btn btn-sm btn-primary" onClick={() => handleRemoveProduct(item.id)}>Remove</button>
                                     </div>
                                 </div>
 
@@ -79,13 +82,13 @@ const CartPage = () => {
                 </div>
                 <div className="card  bg-base-100 shadow-xl p-5 flex flex-col gap-3">
                     <div className="grid grid-cols-2 gap-3">
-                        <h3>Gross Total</h3><h3 className="text-end">{grossTotal}</h3>
-                        <h3>Tax (15%)</h3><h3 className="text-end">{tax}</h3>
-                        <h3 className="font-bold">Total</h3><h3 className="text-end font-bold">{netTotal}</h3>
+                        <h3>Gross Total</h3><h3 className="text-end">Rs.{grossTotal}</h3>
+                        <h3>Discount(10%)</h3><h3 className="text-end">Rs.{discount}</h3>
+                        <h3 className="font-bold">Total</h3><h3 className="text-end font-bold">Rs.{netTotal}</h3>
                     </div>
-                    <hr className="my-3"/>
-                    <Link className="btn btn-primary" href={"/delivery"}>Proceed</Link>
-                    <Link className="btn" href={"/"}>Return home</Link>
+                    <hr className="my-3" />
+                    <Link className="btn btn-sm btn-accent" href={"/delivery"}>Proceed</Link>
+                    <Link className="btn btn-sm" href={"/"}>Return home</Link>
                 </div>
             </div>
         </div>

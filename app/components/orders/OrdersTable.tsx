@@ -36,7 +36,7 @@ export type OrderDataType = {
     total: number
 }
 
-const OrdersTable = async () => {
+const OrdersTable =  () => {
 
     const [data, setData] = useState({} as OrderDataType)
     const [selectedOrder, setSelectedOrder] = useState()

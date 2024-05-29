@@ -6,16 +6,14 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FC, useContext, useState } from "react";
 import { UserType } from "../modals/ProfileModal";
-import { FaShopify } from "react-icons/fa";
 
 interface INavProps {
     user?: UserType | null
 }
 
-const Nav:FC<INavProps> = ({user}) => {
-
+const Nav: FC<INavProps> = ({ user }) => {
     const [search, setSearch] = useState("")
-
+    const [checked, setChecked] = useState(true)
     const { cartItems } = useContext(CartItemsContext)
     const router = useRouter();
 
@@ -32,12 +30,15 @@ const Nav:FC<INavProps> = ({user}) => {
         router.push("/cart")
     }
 
+    const onModeChange = (e: any) => {
+        setChecked(e.target.checked)
+    }
+
     return (
         <div className="navbar bg-base-200 shadow-md mb-5 flex justify-between">
             <div className="flex">
-                <a href="/" className="btn btn-ghost normal-case text-xl">
-                    <FaShopify size={40} />
-                    <span className="text-neutral-500">Kauppa</span></a>
+                <a href="/" className="normal-case text-xl">
+                    <span className="text-black">IRIS COSMOWORLD</span></a>
             </div>
 
             <form onSubmit={handleSubmit}>
@@ -60,9 +61,9 @@ const Nav:FC<INavProps> = ({user}) => {
                     <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
                         <div className="card-body">
                             <span className="font-bold text-lg">{cartItems.length} Items</span>
-                            <span className="text-info">Subtotal: €{getGrossTotal(cartItems)}</span>
+                            <span className="text-base-500">Subtotal: €{getGrossTotal(cartItems)}</span>
                             <div className="card-actions">
-                                <button className="btn btn-primary btn-block" onClick={handleViewCart}>View cart</button>
+                                <button className="btn btn-primary btn-block btn-sm" onClick={handleViewCart}>View cart</button>
                             </div>
                         </div>
                     </div>
@@ -77,20 +78,19 @@ const Nav:FC<INavProps> = ({user}) => {
                             </div>
                         </label> :
                         <>
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            {user.image ? <img src={user.image} className="w-4 h-4" alt="profile" /> : <p>{user.name}</p>}
-                        </label>
-                        <ul tabIndex={0} className="menu menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li>
-                                <a className="justify-between" href="/user">
-                                    Dashboard
-                                    <span className="badge">New</span>
-                                </a>
-                            </li>
-                            <li><a>Settings</a></li>
-                            <li><a onClick={() => signOut({callbackUrl: "/"})}>Signout</a></li>
-                        </ul>
-                    </>}
+                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                {user?.image ? <img src={user?.image} className="w-4 h-4" alt="profile" /> : <p>{user?.name?.split(" ")[0]}</p>}
+                            </label>
+                            <ul tabIndex={0} className="menu menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                <li>
+                                    <a className="justify-between" href="/user">
+                                        Dashboard
+                                        <span className="badge">New</span>
+                                    </a>
+                                </li>
+                                <li><a onClick={async () => await signOut()}>Signout</a></li>
+                            </ul>
+                        </>}
                 </div>
             </div>
         </div>

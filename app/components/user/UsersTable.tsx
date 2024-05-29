@@ -26,14 +26,15 @@ const UsersTable = () => {
     const [loading, setLoading] = useState(false)
 
     const searchParams: any = useSearchParams()
+    const page = searchParams?.get("page") || 1
     const router = useRouter()
 
     useEffect(() => {
         fetchUsers()
-    }, [])
+    }, [router, searchParams])
 
     const fetchUsers = useCallback(() => {
-        axios.get(`/api/admin/users`, searchParams)
+        axios.get(`/api/admin/users`, { params: { page }})
             .then(res => {
                 setData(res.data)
             })
@@ -41,7 +42,7 @@ const UsersTable = () => {
             .finally(() => {
                 setLoading(false)
             })
-    }, [])
+    }, [searchParams])
 
     if (loading) {
         return
@@ -70,7 +71,7 @@ const UsersTable = () => {
 
     const onCloseModal = (reload: boolean) => {
         setShowUserModal(false)
-        if(reload) {
+        if (reload) {
             fetchUsers()
             router.refresh()
         }
@@ -79,7 +80,7 @@ const UsersTable = () => {
     return (
         <div className="">
             {showUserModal &&
-                <UserModal title="Update User" isOpen={showUserModal} onClose={(val: any) => onCloseModal(val)} User={selectedUser}/>
+                <UserModal title="Update User" isOpen={showUserModal} onClose={(val: any) => onCloseModal(val)} User={selectedUser} />
             }
             <table className="table">
                 <thead>

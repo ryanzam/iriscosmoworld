@@ -2,13 +2,13 @@
 
 import { FC, useState } from "react"
 import Modal from "./Modal";
-import { BsSend } from "react-icons/bs"
+import { BsArrowRepeat } from "react-icons/bs"
 import axios from "axios";
 import toast from "react-hot-toast";
 import { IOrder } from "../orders/OrdersTable";
 import OrderCard from "../orders/OrderCard";
 
-enum OrderStatus {
+export enum OrderStatus {
     PENDING = "Pending",
     SENT = "Sent",
     DELIVERED = "Delivered"
@@ -28,13 +28,16 @@ const OrderModal: FC<IOrderModalProps> = ({ title, isOpen, onClose, order }) => 
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
+
         const updateOrder = axios.put(`/api/admin/orders`, { id: order?._id, orderStatus })
 
+        axios.post(`/api/emailOrderStatus`, { email: order?.user, orderStatus })
+
         toast.promise(updateOrder, {
-            loading: "Submitting Order",
+            loading: "Updating Order",
             success: () => {
                 onClose()
-                return "Order saved"
+                return "Order updated"
             },
             error: "Error while adding Order"
         })
@@ -54,9 +57,9 @@ const OrderModal: FC<IOrderModalProps> = ({ title, isOpen, onClose, order }) => 
                         <option key={s}>{s}</option>
                     ))}
                 </select>
-                <button className="btn btn-primary mt-3" onClick={handleSubmit}>
-                    <BsSend />
-                    Submit
+                <button className="btn btn-primary btn-sm mt-3" onClick={handleSubmit}>
+                    <BsArrowRepeat />
+                    Update
                 </button>
             </div>
         </OrderCard>

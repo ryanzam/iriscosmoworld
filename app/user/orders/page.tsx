@@ -20,14 +20,16 @@ const Orders = async () => {
     const [data, setData] = useState<data>()
     const params = useSearchParams()
 
-    const confirm = params?.get("confirmation")
+    const token = params?.get("data")
+
     const { emptyCart } = useContext(CartItemsContext)
     const router= useRouter()
 
     useEffect(() => {
-        if (confirm) {
+        if (token) {
             emptyCart()
             router.replace("/user/orders")
+            toast.success("👏 Item(s) successfully ordered!")
         }
         function fetch() {
             axios.get(`/api/orders`, {})

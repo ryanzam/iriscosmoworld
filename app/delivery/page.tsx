@@ -9,8 +9,16 @@ import { getGrossTotal } from "@/utils/getProductsCalc";
 import { CartItemsContext } from "@/context/CartContext";
 import Link from "next/link";
 import Breadcrums from "../components/Breadcrums";
+import getSignature from "../actions/getSignature";
+import { emailOrder } from "@/utils/mailer";
 
-const DeliveryPage = () => {
+const breadcrumbs = [
+    { name: "Home", path: "/" },
+    { name: "Cart", path: "/cart" },
+    { name: "Order", path: "/order" }
+]
+
+const DeliveryPage = (user: any) => {
 
     const [address, setDAddress] = useState<AddressType>({} as AddressType);
 
@@ -20,32 +28,76 @@ const DeliveryPage = () => {
     useEffect(() => {
         axios.get(`/api/address`)
             .then((res: any) => {
-                setDAddress({ ...res.data[0] })
+                setDAddress({ ...res?.data[0] })
             }).catch(err => toast.error("Error fetching address :", err.nessage))
     }, [])
 
     const emptyAddress = Object.keys(address).length === 0;
 
     const grossTotal = +(getGrossTotal(cartItems))
-    const tax = +(grossTotal * .15).toFixed(2)
-    const netTotal = (grossTotal + tax).toFixed(2)
+    const discount = grossTotal < 100 ? 0 : +(grossTotal * .10).toFixed(2)
+    const netTotal = +(grossTotal - discount).toFixed(2)
 
     const handleCheckout = async () => {
         try {
-            const { data } = await axios.post(`/api/checkout`, {
-                deliveryInfomation: address, items: cartItems
+            if (Object.keys(address).length === 0) {
+                toast("Update address before checking out!")
+                return
+            }
+            const transaction_uuid = new Date().getTime().toString()
+
+            const signature = getSignature(
+                `total_amount=${netTotal},transaction_uuid=${transaction_uuid},product_code=EPAYTEST`
+            );
+
+            const formData = {
+                amount: netTotal,
+                failure_url: `http://localhost:3000`,
+                product_delivery_charge: "0",
+                product_service_charge: "0",
+                product_code: "EPAYTEST",
+                signature: signature,
+                signed_field_names: "total_amount,transaction_uuid,product_code",
+                success_url: `http://localhost:3000/user/orders`,
+                tax_amount: "0",
+                total_amount: netTotal,
+                transaction_uuid,
+            };
+
+            await axios.post(`/api/orders`, {
+                netTotal,
+                address,
+                cartItems
             })
-            window.location.href = data
+
+            //payEsewa(formData)
+
+            await axios.post(`/api/emailOrder`, {
+                address,
+                netTotal
+            })
         } catch (error: any) {
             toast.error(error.message)
         }
     }
 
-    const breadcrumbs = [
-        { name: "Home", path: "/" },
-        { name: "Cart", path: "/cart" },
-        { name: "Order", path: "/order" }
-    ]
+    const payEsewa = (formData: any) => {
+        var path = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
+
+        var form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action", path);
+
+        for (var key in formData) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", formData[key]);
+            form.appendChild(hiddenField);
+        }
+        document.body.appendChild(form);
+        form.submit();
+    }
 
     return (
         <div>
@@ -62,19 +114,19 @@ const DeliveryPage = () => {
                                 <div>
                                     <h6 className="font-medium">{address?.phone}</h6>
                                     <h6 className="font-medium">{address?.street}</h6>
-                                    <h6 className="font-medium">{address?.city}, {address?.postalCode}, {address?.country}</h6>
+                                    <h6 className="font-medium">{address?.city}, {address?.wardNumber}</h6>
                                 </div>
                             }
                             {emptyAddress &&
-                                <button className="btn ml-auto btn-outline"
+                                <button className="btn ml-auto btn-outline btn-sm"
                                     onClick={() => router.push("/user")}
                                 >
                                     Add your address
                                 </button>}
                         </div>
                         <div className="mt-auto">
-                            <Link className="btn mr-2" href={"/cart"}>Back</Link>
-                            <button className="btn btn-primary" onClick={handleCheckout} disabled={cartItems.length === 0 && emptyAddress}>Checkout</button>
+                            <Link className="btn mr-2 btn-sm" href={"/cart"}>Back</Link>
+                            <button className="btn btn-accent btn-sm" onClick={handleCheckout} disabled={cartItems.length === 0 && emptyAddress}>Checkout</button>
                         </div>
                     </div>
                 </div>
@@ -83,12 +135,12 @@ const DeliveryPage = () => {
                     <hr />
                     <div className="grid grid-cols-2 gap-3">
                         <h3>Gross Total</h3><h3 className="text-end">{grossTotal}</h3>
-                        <h3>Tax (15%)</h3><h3 className="text-end">{tax}</h3>
+                        <h3>Discount (10%)</h3><h3 className="text-end">{discount}</h3>
                         <h3 className="font-bold">Total</h3><h3 className="text-end font-bold">{netTotal}</h3>
                     </div>
 
                     <hr />
-                    <h3 className="font-bold">Items in your cart</h3>
+                    <h3 className="font-bold">Item(s) in your cart</h3>
                     <hr />
 
                     {cartItems?.map(ci => (
@@ -107,8 +159,8 @@ const DeliveryPage = () => {
 
                             <div className="ml-5">
                                 <p>{ci.name.substring(0, 50)}</p>
-                                <p className="mt-1 text-gray-400">
-                                    Total: ${ci.quantity * ci.price}
+                                <p className="mt-1 text-gray-500">
+                                    Total: Rs.{netTotal}
                                 </p>
                             </div>
                         </div>

@@ -37,12 +37,23 @@ export async function GET(request: NextRequest) {
     const params: URLSearchParams = request.nextUrl.searchParams
 
     let query
-    let pageSize = 5
+    let pageSize = 9
     let currentPage
+    let total
 
     await mongoConnect()
     
-    const total = await Product.countDocuments()
+    if(params.size === 0) {
+        total = await Product.countDocuments()
+        query = Product.find().sort({ createdAt: -1 }).limit(pageSize)
+    }
+
+    if(params.size === 1 && params.has("page")) {
+        total = await Product.countDocuments()
+        currentPage = Number(params.get("page")) || 1
+        const skip = pageSize * (currentPage - 1)
+        query = Product.find().skip(skip).sort({ createdAt: -1 }).limit(pageSize)
+    }
 
     if (params.size > 0) {
 
@@ -73,17 +84,16 @@ export async function GET(request: NextRequest) {
                 "name": {
                     $regex: params.get("search"), $options: "i"
                 }
-            }).limit(5)
+            }).limit(pageSize)
         }
         if (params.has("page")) {
+            total = await Product.countDocuments()
             currentPage = Number(params.get("page")) || 1
             const skip = pageSize * (currentPage - 1)
             query = Product.find().skip(skip).sort({ createdAt: -1 }).limit(pageSize)
-        }
+        } 
 
-    } else {
-        query = Product.find().sort({ createdAt: -1 }).limit(pageSize)
-    }
+    } 
 
     const products = await query?.exec()
     const response = {

@@ -1,52 +1,39 @@
 import { NextRequest, NextResponse } from "next/server";
-import { headers } from "next/headers";
 import Order from "@/models/order";
-import Stripe from "stripe";
 import mongoConnect from "@/lib/mongoConnect";
 import getSignedinUser from "@/app/actions/getSignedinUser";
 import Address from "@/models/address";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    typescript: true,
-    apiVersion: "2023-08-16"
-})
-
 export async function POST(request: NextRequest) {
-    const body = await request.text();
-    const wbSecret = process.env.STRIPE_WEBHOOK_SECRET!;
-    const signature = headers().get("stripe-signature") as string;
-
     try {
-        const event: any = stripe.webhooks.constructEvent(body, signature, wbSecret);
+        const user = await getSignedinUser()
+        if (!user)
+            return NextResponse.error()
 
-        if (event.type === "checkout.session.completed") {
-            const session = event.data.object;
+        const body = await request.json()
+        const { address, cartItems, netTotal } = body
 
-            const line_items = await stripe.checkout.sessions.listLineItems(
-                event.data.object.id
-            );
+        const itemsOrdered = await getItemsInCart(cartItems);
 
-            const itemsOrdered = await getItemsInCart(line_items);
-            const paidAmount = session.amount_total / 100;
+        const paymentInfo = {
+            id: user._id + new Date().getMilliseconds(),
+            paidAmount: netTotal,
+            paidTax: 0,
+            paymentStatus: "DONE",
+        };
 
-            const paymentInfo = {
-                id: session.payment_intent,
-                paidAmount,
-                paidTax: session.total_details.amount_tax / 100,
-                paymentStatus: session.payment_status,
-            };
-
-            const data = {
-                user: session.metadata.userId,
-                paymentInfo,
-                orderItems: itemsOrdered,
-                deliveryInfo: session.metadata.deliveryId
-            }
-            const order = await Order.create(data)
-
-            return NextResponse.json(order)
+        const data = {
+            user: user._id,
+            paymentInfo,
+            orderItems: itemsOrdered,
+            deliveryInfo: address._id
         }
-    } catch (err) {
+
+        const order = await Order.create(data)
+
+        return NextResponse.json(order)
+    }
+    catch (err) {
         return NextResponse.error()
     }
 }
@@ -55,19 +42,17 @@ async function getItemsInCart(line_items: any) {
     return new Promise((resolve, reject) => {
         let items: any = [];
 
-        line_items?.data?.forEach(async (itm: any) => {
-            const product = await stripe.products.retrieve(itm.price.product);
-            const productId = product.metadata.productId;
+        line_items?.forEach(async (itm: any) => {
 
             items.push({
-                product: productId,
-                name: product.name,
-                price: itm.price.unit_amount_decimal / 100,
+                product: itm.id,
+                name: itm.name,
+                price: itm.price,
                 quantity: itm.quantity,
-                image: product.images.length === 0 ? "" : product.images[0],
+                image: itm.image,
             });
 
-            if (items.length === line_items?.data.length) {
+            if (items.length === line_items?.length) {
                 resolve(items);
             }
         });

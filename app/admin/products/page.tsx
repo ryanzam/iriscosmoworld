@@ -1,7 +1,7 @@
 import { fetchProducts } from "@/app/(root)/page"
 import ProductsTable from "@/app/components/products/ProductsTable"
 
-interface IParams {
+export interface IParams {
     page?: number;
 }
 

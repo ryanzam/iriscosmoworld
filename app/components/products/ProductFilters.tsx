@@ -45,7 +45,7 @@ const ProductFilters = () => {
                 <div className="font-semibold">Price</div>
                 <div className="grid grid-cols-3 gap-1">
                     <div className="">
-                        <input className="w-full p-2 border rounded-sm" type="number"
+                        <input className="w-full p-2 border rounded-sm input-sm" type="number"
                             min={0} placeholder="Min" value={minPrice} onChange={e => handleChangeMinPrice(e)}
                         />
                         <label className="label">
@@ -53,14 +53,14 @@ const ProductFilters = () => {
                         </label>
                     </div>
                     <div className="">
-                        <input className="w-full p-2 border rounded-sm" type="number"
+                        <input className="w-full p-2 border rounded-sm input-sm" type="number"
                             min={0} placeholder="Max" value={maxPrice} onChange={e => setMaxPrice(parseInt(e.target.value))}
                         />
                         <label className="label">
                             <span className="label-text-alt">Max</span>
                         </label>
                     </div>
-                    <button className="btn btn-primary" onClick={handleBtnClick}>Filter</button>
+                    <button className="btn btn-outline btn-primary btn-sm" onClick={handleBtnClick}>Filter</button>
                 </div>
             </div>
 

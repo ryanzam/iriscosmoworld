@@ -7,3 +7,19 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.rc-pagination-item.rc-pagination-item-active {
+  border-color: #4a00ff !important;
+}
+
+.rc-pagination-item a {
+  color: #4a00ff !important;
+}
+
+#tawk-bubble-container, .tawk-bubble-container{
+  display: none;
+}
+
+iframe {
+  background-color: red;
+}

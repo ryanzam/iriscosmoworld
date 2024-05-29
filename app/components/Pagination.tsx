@@ -10,7 +10,7 @@ interface IPaginationProps {
     total: number;
 }
 
-const Pagination:FC<IPaginationProps> = ({ pageSize, total, }: IPaginationProps) => {
+const Pagination: FC<IPaginationProps> = ({ pageSize, total, }: IPaginationProps) => {
 
     const router = useRouter()
     const searchParams = useSearchParams()
@@ -21,20 +21,20 @@ const Pagination:FC<IPaginationProps> = ({ pageSize, total, }: IPaginationProps)
 
     const createQueryString = useCallback(
         (name: string, value: string) => {
-          const params = new URLSearchParams(searchParams!)
-          params.set(name, value)
-     
-          return params.toString()
+            const params = new URLSearchParams(searchParams!)
+            params.set(name, value)
+
+            return params.toString()
         },
         [searchParams]
-      )
-      
+    )
+
     const handlePageChange = (page: number) => {
         router.push(pathname + '?' + createQueryString('page', page.toString()))
     }
 
     return (
-        <Paginate current={current} total={total} pageSize={ pageSize } onChange={handlePageChange} />
+        <Paginate current={current} total={total} pageSize={pageSize} onChange={handlePageChange} />
     )
 }
 

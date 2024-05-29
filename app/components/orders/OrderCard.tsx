@@ -23,6 +23,7 @@ const OrderCard: FC<IOrderCardProps> = ({ order, children }) => {
                     <div className="font-semibold">{order?.createdAt?.split("T")[0]}</div>
                 </div>
                 <hr className="my-2" />
+
                 <div className="grid grid-cols-3 gap-3">
                     <div className="">
                         <h4 className="font-bold">Customer Info</h4>
@@ -35,14 +36,13 @@ const OrderCard: FC<IOrderCardProps> = ({ order, children }) => {
                         <h4 className="font-bold">Payment Info</h4>
                         <p className="badge badge-success">{order?.paymentInfo?.paymentStatus}</p>
                         <p>Tax: {order?.paymentInfo?.paidTax}</p>
-                        <p>Total: {order?.paymentInfo?.paidAmount}</p>
+                        <p>Total: Rs.{order?.paymentInfo?.paidAmount}</p>
                     </div>
 
                     <div className="">
                         <h4 className="font-bold">Delivery info</h4>
                         <p>{order?.deliveryInfo?.street} </p>
-                        <p>{order?.deliveryInfo?.postalCode}, {order?.deliveryInfo?.city}</p>
-                        <p>{order?.deliveryInfo?.country}</p>
+                        <p>{order?.deliveryInfo?.city}, {order?.deliveryInfo?.wardNumber}</p>
                     </div>
                 </div>
                 <hr className="my-2" />

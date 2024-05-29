@@ -8,6 +8,7 @@ import { RiAdminLine } from "react-icons/ri"
 import { GoPackageDependents } from "react-icons/go"
 import { BiUser } from "react-icons/bi"
 import { AiOutlineLogout } from "react-icons/ai"
+import toast from "react-hot-toast"
 
 interface IDashboardNavProps {
     content: any;
@@ -17,7 +18,8 @@ interface IDashboardNavProps {
 const DashboardNav: FC<IDashboardNavProps> = ({ content, admin }) => {
 
     const handleSignout = async () => {
-        await signOut({ callbackUrl: "/" })
+        await signOut()
+        toast('You are now signed out');
     }
 
     return (

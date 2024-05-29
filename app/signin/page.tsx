@@ -2,7 +2,8 @@
 
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useSession } from 'next-auth/react';
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import TextInput from "../components/inputs/TextInput";
@@ -13,9 +14,16 @@ const SigninPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const { data: session } = useSession();
     const router = useRouter()
     const params = useSearchParams()
     const callBackURL = params?.get("callbackUrl") ?? "/"
+
+    useEffect(() => {
+        if (session?.user) {
+            router.push("/");
+        }
+    }, [session, router]);
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
@@ -37,7 +45,7 @@ const SigninPage = () => {
     }
 
     return (
-        <div className="card w-1/2 bg-base-100 shadow-2xl m-auto mt-14 flex items-center" onSubmit={handleSubmit}>
+        <div className="card w-1/2 bg-base-100 shadow-2xl m-auto mt-14 flex items-center py-5" onSubmit={handleSubmit}>
             <form className="form-control w-full p-5 flex gap-5">
                 <TextInput label="Enter Email"
                     placeHolder="Email"
@@ -62,13 +70,14 @@ const SigninPage = () => {
                 </button>
                 <hr />
                 <p className="text-center">Don't have an account? <a href="/register" className="font-bold hover:text-neutral-500 cursor-pointer">Create an account</a></p>
-
-                <div className="divider">OR</div>
-                <button className="btn">
-                    <FcGoogle size={24} />
-                    Continue with Google
-                </button>
             </form>
+
+            <div className="divider">OR</div>
+
+            <button className="btn btn-sm" onClick={() => signIn("google")}>
+                <FcGoogle size={24} />
+                Continue with Google
+            </button>
         </div>
     )
 }

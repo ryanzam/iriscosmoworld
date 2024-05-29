@@ -29,7 +29,7 @@ const User:FC<IUserPRops> = ({ user }) => {
             .then((res: any) => {
                 setDAddress({ ...res.data[0] })
             }).catch(err => toast.error("Error fetching address :", err.nessage))
-    }, [address.city, address.country, address.phone, address.postalCode, address.street, showAddrModal, showProfileModal])
+    }, [address.city, address.phone, address.wardNumber, address.street, showAddrModal, showProfileModal])
 
     const onAddrModalClose = () => {
         setShowAddrModal(!showAddrModal)
@@ -61,14 +61,14 @@ const User:FC<IUserPRops> = ({ user }) => {
                             <div>
                                 <h5 className="font-semibold text-lg">{user?.name}</h5>
                                 <h5 className="font-semibold">Email: <span className="font-light">{user?.email}</span></h5>
-                                <h5 className="font-semibold">Created on: <span className="font-light text-sm">{user?.createdAt.toISOString().split("T")[0]}</span></h5>
+                                <h5 className="font-semibold">Created on: <span className="font-light text-sm">{user?.createdAt?.toISOString().split("T")[0]}</span></h5>
                             </div>
                             <div className="flex flex-col gap-2 ml-auto">
-                                <button className="btn btn-outline btn-primary" onClick={() => setShowProfileModal(true)} >
-                                    <FaUserNinja size={24} /> Update Profile
+                                <button className="btn btn-outline btn-primary btn-sm" onClick={() => setShowProfileModal(true)} >
+                                    <FaUserNinja size={20} /> Update Profile
                                 </button>
-                                <button className="btn btn-outline" onClick={() => setShowPasswordChangeModal(true)} >
-                                    <MdPassword size={24} /> Change Password
+                                <button className="btn btn-outline btn-sm" onClick={() => setShowPasswordChangeModal(true)} >
+                                    <MdPassword size={20} /> Change Password
                                 </button>
                             </div>
                         </div>
@@ -82,13 +82,13 @@ const User:FC<IUserPRops> = ({ user }) => {
                                 <div>
                                     <h6 className="font-medium">{address?.phone}</h6>
                                     <h6 className="font-medium">{address?.street}</h6>
-                                    <h6 className="font-medium">{address?.city}, {address?.postalCode}, {address?.country}</h6>
+                                    <h6 className="font-medium">{address?.city}, {address?.wardNumber}</h6>
                                 </div>
                             }
-                            <button className={`btn ml-auto btn-outline`}
+                            <button className={`btn ml-auto btn-outline btn-sm`}
                                 onClick={() => setShowAddrModal(true)}
                             >
-                                <GrMapLocation size={24} />
+                                <GrMapLocation size={20} />
                                 {emptyAddress ? "Add new address" : "Update address"}
                             </button>
                         </div>
@@ -96,7 +96,7 @@ const User:FC<IUserPRops> = ({ user }) => {
                 </div>
             </div>
             {showAddrModal &&
-                <AddressModal isOpen={showAddrModal} title={emptyAddress ? "Add new contacts" : "Update contacts"} onClose={onAddrModalClose} address={address} />
+                <AddressModal isOpen={showAddrModal} title={emptyAddress ? "Add delivery address" : "Update delivery address"} onClose={onAddrModalClose} address={address} />
             }
             {showProfileModal &&
                 <ProfileModal isOpen={showProfileModal} title="Update profile" onClose={onProfileModalClose} profile={user} />

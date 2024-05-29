@@ -1,11 +1,27 @@
-import { FaShopify } from "react-icons/fa"
+"use client"
+import { usePathname } from "next/navigation";
+import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
+import { FC } from "react";
 
-const Footer = () => {
+const Footer: FC = () => {
+
+    const path = usePathname()
+
+    const renderChat = () => {
+        if (path === "/") {
+            return <TawkMessengerReact
+                propertyId="6648b8f79a809f19fb3297f7"
+                widgetId="1hu6151s9"
+            />
+        }
+        return
+    }
+
     return (
         <footer className="footer p-10 bg-base-200 text-base-content mt-4">
             <aside>
-                <FaShopify size={80} />
-                <p>S Kauppa Ltd.<br />Providing reliable experience</p>
+                <strong>IRIS WORLD</strong>
+                <p>Iris World Ltd.<br />Providing reliable experience</p>
             </aside>
             <nav>
                 <header className="footer-title">Company</header>
@@ -31,6 +47,7 @@ const Footer = () => {
                     </div>
                 </fieldset>
             </form>
+            {renderChat()}
         </footer>
     )
 }

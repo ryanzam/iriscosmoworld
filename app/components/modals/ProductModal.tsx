@@ -123,7 +123,7 @@ const AddProductModal: FC<IAddProductModalProps> = ({ title, isOpen, onClose, pr
                 </div>
             </div>
             <ImageUploads value={item?.images[0]?.url} onChange={(v) => onChangeImage(v)}/>
-            <button className="btn btn-primary mt-3" type="submit" >
+            <button className="btn btn-primary btn-sm mt-3" type="submit" >
                 <BsSend />
                 Submit
             </button>

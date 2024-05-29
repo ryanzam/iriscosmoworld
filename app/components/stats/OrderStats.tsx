@@ -15,16 +15,16 @@ const OrdersStats:FC<IOrderStatsProps> = ({ orders }: IOrderStatsProps) => {
         <div className="stats shadow w-full">
 
             <div className="stat">
-                <div className="stat-figure text-secondary">
+                <div className="stat-figure text-primary">
                     <FaMoneyBillWave size={30} />
                 </div>
                 <div className="stat-title">Total sold</div>
-                <div className="stat-value">€ {totalSold}</div>
+                <div className="stat-value">Rs. {totalSold}</div>
                 <div className="stat-desc">Including Tax</div>
             </div>
 
             <div className="stat">
-                <div className="stat-figure text-secondary">
+                <div className="stat-figure text-primary">
                     <FaStar size={30} />
                 </div>
                 <div className="stat-title">Total Sold Items</div>
@@ -33,7 +33,7 @@ const OrdersStats:FC<IOrderStatsProps> = ({ orders }: IOrderStatsProps) => {
             </div>
 
             <div className="stat">
-                <div className="stat-figure text-secondary">
+                <div className="stat-figure text-primary">
                     <FaThumbsUp size={30} />
                 </div>
                 <div className="stat-title">Total Orders</div>

@@ -7,16 +7,12 @@ import { BsSend } from "react-icons/bs"
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export type AvatarType ={
-    url?: string;
-}
-
 export type UserType = {
     _id: string;
     name: string;
     email: string;
     role: string;
-    avatar?: AvatarType;
+    image?: string;
     createdAt?: Date;
 }
 
@@ -66,7 +62,7 @@ const ProfileModal: FC<IProfileModalProps> = ({ title, isOpen, onClose, profile 
                 onChange={(e) => setEmail(e.target.value)}
             />
 
-            <button className="btn btn-primary mt-3" type="submit" >
+            <button className="btn btn-primary btn-sm mt-3" type="submit" >
                 <BsSend />
                 Submit
             </button>

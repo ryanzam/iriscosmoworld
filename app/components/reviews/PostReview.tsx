@@ -57,7 +57,7 @@ const PostReview: FC<IPostReviewProps> = ({ product }: IPostReviewProps) => {
                             value={comment}
                             onChange={e => setComment(e.target.value)}>
                         </textarea>
-                        <button className="btn btn-primary w-full" onClick={handlePostReview}>Post</button>
+                        <button className="btn btn-primary btn-sm w-full" onClick={handlePostReview}>Post</button>
                     </div>
                 </div>
             </div>

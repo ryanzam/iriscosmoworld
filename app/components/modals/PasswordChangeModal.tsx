@@ -94,7 +94,7 @@ const PasswordChangeModal: FC<IPasswordChangeModalProps> = ({ title, isOpen, onC
                 </div>
             </div>
 
-            <button className="btn btn-primary mt-3" type="submit" disabled={!(password.length > 0 && password1.length > 0)}>
+            <button className="btn btn-primary btn-sm mt-3" type="submit" disabled={!(password.length > 0 && password1.length > 0)}>
                 <BsSend />
                 Submit
             </button>

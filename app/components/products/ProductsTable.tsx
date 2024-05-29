@@ -76,7 +76,7 @@ const ProductsTable: FC<IProductsTableProps> = ({ data }: IProductsTableProps) =
                         <th>Price</th>
                         <th>On Stock</th>
                         <th>
-                            <button className="btn btn-outline btn-accent btn-sm mt-5" onClick={onClickProduct}>
+                            <button className="btn btn-outline btn-primary btn-sm mt-5" onClick={onClickProduct}>
                                 Add product
                             </button>
                         </th>
@@ -108,7 +108,7 @@ const ProductsTable: FC<IProductsTableProps> = ({ data }: IProductsTableProps) =
                                 </div>
                             </td>
                             <td>{p.category}</td>
-                            <td>€{p.price}</td>
+                            <td>Rs.{p.price}</td>
                             <td>{p.stock}</td>
                             <td className="join join-vertical lg:join-horizontal">
                                 <button className="btn join-item btn-ghost" title="Edit product"

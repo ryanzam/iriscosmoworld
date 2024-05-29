@@ -1,7 +1,6 @@
 import UsersTable from "@/app/components/user/UsersTable"
 
-const AdminUserPage = async () => {
-
+const AdminUserPage = () => {
     return (
         <UsersTable  />
     )

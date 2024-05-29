@@ -13,8 +13,7 @@ export type AddressType = {
     phone: string,
     street: string,
     city: string,
-    postalCode: string,
-    country: string,
+    wardNumber: string,
 }
 
 interface IAddressModalProps {
@@ -31,28 +30,27 @@ const AddressModal: FC<IAddressModalProps> = ({ title, isOpen, onClose, address 
 
     const [phone, setPhone] = useState(address?.phone || "")
     const [street, setStreet] = useState(address?.street || "")
-    const [city, setCity] = useState(address?.city ||"" )
-    const [postalCode, setPostalCode] = useState(address?.postalCode ||"")
-    const [country, setCountry] = useState(address?.country ||"")
+    const [city, setCity] = useState(address?.city || "")
+    const [wardNumber, setWardNumber] = useState(address?.wardNumber || "")
 
-    const emptyAddress =  Object.keys(address).length === 0;
+    const emptyAddress = Object.keys(address).length === 0;
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
         let apiAddr
-        
-        if(emptyAddress) {
-            apiAddr = axios.post(`/api/address`, { phone, street, city, postalCode, country })
+
+        if (emptyAddress) {
+            apiAddr = axios.post(`/api/address`, { phone, street, city, wardNumber })
         } else {
-            apiAddr = axios.put(`/api/address`, { id: address._id, phone, street, city, postalCode, country })
+            apiAddr = axios.put(`/api/address`, { id: address._id, phone, street, city, wardNumber })
         }
 
         toast.promise(apiAddr, {
-            loading: "Submitting Address",
+            loading: "Adding delivery Address",
             success: () => {
                 onClose()
-                return "Address saved"
+                return "Delivery address added"
             },
             error: "Error when adding address"
         })
@@ -62,49 +60,46 @@ const AddressModal: FC<IAddressModalProps> = ({ title, isOpen, onClose, address 
 
     const modalAddrForm = (
         <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-            <TextInput label="Enter phone"
-                placeHolder="Phone"
+            <TextInput label="Enter Phone"
+                placeHolder="Enter your phone"
                 type="number"
                 required={true}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
             />
-            <TextInput label="Enter Street"
-                placeHolder="Street"
+            <TextInput label="Enter Street Adress"
+                placeHolder="Enter your street"
                 type="text"
                 required={true}
                 value={street}
                 onChange={(e) => setStreet(e.target.value)}
             />
-            <TextInput label="Enter City"
-                placeHolder="City"
-                type="text"
-                required={true}
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-            />
-            <TextInput label="Enter PostalCode"
-                placeHolder="PostalCode"
-                type="PostalCode"
-                required={true}
-                value={postalCode}
-                onChange={(e) => setPostalCode(e.target.value)}
-            />
+
             <div>
                 <label className="label">
-                    <span className="label-text">Select your country</span>
+                    <span className="label-text">Select your city</span>
                 </label>
-                <select className="select select-bordered w-full max-w-xs" value={country} required
-                    onChange={(e) => setCountry(e.target.value)}>
-                    {cntrs.map((c) => (
-                        <option key={c.name} value={c.name}>
-                            {c.name}
-                        </option>
-                    ))}
+                <select className="select select-bordered w-full max-w-xs" value={city} required defaultValue={"Bharatpur"}
+                    onChange={(e) => setCity(e.target.value)}>
+                    <option value="">
+                        Select city
+                    </option>
+                    <option value="Bharatpur">
+                        Bharatpur
+                    </option>
                 </select>
             </div>
-            <button className="btn btn-primary mt-3" type="submit"
-                disabled={!(phone.length > 0 && city.length > 0 && postalCode.length > 0 && street.length > 0)}
+
+            <TextInput label="Enter Ward Number"
+                placeHolder="PostalCode"
+                type="number"
+                required={true}
+                value={wardNumber}
+                onChange={(e) => setWardNumber(e.target.value)}
+            />
+
+            <button className="btn btn-primary btn-sm mt-3" type="submit"
+                disabled={!(phone.length > 0 && city.length > 0 && wardNumber.length > 0 && street.length > 0)}
             >
                 <BsSend />
                 Submit
