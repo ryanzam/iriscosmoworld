@@ -10,6 +10,7 @@ import AddressModal, { AddressType } from "../modals/AddressModal";
 import ProfileModal, { UserType } from "../modals/ProfileModal";
 import PasswordChangeModal from "../modals/PasswordChangeModal";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface IUserPRops {
     user: UserType
@@ -51,9 +52,9 @@ const User:FC<IUserPRops> = ({ user }) => {
         <>
             <div className="card p-3 border">
                 <div className="flex items-start sm:items-center p-3">
-                    <img
+                    <Image
                         className="w-20 h-20 rounded-full mb-auto"
-                        src={user?.avatar ? user?.avatar?.url : "/profile.jpg"}
+                        src={user?.image ? user?.image : "/profile.jpg"}
                         alt={user?.name}
                     />
                     <div className="w-full">
