@@ -10,7 +10,7 @@ import { CartItemsContext } from "@/context/CartContext";
 import Link from "next/link";
 import Breadcrums from "../components/Breadcrums";
 import getSignature from "../actions/getSignature";
-import { emailOrder } from "@/utils/mailer";
+import Image from "next/image";
 
 const breadcrumbs = [
     { name: "Home", path: "/" },
@@ -70,7 +70,7 @@ const DeliveryPage = (user: any) => {
                 cartItems
             })
 
-            //payEsewa(formData)
+            payEsewa(formData)
 
             await axios.post(`/api/emailOrder`, {
                 address,
@@ -148,7 +148,7 @@ const DeliveryPage = (user: any) => {
                             <div className="indicator">
                                 <span className="indicator-item badge badge-secondary">{ci.quantity}</span>
                                 <div className="grid w-12 h-12 bg-base-300 place-items-center">
-                                    <img
+                                    <Image
                                         width="50"
                                         height="50"
                                         src={ci.image}

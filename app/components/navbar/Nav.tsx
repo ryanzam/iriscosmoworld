@@ -6,6 +6,7 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FC, useContext, useState } from "react";
 import { UserType } from "../modals/ProfileModal";
+import Image from "next/image";
 
 interface INavProps {
     user?: UserType | null
@@ -79,7 +80,7 @@ const Nav: FC<INavProps> = ({ user }) => {
                         </label> :
                         <>
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                                {user?.image ? <img src={user?.image} className="w-4 h-4" alt="profile" /> : <p>{user?.name?.split(" ")[0]}</p>}
+                                {user?.image ? <Image src={user?.image} className="w-4 h-4" alt="profile" /> : <p>{user?.name?.split(" ")[0]}</p>}
                             </label>
                             <ul tabIndex={0} className="menu menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                                 <li>

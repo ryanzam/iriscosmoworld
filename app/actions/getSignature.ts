@@ -1,6 +1,6 @@
 import cryptoJS from "crypto-js"
 
-export default function (message: string) {
+export default function getSignature(message: string) {
     const secret = "8gBm/:&EnhH.1/q"
 
     const hash = cryptoJS.HmacSHA256(message, secret)

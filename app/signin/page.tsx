@@ -69,7 +69,7 @@ const SigninPage = () => {
                     Sign in
                 </button>
                 <hr />
-                <p className="text-center">Don't have an account? <a href="/register" className="font-bold hover:text-neutral-500 cursor-pointer">Create an account</a></p>
+                <p className="text-center">Don&apos;t have an account? <a href="/register" className="font-bold hover:text-neutral-500 cursor-pointer">Create an account</a></p>
             </form>
 
             <div className="divider">OR</div>

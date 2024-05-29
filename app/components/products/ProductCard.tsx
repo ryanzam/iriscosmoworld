@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { CartItemType, CartItemsContext } from "@/context/CartContext";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 const StarRatings = dynamic(() => import("react-star-ratings"), {
     ssr: false,
@@ -36,7 +37,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
     return (
         <div className="card bg-base-200 shadow-xl mb-5 hover:bg-neutral-100">
             <figure className="h-48 w-full">
-                <img src={product.images.length > 0 ? product.images[0].url : "/placeholder.jpg"} alt="product" />
+                <Image src={product.images.length > 0 ? product.images[0].url : "/placeholder.jpg"} alt="product" />
             </figure>
             <div className="card-body p-3">
                 <h2 className="card-title">

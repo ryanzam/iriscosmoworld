@@ -1,6 +1,7 @@
 "use client"
 
 import { FC } from "react";
+import Image from "next/image";
 
 interface IOrderCardProps {
     order: any
@@ -50,7 +51,7 @@ const OrderCard: FC<IOrderCardProps> = ({ order, children }) => {
                 <hr className="my-2" />
                 {order?.orderItems?.map((oi: any) => (
                     <div className="flex items-center" key={oi._id}>
-                        <img src="/placeholder.jpg" height={50} width={50} />
+                        <Image src="/placeholder.jpg" height={50} width={50} alt="image"/>
                         <div className="ml-2">
                             <h5 className="font-semibold">{oi?.name}</h5>
                             <p className="text-sm">€{oi?.price} x {oi?.quantity}</p>

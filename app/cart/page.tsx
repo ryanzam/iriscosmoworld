@@ -5,6 +5,7 @@ import { getGrossTotal } from "@/utils/getProductsCalc"
 import Link from "next/link"
 import { useContext } from "react"
 import toast from "react-hot-toast"
+import Image from "next/image"
 
 const CartPage = () => {
 
@@ -55,7 +56,7 @@ const CartPage = () => {
                     {cartItems.map(item => (
                         <div key={item.id} className="card card-side bg-base-100 shadow-xl mb-1">
                             <figure className="h-48 w-48">
-                                <img src={item.image} alt="item" />
+                                <Image src={item.image} alt="item" />
                             </figure>
                             <div className="card-body flex-row justify-between">
                                 <div className="flex flex-col justify-center">

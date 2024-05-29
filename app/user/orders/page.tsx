@@ -15,7 +15,7 @@ type data = {
     total: number
 }
 
-const Orders = async () => {
+const Orders = () => {
 
     const [data, setData] = useState<data>()
     const params = useSearchParams()
@@ -37,7 +37,7 @@ const Orders = async () => {
                 .catch(err => toast.error(err.message))
         }
         fetch()
-    }, [])
+    }, [emptyCart])
 
     const renderOrders = () => {
         if (data?.orders.length === 0) {
@@ -47,8 +47,8 @@ const Orders = async () => {
         return (
             <div className="p-3">
                 <h2 className="font-bold pb-3">My Orders</h2>
-                {data?.orders.map(order => (
-                    <OrderCard order={order} />
+                {data?.orders.map((order, k) => (
+                    <OrderCard key={k} order={order} />
                 ))}
                 {data?.total && data?.pageSize  && <Pagination total={data!.total} pageSize={data!.pageSize} />}
             </div>
