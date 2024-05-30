@@ -26,7 +26,7 @@ const User:FC<IUserPRops> = ({ user }) => {
     const router = useRouter()
 
     useEffect(() => {
-        axios.get(`/api/address`)
+        axios.get(`${process.env.BASE_URL}/api/address`)
             .then((res: any) => {
                 setDAddress({ ...res.data[0] })
             }).catch(err => toast.error("Error fetching address :", err.nessage))

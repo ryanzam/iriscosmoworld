@@ -45,7 +45,7 @@ const ProductsTable: FC<IProductsTableProps> = ({ data }: IProductsTableProps) =
         if (!confirm)
             return
 
-        let productPromise = axios.delete(`/api/products/` + id)
+        let productPromise = axios.delete(`${process.env.BASE_URL}/api/products/` + id)
         toast.promise(productPromise, {
             loading: "Deleting product",
             success: () => {

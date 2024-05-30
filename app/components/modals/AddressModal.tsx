@@ -41,9 +41,9 @@ const AddressModal: FC<IAddressModalProps> = ({ title, isOpen, onClose, address 
         let apiAddr
 
         if (emptyAddress) {
-            apiAddr = axios.post(`/api/address`, { phone, street, city, wardNumber })
+            apiAddr = axios.post(`${process.env.BASE_URL}/api/address`, { phone, street, city, wardNumber })
         } else {
-            apiAddr = axios.put(`/api/address`, { id: address._id, phone, street, city, wardNumber })
+            apiAddr = axios.put(`${process.env.BASE_URL}/api/address`, { id: address._id, phone, street, city, wardNumber })
         }
 
         toast.promise(apiAddr, {

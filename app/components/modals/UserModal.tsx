@@ -30,7 +30,7 @@ const UserModal: FC<IUserModalProps> = ({ title, isOpen, onClose, User }) => {
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
-        const updateUser = axios.put(`/api/admin/users`, { id: User._id, name, role })
+        const updateUser = axios.put(`${process.env.BASE_URL}/api/admin/users`, { id: User._id, name, role })
 
         toast.promise(updateUser, {
             loading: "Submitting User",

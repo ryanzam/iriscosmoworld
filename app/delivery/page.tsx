@@ -26,7 +26,7 @@ const DeliveryPage = (user: any) => {
     const { cartItems } = useContext(CartItemsContext)
 
     useEffect(() => {
-        axios.get(`/api/address`)
+        axios.get(`${process.env.BASE_URL}/api/address`)
             .then((res: any) => {
                 setDAddress({ ...res?.data[0] })
             }).catch(err => toast.error("Error fetching address :", err.nessage))
@@ -64,7 +64,7 @@ const DeliveryPage = (user: any) => {
                 transaction_uuid,
             };
 
-            await axios.post(`/api/orders`, {
+            await axios.post(`${process.env.BASE_URL}/api/orders`, {
                 netTotal,
                 address,
                 cartItems
@@ -72,7 +72,7 @@ const DeliveryPage = (user: any) => {
 
             payEsewa(formData)
 
-            await axios.post(`/api/emailOrder`, {
+            await axios.post(`${process.env.BASE_URL}/api/emailOrder`, {
                 address,
                 netTotal
             })

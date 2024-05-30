@@ -38,7 +38,7 @@ const PasswordChangeModal: FC<IPasswordChangeModalProps> = ({ title, isOpen, onC
         }
 
         if (samePassword) {
-            const updatePasswordChange = axios.put(`/api/password`, { id: profile?._id, currentPassword, password })
+            const updatePasswordChange = axios.put(`${process.env.BASE_URL}/api/password`, { id: profile?._id, currentPassword, password })
 
             toast.promise(updatePasswordChange, {
                 loading: "Submitting password",

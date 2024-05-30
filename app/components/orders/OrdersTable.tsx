@@ -50,7 +50,7 @@ const OrdersTable =  () => {
     }, [data?.total])
 
     const fetchOrders = useCallback(() => {
-        axios.get(`/api/admin/orders`, searchParams)
+        axios.get(`${process.env.BASE_URL}/api/admin/orders`, searchParams)
             .then(res => {
                 setLoading(true)
                 setData(res?.data)
@@ -75,7 +75,7 @@ const OrdersTable =  () => {
         if (!confirm)
             return
 
-        let productPromise = axios.delete(`/api/admin/orders/` + id)
+        let productPromise = axios.delete(`${process.env.BASE_URL}/api/admin/orders/` + id)
         toast.promise(productPromise, {
             loading: "Deleting product",
             success: () => {

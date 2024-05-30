@@ -32,7 +32,7 @@ const ProfileModal: FC<IProfileModalProps> = ({ title, isOpen, onClose, profile 
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
-        const updateProfile = axios.put(`/api/profile`, { id: profile._id, name, email })
+        const updateProfile = axios.put(`${process.env.BASE_URL}/api/profile`, { id: profile._id, name, email })
 
         toast.promise(updateProfile, {
             loading: "Submitting Profile",

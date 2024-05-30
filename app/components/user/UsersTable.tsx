@@ -34,7 +34,7 @@ const UsersTable = () => {
     }, [router, searchParams])
 
     const fetchUsers = useCallback(() => {
-        axios.get(`/api/admin/users`, { params: { page }})
+        axios.get(`${process.env.BASE_URL}/api/admin/users`, { params: { page }})
             .then(res => {
                 setData(res.data)
             })
@@ -58,7 +58,7 @@ const UsersTable = () => {
         if (!confirm)
             return
 
-        let productPromise = axios.delete(`/api/admin/users/` + id)
+        let productPromise = axios.delete(`${process.env.BASE_URL}/api/admin/users/` + id)
         toast.promise(productPromise, {
             loading: "Deleting user",
             success: () => {

@@ -46,9 +46,9 @@ const AddProductModal: FC<IAddProductModalProps> = ({ title, isOpen, onClose, pr
 
         let productPromise
         if (!product) {
-            productPromise = axios.post(`/api/products`, item)
+            productPromise = axios.post(`${process.env.BASE_URL}/api/products`, item)
         } else {
-            productPromise = axios.put(`/api/products`, { ...item, id: product?._id })
+            productPromise = axios.put(`${process.env.BASE_URL}/api/products`, { ...item, id: product?._id })
         }
 
         toast.promise(productPromise, {

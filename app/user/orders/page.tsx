@@ -32,7 +32,7 @@ const Orders = () => {
             toast.success("👏 Item(s) successfully ordered!")
         }
         function fetch() {
-            axios.get(`/api/orders`, {})
+            axios.get(`${process.env.BASE_URL}/api/orders`, {})
                 .then(res => setData(res?.data))
                 .catch(err => toast.error(err.message))
         }

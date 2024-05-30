@@ -25,7 +25,7 @@ const PostReview: FC<IPostReviewProps> = ({ product }: IPostReviewProps) => {
     const handlePostReview = (e: any) => {
         e.preventDefault()
 
-        const postReview = axios.put(`/api/products/${product._id}`, { ratings, comment })
+        const postReview = axios.put(`${process.env.BASE_URL}/api/products/${product._id}`, { ratings, comment })
         toast.promise(postReview, {
             loading: "Posting review",
             success: () => {
