@@ -1,3 +1,5 @@
+"use client"
+
 import axios from 'axios'
 import Products from '../products/Products'
 import Footer from '../components/footer/Footer';
@@ -12,7 +14,7 @@ interface IParams {
 }
 
 export const fetchProducts = async (params: IParams) => {
-  const { data } = await axios.get(`${process.env.BASE_URL}/api/products`, { params })
+  const { data } = await axios.get(`https://iriscosmoworld.vercel.app/api/products`, { params })
   return data
 }
 
