@@ -52,13 +52,13 @@ const DeliveryPage = (user: any) => {
 
             const formData = {
                 amount: netTotal,
-                failure_url: `http://localhost:3000`,
+                failure_url: `${process.env.BASE_URL}`,
                 product_delivery_charge: "0",
                 product_service_charge: "0",
                 product_code: "EPAYTEST",
                 signature: signature,
                 signed_field_names: "total_amount,transaction_uuid,product_code",
-                success_url: `http://localhost:3000/user/orders`,
+                success_url: `${process.env.BASE_URL}/user/orders`,
                 tax_amount: "0",
                 total_amount: netTotal,
                 transaction_uuid,
