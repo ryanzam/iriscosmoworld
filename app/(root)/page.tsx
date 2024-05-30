@@ -1,5 +1,3 @@
-"use client"
-
 import axios from 'axios'
 import Products from '../products/Products'
 import Footer from '../components/footer/Footer';
