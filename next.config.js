@@ -4,6 +4,10 @@ const nextConfig = {
         domains: [
             "res.cloudinary.com"
         ]
+    },
+    env: {
+        BASE_URL: "https://iriscosmoworld.vercel.app",
+        NEXTAUTH_URL: "https://iriscosmoworld.vercel.app",
     }
 }
 
