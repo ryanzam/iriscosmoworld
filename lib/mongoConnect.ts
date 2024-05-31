@@ -23,7 +23,7 @@ async function mongoConnect() {
 
     if (!cached.promise) {
         const opts = {
-            bufferCommands: false,
+            bufferCommands: true,
         }
 
         cached.promise = mongoose.connect(MONGODB_URI as string, opts).then((mongoose) => {

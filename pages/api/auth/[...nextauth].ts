@@ -7,7 +7,6 @@ import bcrypt from "bcryptjs"
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
 
-mongoConnect()
 
 export const authOptions: AuthOptions = {
     providers: [
@@ -26,6 +25,8 @@ export const authOptions: AuthOptions = {
                 if (!credentials?.email || !credentials.password)
                     throw new Error("Invalid credentials")
 
+                await mongoConnect()
+                
                 const { email, password } = credentials
                 const user = await User.findOne({ email }).select("+password")
 

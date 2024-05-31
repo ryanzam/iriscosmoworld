@@ -3,9 +3,10 @@ import mongoConnect from "@/lib/mongoConnect"
 import { emailOrder } from "@/utils/mailer"
 import { NextRequest, NextResponse } from "next/server"
 
-mongoConnect()
 
 export async function POST(request: NextRequest) {
+    await mongoConnect()
+
     const user = await getSignedinUser()
     if (!user)
         return NextResponse.error()
