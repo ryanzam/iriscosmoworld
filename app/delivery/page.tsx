@@ -28,15 +28,16 @@ const DeliveryPage = async (user: any) => {
 
     const signedinUser = await getSignedinUser()
 
-    if(!signedinUser) {
-        redirect(`/signin`)
-    }
-
     useEffect(() => {
-        axios.get(`${process.env.BASE_URL}/api/address`)
-            .then((res: any) => {
-                setDAddress({ ...res?.data[0] })
-            }).catch(err => toast.error("Error fetching address :", err.nessage))
+        if (!signedinUser) {
+            redirect(`/signin`)
+        } else {
+            axios.get(`${process.env.BASE_URL}/api/address`)
+                .then((res: any) => {
+                    setDAddress({ ...res?.data[0] })
+                }).catch(err => toast.error("Error fetching address :", err.nessage))
+        }
+
     }, [])
 
     const emptyAddress = Object.keys(address).length === 0;
