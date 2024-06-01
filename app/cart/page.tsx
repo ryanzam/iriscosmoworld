@@ -13,7 +13,7 @@ const CartPage = () => {
 
     if (cartItems.length === 0) {
         return (
-            <div className="alert">
+            <div className="alert xs:mt-5">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <span>Your cart is empty.</span>
             </div>
@@ -48,17 +48,17 @@ const CartPage = () => {
     return (
         <div>
             <div className="flex justify-between">
-                <h3 className="mb-3">{cartItems.length} Items(s) in cart.</h3>
+                <h3 className="mb-3 xs:mt-3 xs:ms-2">{cartItems.length} Items(s) in cart.</h3>
                 {grossTotal < 100 && <div className="badge badge-secondary badge-outline">Get 10% off on Rs. 100 or more</div>}
             </div>
-            <div className="grid grid-cols-[1.5fr_.5fr] gap-5">
+            <div className="grid grid-cols-[1.5fr_.5fr] gap-5 xs:grid-cols-1">
                 <div>
                     {cartItems.map(item => (
                         <div key={item.id} className="card card-side bg-base-100 shadow-xl mb-1">
                             <figure className="h-48 w-48">
-                                <Image src={item.image} alt="item" />
+                                <Image src={item.image} alt="item" height={192} width={192}/>
                             </figure>
-                            <div className="card-body flex-row justify-between">
+                            <div className="card-body flex-row justify-between xs:ps-1">
                                 <div className="flex flex-col justify-center">
                                     <h2 className="card-title">{item.name}</h2>
                                     <div className="text-sm">{item?.seller}</div>

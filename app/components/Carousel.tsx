@@ -2,8 +2,8 @@ import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 
 const images: any = [
-    "images/carousel1.jpg",
-    "images/carousel2.jpg"
+    "/images/carousel1.jpg",
+    "/images/carousel2.jpg"
 ]
 
 const Carousel: FC = () => {
@@ -28,7 +28,7 @@ const Carousel: FC = () => {
 
     return <div className="carousel w-full mb-5">
         <div className="carousel-item relative w-full">
-            <Image src={images[currentImgIdx]} className="w-full h-44" alt="carousel"/>
+            <Image src={images[currentImgIdx]} className="w-full h-44" alt="carousel" />
             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                 <a onClick={prevImage} className="btn btn-circle">❮</a>
                 <a onClick={nextImage} className="btn btn-circle">❯</a>

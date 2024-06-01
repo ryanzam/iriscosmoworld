@@ -36,7 +36,7 @@ const Products: FC<IProductsProps> = ({ data }: IProductsProps) => {
         if (data.products.length > 0) {
             return <div className="">
                 <h1 className="text-2xl font-semibold pb-3">Latest products</h1>
-                <div className="grid grid-cols-3 gap-x-5">
+                <div className="grid grid-cols-3 gap-x-5 xs:grid-cols-1">
                     {data.products.slice(-3).map(p => (
                         <ProductCard key={p._id} product={p} />
                     ))}
@@ -61,7 +61,7 @@ const Products: FC<IProductsProps> = ({ data }: IProductsProps) => {
         return (
             <div>
                 {renderProductsTitle()}
-                <div className="grid grid-cols-3 gap-x-5">
+                <div className="grid grid-cols-3 gap-x-5 xs:grid-cols-1">
                     {data.products.map(p => (
                         <ProductCard key={p._id} product={p} />
                     ))}
@@ -93,7 +93,7 @@ const Products: FC<IProductsProps> = ({ data }: IProductsProps) => {
     }
 
     return (
-        <div className="grid grid-cols-[.5fr_1.5fr] gap-5">
+        <div className="grid grid-cols-[.5fr_1.5fr] gap-5 xs:flex xs:flex-col xs:gap-1">
             <ProductFilters />
             <div>
                 {renderHero()}

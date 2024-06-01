@@ -2,10 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-html, 
+html,
 body {
   margin: 0;
   padding: 0;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
 }
 
 .rc-pagination-item.rc-pagination-item-active {
@@ -16,7 +19,8 @@ body {
   color: #4a00ff !important;
 }
 
-#tawk-bubble-container, .tawk-bubble-container{
+#tawk-bubble-container,
+.tawk-bubble-container {
   display: none;
 }
 

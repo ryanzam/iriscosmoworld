@@ -4,13 +4,14 @@ import { useContext, useEffect, useState } from "react";
 import { AddressType } from "../components/modals/AddressModal";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { getGrossTotal } from "@/utils/getProductsCalc";
 import { CartItemsContext } from "@/context/CartContext";
 import Link from "next/link";
 import Breadcrums from "../components/Breadcrums";
 import getSignature from "../actions/getSignature";
 import Image from "next/image";
+import getSignedinUser from "../actions/getSignedinUser";
 
 const breadcrumbs = [
     { name: "Home", path: "/" },
@@ -18,12 +19,18 @@ const breadcrumbs = [
     { name: "Order", path: "/order" }
 ]
 
-const DeliveryPage = (user: any) => {
+const DeliveryPage = async (user: any) => {
 
     const [address, setDAddress] = useState<AddressType>({} as AddressType);
 
     const router = useRouter()
     const { cartItems } = useContext(CartItemsContext)
+
+    const signedinUser = await getSignedinUser()
+
+    if(!signedinUser) {
+        redirect(`/signin`)
+    }
 
     useEffect(() => {
         axios.get(`${process.env.BASE_URL}/api/address`)

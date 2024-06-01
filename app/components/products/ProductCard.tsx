@@ -37,7 +37,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
     return (
         <div className="card bg-base-200 shadow-xl mb-5 hover:bg-neutral-100">
             <figure className="h-48 w-full">
-                <Image src={product.images.length > 0 ? product.images[0].url : "/placeholder.jpg"} alt="product" />
+                <Image src={product.images.length > 0 ? product.images[0].url : "/placeholder.jpg"} alt="product"/>
             </figure>
             <div className="card-body p-3">
                 <h2 className="card-title">
@@ -57,7 +57,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
                     <div className="text-xs font-medium m-1">{product?.ratings}</div>
                 </div>
 
-                <div className="text-sm md:w-4/5">{product?.description?.substring(0, 50) + "..."}</div>
+                <div className="text-sm md:w-4/5 xs:hidden">{product?.description?.substring(0, 50) + "..."}</div>
 
                 <div className="flex justify-between items-center">
                     <div>

@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 import { FC } from "react";
+import Image from "next/image";
 
 const Footer: FC = () => {
 
@@ -20,8 +21,9 @@ const Footer: FC = () => {
     return (
         <footer className="footer p-10 bg-base-200 text-base-content mt-4">
             <aside>
-                <strong>IRIS WORLD</strong>
-                <p>Iris World Ltd.<br />Providing reliable experience</p>
+                <Image src="/images/iris_no_bg.png" height={50} width={50} alt="iris"/>
+                <h2 className="font-extrabold">Iris CosmoWorld Ltd.</h2>
+                <p>Providing reliable experience</p>
             </aside>
             <nav>
                 <header className="footer-title">Company</header>

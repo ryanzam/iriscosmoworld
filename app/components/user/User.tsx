@@ -50,8 +50,8 @@ const User:FC<IUserPRops> = ({ user }) => {
 
     return (
         <>
-            <div className="card p-3 border">
-                <div className="flex items-start sm:items-center p-3">
+            <div className="card p-3 border xs:p-0">
+                <div className="flex items-start p-3 xs:p-0 xs:flex-col xs:items-center">
                     <Image
                         className="w-20 h-20 rounded-full mb-auto"
                         src={user?.image ? user?.image : "/profile.jpg"}

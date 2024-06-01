@@ -9,7 +9,7 @@ import getSignedinUser from './actions/getSignedinUser'
 const nunito = Nunito({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Iris world',
+  title: 'Iris CosmoWorld',
   description: 'An online store',
 }
 

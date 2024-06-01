@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { FC, useContext, useState } from "react";
 import { UserType } from "../modals/ProfileModal";
 import Image from "next/image";
+import { usePathname } from 'next/navigation'
 
 interface INavProps {
     user?: UserType | null
@@ -17,6 +18,7 @@ const Nav: FC<INavProps> = ({ user }) => {
     const [checked, setChecked] = useState(true)
     const { cartItems } = useContext(CartItemsContext)
     const router = useRouter();
+    const path = usePathname()
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -35,21 +37,28 @@ const Nav: FC<INavProps> = ({ user }) => {
         setChecked(e.target.checked)
     }
 
+    const searchBar = () => {
+        if(!(path === "/")) return
+        return <form className="xs:order-2" onSubmit={handleSubmit}>
+        <div className="join">
+            <input type="text" className="input input-bordered join-item" placeholder="Search..."
+                value={search} onChange={e => setSearch(e.target.value)}
+            />
+            <button className="btn border-gray-300 join-item rounded-r-full">Search</button>
+        </div>
+    </form>
+    }
+
     return (
-        <div className="navbar bg-base-200 shadow-md mb-5 flex justify-between">
+        <div className="navbar bg-base-200 shadow-md mb-5 flex justify-between sm:flex xs:flex-col xs:gap-1 xs:mb-0">
             <div className="flex">
-                <a href="/" className="normal-case text-xl">
-                    <span className="text-black">IRIS COSMOWORLD</span></a>
+                <a href="/" className="normal-case text-xl flex flex-row items-center">
+                    <Image src="/images/iris_no_bg.png" height={50} width={50} alt="iris" />
+                    <span className="font-semibold">Iris CosmoWorld</span>
+                </a>
             </div>
 
-            <form onSubmit={handleSubmit}>
-                <div className="join">
-                    <input type="text" className="input input-bordered join-item" placeholder="Search..."
-                        value={search} onChange={e => setSearch(e.target.value)}
-                    />
-                    <button className="btn border-gray-300 join-item rounded-r-full">Search</button>
-                </div>
-            </form>
+            {searchBar()}
 
             <div className="flex-none gap-3">
                 <div className="dropdown dropdown-end">
@@ -64,7 +73,7 @@ const Nav: FC<INavProps> = ({ user }) => {
                             <span className="font-bold text-lg">{cartItems.length} Items</span>
                             <span className="text-base-500">Subtotal: €{getGrossTotal(cartItems)}</span>
                             <div className="card-actions">
-                                <button className="btn btn-primary btn-block btn-sm" onClick={handleViewCart}>View cart</button>
+                                <button className="btn btn-primary btn-block btn-sm" disabled={!(cartItems.length > 0)} onClick={handleViewCart}>View cart</button>
                             </div>
                         </div>
                     </div>

@@ -14,16 +14,19 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
+    screens: {
+      'xs': { 'min': '320px', 'max': '640px' },
+    }
   },
   plugins: [require("daisyui")],
   daisyui: {
     themes: false,
-    base: true, 
-    styled: true, 
-    utils: true, 
-    prefix: "", 
-    logs: false, 
-    themeRoot: ":root", 
+    base: true,
+    styled: true,
+    utils: true,
+    prefix: "",
+    logs: false,
+    themeRoot: ":root",
   },
 }
 export default config
