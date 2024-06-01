@@ -13,6 +13,6 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json()
     const { address, total } = body
-    emailOrder(user, address, total)
+    await emailOrder(user, address, total)
     return NextResponse.json({})
 }

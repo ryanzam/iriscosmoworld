@@ -27,7 +27,7 @@ export async function POST(request: Request) {
         });
 
         const savedUser = await user.save();
-        emailVerification(email, uniqueString)
+        await emailVerification(email, uniqueString)
         return NextResponse.json(
             {
                 name: savedUser.name,
