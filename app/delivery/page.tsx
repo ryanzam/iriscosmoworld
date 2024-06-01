@@ -11,7 +11,6 @@ import Link from "next/link";
 import Breadcrums from "../components/Breadcrums";
 import getSignature from "../actions/getSignature";
 import Image from "next/image";
-import getSignedinUser from "../actions/getSignedinUser";
 
 const breadcrumbs = [
     { name: "Home", path: "/" },
@@ -26,18 +25,11 @@ const DeliveryPage = async (user: any) => {
     const router = useRouter()
     const { cartItems } = useContext(CartItemsContext)
 
-    const signedinUser = await getSignedinUser()
-
     useEffect(() => {
-        if (!signedinUser) {
-            redirect(`/signin`)
-        } else {
-            axios.get(`${process.env.BASE_URL}/api/address`)
-                .then((res: any) => {
-                    setDAddress({ ...res?.data[0] })
-                }).catch(err => toast.error("Error fetching address :", err.nessage))
-        }
-
+        axios.get(`${process.env.BASE_URL}/api/address`)
+            .then((res: any) => {
+                setDAddress({ ...res?.data[0] })
+            }).catch(err => toast.error("Error fetching address :", err.nessage))
     }, [])
 
     const emptyAddress = Object.keys(address).length === 0;
