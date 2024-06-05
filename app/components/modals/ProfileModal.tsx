@@ -6,6 +6,7 @@ import Modal from "./Modal";
 import { BsSend } from "react-icons/bs"
 import axios from "axios";
 import toast from "react-hot-toast";
+import { PROD_URL } from "@/app/(root)/page";
 
 export type UserType = {
     _id: string;
@@ -32,7 +33,7 @@ const ProfileModal: FC<IProfileModalProps> = ({ title, isOpen, onClose, profile 
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
-        const updateProfile = axios.put(`${process.env.BASE_URL}/api/profile`, { id: profile._id, name, email })
+        const updateProfile = axios.put(`${PROD_URL}/api/profile`, { id: profile._id, name, email })
 
         toast.promise(updateProfile, {
             loading: "Submitting Profile",

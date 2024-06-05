@@ -1,5 +1,6 @@
 "use client"
 
+import { PROD_URL } from "@/app/(root)/page";
 import { IProduct } from "@/models/product"
 import axios from "axios";
 import dynamic from "next/dynamic";
@@ -25,7 +26,7 @@ const PostReview: FC<IPostReviewProps> = ({ product }: IPostReviewProps) => {
     const handlePostReview = (e: any) => {
         e.preventDefault()
 
-        const postReview = axios.put(`${process.env.BASE_URL}/api/products/${product._id}`, { ratings, comment })
+        const postReview = axios.put(`${PROD_URL}/api/products/${product._id}`, { ratings, comment })
         toast.promise(postReview, {
             loading: "Posting review",
             success: () => {

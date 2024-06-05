@@ -11,6 +11,7 @@ import axios from "axios"
 import toast from "react-hot-toast"
 import ProductStats from "../stats/ProductStats"
 import Image from "next/image"
+import { PROD_URL } from "@/app/(root)/page"
 
 interface IProductsTableProps {
     data: data
@@ -45,7 +46,7 @@ const ProductsTable: FC<IProductsTableProps> = ({ data }: IProductsTableProps) =
         if (!confirm)
             return
 
-        let productPromise = axios.delete(`${process.env.BASE_URL}/api/products/` + id)
+        let productPromise = axios.delete(`${PROD_URL}/api/products/` + id)
         toast.promise(productPromise, {
             loading: "Deleting product",
             success: () => {

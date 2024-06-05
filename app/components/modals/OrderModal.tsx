@@ -7,6 +7,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { IOrder } from "../orders/OrdersTable";
 import OrderCard from "../orders/OrderCard";
+import { PROD_URL } from "@/app/(root)/page";
 
 export enum OrderStatus {
     PENDING = "Pending",
@@ -29,9 +30,9 @@ const OrderModal: FC<IOrderModalProps> = ({ title, isOpen, onClose, order }) => 
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
-        const updateOrder = axios.put(`${process.env.BASE_URL}/api/admin/orders`, { id: order?._id, orderStatus })
+        const updateOrder = axios.put(`${PROD_URL}/api/admin/orders`, { id: order?._id, orderStatus })
 
-        axios.post(`${process.env.BASE_URL}/api/emailOrderStatus`, { email: order?.user, orderStatus })
+        axios.post(`${PROD_URL}/api/emailOrderStatus`, { email: order?.user, orderStatus })
 
         toast.promise(updateOrder, {
             loading: "Updating Order",

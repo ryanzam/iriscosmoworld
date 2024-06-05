@@ -13,6 +13,7 @@ import { AddressType } from "@/app/components/modals/AddressModal";
 import { UserType } from "../modals/ProfileModal"
 import OrderModal from "../modals/OrderModal"
 import OrdersStats from "../stats/OrderStats"
+import { PROD_URL } from "@/app/(root)/page"
 
 type PaymentInfoType = {
     id: string,
@@ -50,7 +51,7 @@ const OrdersTable =  () => {
     }, [data?.total])
 
     const fetchOrders = useCallback(() => {
-        axios.get(`${process.env.BASE_URL}/api/admin/orders`, searchParams)
+        axios.get(`${PROD_URL}/api/admin/orders`, searchParams)
             .then(res => {
                 setLoading(true)
                 setData(res?.data)
@@ -75,7 +76,7 @@ const OrdersTable =  () => {
         if (!confirm)
             return
 
-        let productPromise = axios.delete(`${process.env.BASE_URL}/api/admin/orders/` + id)
+        let productPromise = axios.delete(`${PROD_URL}/api/admin/orders/` + id)
         toast.promise(productPromise, {
             loading: "Deleting product",
             success: () => {

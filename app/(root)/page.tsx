@@ -2,6 +2,8 @@ import axios from 'axios'
 import Products from '../products/Products'
 import Footer from '../components/footer/Footer';
 
+export const PROD_URL = "https://iriscosmoworld.vercel.app"
+
 interface IParams {
   search?: string;
   ratings?: string;
@@ -12,7 +14,7 @@ interface IParams {
 }
 
 export const fetchProducts = async (params: IParams) => {
-  const { data } = await axios.get(`https://iriscosmoworld.vercel.app/api/products`, { params })
+  const { data } = await axios.get(`${PROD_URL}/api/products`, { params })
   return data
 }
 

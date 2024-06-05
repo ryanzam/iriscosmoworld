@@ -7,6 +7,7 @@ import { countries } from "countries-list";
 import { BsSend } from "react-icons/bs"
 import axios from "axios";
 import toast from "react-hot-toast";
+import { PROD_URL } from "@/app/(root)/page";
 
 export type AddressType = {
     _id?: string;
@@ -41,9 +42,9 @@ const AddressModal: FC<IAddressModalProps> = ({ title, isOpen, onClose, address 
         let apiAddr
 
         if (emptyAddress) {
-            apiAddr = axios.post(`${process.env.BASE_URL}/api/address`, { phone, street, city, wardNumber })
+            apiAddr = axios.post(`${PROD_URL}/api/address`, { phone, street, city, wardNumber })
         } else {
-            apiAddr = axios.put(`${process.env.BASE_URL}/api/address`, { id: address._id, phone, street, city, wardNumber })
+            apiAddr = axios.put(`${PROD_URL}/api/address`, { id: address._id, phone, street, city, wardNumber })
         }
 
         toast.promise(apiAddr, {

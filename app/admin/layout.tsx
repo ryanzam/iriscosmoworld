@@ -1,4 +1,3 @@
-import axios from "axios"
 import getSignedinUser from "../actions/getSignedinUser"
 import Empty from "../components/Empty"
 import DashboardNav from "../components/dashboard/DashboardNav"

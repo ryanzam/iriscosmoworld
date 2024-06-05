@@ -6,6 +6,7 @@ import toast from "react-hot-toast"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { emailNewPasswordChanged } from "@/utils/mailer"
+import { PROD_URL } from "../(root)/page"
 
 const PasswordChangePage = () => {
 
@@ -22,7 +23,7 @@ const PasswordChangePage = () => {
             return
         }
 
-        await axios.put(`${process.env.BASE_URL}/api/changeForgotPassword`, { email, password })
+        await axios.put(`${PROD_URL}/api/changeForgotPassword`, { email, password })
         toast.success("Password changed successfully.")
         router.push("/signin")
 

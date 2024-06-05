@@ -6,6 +6,7 @@ import toast from "react-hot-toast"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { BsSend } from "react-icons/bs"
+import { PROD_URL } from "../(root)/page"
 
 
 const ForgotPage = () => {
@@ -17,7 +18,7 @@ const ForgotPage = () => {
         e.preventDefault()
         try {
             toast('If the email is associated with an account, a password reset email will be sent.', { duration: 5000 })
-            await axios.post(`/api/reset`, { email })
+            await axios.post(`${PROD_URL}/api/reset`, { email })
             router.push("/signin")
         } catch (error: any) {
             toast.error(error.message || 'Failed to send reset password email.');

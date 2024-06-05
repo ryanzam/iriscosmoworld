@@ -8,6 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast"
 import { useRouter, useSearchParams } from "next/navigation"
 import { CartItemsContext } from "@/context/CartContext"
+import { PROD_URL } from "@/app/(root)/page"
 
 type data = {
     orders: [],
@@ -32,7 +33,7 @@ const Orders = () => {
             toast.success("👏 Item(s) successfully ordered!")
         }
         function fetch() {
-            axios.get(`https://iriscosmoworld.vercel.app/api/orders`, {})
+            axios.get(`${PROD_URL}/api/orders`, {})
                 .then(res => setData(res?.data))
                 .catch(err => toast.error(err.message))
         }

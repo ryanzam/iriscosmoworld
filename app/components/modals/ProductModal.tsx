@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { IProduct, ImageType } from "@/models/product";
 import { Categories } from "@/models/categories";
 import ImageUploads from "../inputs/ImageUploads";
+import { PROD_URL } from "@/app/(root)/page";
 
 interface IAddProductModalProps {
     title: string;
@@ -46,9 +47,9 @@ const AddProductModal: FC<IAddProductModalProps> = ({ title, isOpen, onClose, pr
 
         let productPromise
         if (!product) {
-            productPromise = axios.post(`${process.env.BASE_URL}/api/products`, item)
+            productPromise = axios.post(`${PROD_URL}/api/products`, item)
         } else {
-            productPromise = axios.put(`${process.env.BASE_URL}/api/products`, { ...item, id: product?._id })
+            productPromise = axios.put(`${PROD_URL}/api/products`, { ...item, id: product?._id })
         }
 
         toast.promise(productPromise, {

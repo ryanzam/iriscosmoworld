@@ -11,6 +11,7 @@ import ProfileModal, { UserType } from "../modals/ProfileModal";
 import PasswordChangeModal from "../modals/PasswordChangeModal";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { PROD_URL } from "@/app/(root)/page";
 
 interface IUserPRops {
     user: UserType
@@ -26,7 +27,7 @@ const User: FC<IUserPRops> = ({ user }) => {
     const router = useRouter()
 
     useEffect(() => {
-        axios.get(`https://iriscosmoworld.vercel.app/api/address`)
+        axios.get(`${PROD_URL}/api/address`)
             .then((res: any) => {
                 setDAddress({ ...res.data[0] })
             }).catch(err => toast.error("Error fetching address: ", err.nessage))

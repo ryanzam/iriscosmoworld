@@ -11,6 +11,7 @@ import Link from "next/link";
 import Breadcrums from "../components/Breadcrums";
 import getSignature from "../actions/getSignature";
 import Image from "next/image";
+import { PROD_URL } from "../(root)/page";
 
 const breadcrumbs = [
     { name: "Home", path: "/" },
@@ -26,7 +27,7 @@ const DeliveryPage = async (user: any) => {
     const { cartItems } = useContext(CartItemsContext)
 
     useEffect(() => {
-        axios.get(`${process.env.BASE_URL}/api/address`)
+        axios.get(`${PROD_URL}/api/address`)
             .then((res: any) => {
                 setDAddress({ ...res?.data[0] })
             }).catch(err => toast.error("Error fetching address :", err.nessage))
@@ -64,7 +65,7 @@ const DeliveryPage = async (user: any) => {
                 transaction_uuid,
             };
 
-            await axios.post(`https://iriscosmoworld.vercel.app/api/orders`, {
+            await axios.post(`${PROD_URL}/api/orders`, {
                 netTotal,
                 address,
                 cartItems
@@ -72,7 +73,7 @@ const DeliveryPage = async (user: any) => {
 
             payEsewa(formData)
 
-            await axios.post(`https://iriscosmoworld.vercel.app/api/emailOrder`, {
+            await axios.post(`${PROD_URL}/api/emailOrder`, {
                 address,
                 netTotal
             })

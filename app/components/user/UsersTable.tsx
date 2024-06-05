@@ -10,6 +10,7 @@ import toast from "react-hot-toast"
 
 import { UserType } from "../modals/ProfileModal"
 import UserModal, { UserRole } from "../modals/UserModal"
+import { PROD_URL } from "@/app/(root)/page"
 
 export type UsersDataType = {
     users: UserType[],
@@ -34,7 +35,7 @@ const UsersTable = () => {
     }, [router, searchParams])
 
     const fetchUsers = useCallback(() => {
-        axios.get(`${process.env.BASE_URL}/api/admin/users`, { params: { page }})
+        axios.get(`${PROD_URL}/api/admin/users`, { params: { page }})
             .then(res => {
                 setData(res.data)
             })

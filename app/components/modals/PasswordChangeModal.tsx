@@ -8,6 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { signOut } from "next-auth/react";
 import { UserType } from "./ProfileModal";
+import { PROD_URL } from "@/app/(root)/page";
 
 interface IPasswordChangeModalProps {
     title: string;
@@ -38,7 +39,7 @@ const PasswordChangeModal: FC<IPasswordChangeModalProps> = ({ title, isOpen, onC
         }
 
         if (samePassword) {
-            const updatePasswordChange = axios.put(`${process.env.BASE_URL}/api/password`, { id: profile?._id, currentPassword, password })
+            const updatePasswordChange = axios.put(`${PROD_URL}/api/password`, { id: profile?._id, currentPassword, password })
 
             toast.promise(updatePasswordChange, {
                 loading: "Submitting password",

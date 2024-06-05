@@ -1,5 +1,6 @@
 "use client"
 
+import { PROD_URL } from "@/app/(root)/page";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { createContext, useState } from "react";
@@ -26,7 +27,7 @@ const AuthenticationContextProvider = ({ children }: any) => {
     const router = useRouter()
 
     const registerUser = ({ name, email, password }: RegisterUserType) => {
-        axios.post(`${process.env.BASE_URL}/api/register`, {
+        axios.post(`${PROD_URL}/api/register`, {
             name, email, password
         }).then(() => {
             toast("We've sent you an email. Please check your email and Verify");
