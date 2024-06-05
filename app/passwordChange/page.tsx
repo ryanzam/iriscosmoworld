@@ -5,8 +5,7 @@ import TextInput from "../components/inputs/TextInput"
 import toast from "react-hot-toast"
 import axios from "axios"
 import { useRouter } from "next/navigation"
-import { emailNewPasswordChanged } from "@/utils/mailer"
-import { PROD_URL } from "../(root)/page"
+import { PROD_URL } from "@/utils/constants"
 
 const PasswordChangePage = () => {
 

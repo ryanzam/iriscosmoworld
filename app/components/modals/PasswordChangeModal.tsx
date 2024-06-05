@@ -8,7 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { signOut } from "next-auth/react";
 import { UserType } from "./ProfileModal";
-import { PROD_URL } from "@/app/(root)/page";
+import { PROD_URL } from '@/utils/constants';
 
 interface IPasswordChangeModalProps {
     title: string;

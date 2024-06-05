@@ -1,8 +1,7 @@
 import axios from 'axios'
 import Products from '../products/Products'
 import Footer from '../components/footer/Footer';
-
-export const PROD_URL = "https://iriscosmoworld.vercel.app"
+import { PROD_URL } from '@/utils/constants';
 
 interface IParams {
   search?: string;

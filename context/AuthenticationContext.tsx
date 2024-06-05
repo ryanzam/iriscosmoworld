@@ -1,6 +1,6 @@
 "use client"
 
-import { PROD_URL } from "@/app/(root)/page";
+import { PROD_URL } from '@/utils/constants';
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { createContext, useState } from "react";

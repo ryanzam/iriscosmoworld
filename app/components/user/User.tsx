@@ -11,7 +11,7 @@ import ProfileModal, { UserType } from "../modals/ProfileModal";
 import PasswordChangeModal from "../modals/PasswordChangeModal";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { PROD_URL } from "@/app/(root)/page";
+import { PROD_URL } from '@/utils/constants';
 
 interface IUserPRops {
     user: UserType

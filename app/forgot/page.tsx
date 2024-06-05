@@ -6,7 +6,7 @@ import toast from "react-hot-toast"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { BsSend } from "react-icons/bs"
-import { PROD_URL } from "../(root)/page"
+import { PROD_URL } from "@/utils/constants";
 
 
 const ForgotPage = () => {

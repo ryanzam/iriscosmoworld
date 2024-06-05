@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import { IProduct, ImageType } from "@/models/product";
 import { Categories } from "@/models/categories";
 import ImageUploads from "../inputs/ImageUploads";
-import { PROD_URL } from "@/app/(root)/page";
+import { PROD_URL } from '@/utils/constants';
 
 interface IAddProductModalProps {
     title: string;

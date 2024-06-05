@@ -6,7 +6,7 @@ import Modal from "./Modal";
 import { BsSend } from "react-icons/bs"
 import axios from "axios";
 import toast from "react-hot-toast";
-import { PROD_URL } from "@/app/(root)/page";
+import { PROD_URL } from '@/utils/constants';
 
 export type UserType = {
     _id: string;

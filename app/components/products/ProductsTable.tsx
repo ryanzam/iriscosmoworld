@@ -11,7 +11,7 @@ import axios from "axios"
 import toast from "react-hot-toast"
 import ProductStats from "../stats/ProductStats"
 import Image from "next/image"
-import { PROD_URL } from "@/app/(root)/page"
+import { PROD_URL } from "@/utils/constants"
 
 interface IProductsTableProps {
     data: data

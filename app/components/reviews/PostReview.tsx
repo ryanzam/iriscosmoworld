@@ -1,6 +1,6 @@
 "use client"
 
-import { PROD_URL } from "@/app/(root)/page";
+import { PROD_URL } from '@/utils/constants';
 import { IProduct } from "@/models/product"
 import axios from "axios";
 import dynamic from "next/dynamic";

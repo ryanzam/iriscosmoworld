@@ -11,7 +11,7 @@ import Link from "next/link";
 import Breadcrums from "../components/Breadcrums";
 import getSignature from "../actions/getSignature";
 import Image from "next/image";
-import { PROD_URL } from "../(root)/page";
+import { PROD_URL } from "@/utils/constants";
 
 const breadcrumbs = [
     { name: "Home", path: "/" },

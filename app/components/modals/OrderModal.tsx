@@ -7,7 +7,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { IOrder } from "../orders/OrdersTable";
 import OrderCard from "../orders/OrderCard";
-import { PROD_URL } from "@/app/(root)/page";
+import { PROD_URL } from '@/utils/constants';
 
 export enum OrderStatus {
     PENDING = "Pending",

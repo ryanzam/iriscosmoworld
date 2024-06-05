@@ -10,7 +10,7 @@ import toast from "react-hot-toast"
 
 import { UserType } from "../modals/ProfileModal"
 import UserModal, { UserRole } from "../modals/UserModal"
-import { PROD_URL } from "@/app/(root)/page"
+import { PROD_URL } from "@/utils/constants"
 
 export type UsersDataType = {
     users: UserType[],

@@ -7,7 +7,7 @@ import { BsSend } from "react-icons/bs"
 import axios from "axios";
 import toast from "react-hot-toast";
 import { UserType } from "./ProfileModal";
-import { PROD_URL } from "@/app/(root)/page";
+import { PROD_URL } from '@/utils/constants';
 
 interface IUserModalProps {
     title: string;

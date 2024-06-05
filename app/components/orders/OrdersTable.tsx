@@ -13,7 +13,7 @@ import { AddressType } from "@/app/components/modals/AddressModal";
 import { UserType } from "../modals/ProfileModal"
 import OrderModal from "../modals/OrderModal"
 import OrdersStats from "../stats/OrderStats"
-import { PROD_URL } from "@/app/(root)/page"
+import { PROD_URL } from "@/utils/constants"
 
 type PaymentInfoType = {
     id: string,

@@ -8,7 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast"
 import { useRouter, useSearchParams } from "next/navigation"
 import { CartItemsContext } from "@/context/CartContext"
-import { PROD_URL } from "@/app/(root)/page"
+import { PROD_URL } from "@/utils/constants"
 
 type data = {
     orders: [],

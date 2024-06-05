@@ -1,4 +1,4 @@
-import { PROD_URL } from "@/app/(root)/page";
+import { PROD_URL } from '@/utils/constants';
 import getSignedinUser from "@/app/actions/getSignedinUser";
 import ProductDetails from "@/app/components/products/ProductDetails";
 import axios from "axios";
