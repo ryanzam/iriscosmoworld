@@ -1,7 +1,7 @@
 "use client"
 
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -16,9 +16,7 @@ const SigninPage = () => {
 
     const { data: session } = useSession();
     const router = useRouter()
-    const params = useSearchParams()
-    const callBackURL = params?.get("callbackUrl") ?? "/"
-
+    
     useEffect(() => {
         if (session?.user) {
             router.push("/");
@@ -31,11 +29,11 @@ const SigninPage = () => {
         setLoading(true)
 
         signIn("credentials", {
-            email, password, callbackUrl: callBackURL
+            email, password, callbackUrl: `${process.env.BASE_URL}/user`, redirect: false
         }).then(cb => {
             if (cb?.ok) {
                 toast.success("Successfully signed in")
-                router.push("/")
+                window.location.href = "/user"
             }
             if (cb?.error) {
                 toast.error(cb.error)
@@ -46,7 +44,7 @@ const SigninPage = () => {
 
     return (
         <div className="card w-1/2 xs:w-3/4 bg-base-100 shadow-2xl m-auto mt-14 flex items-center py-5" onSubmit={handleSubmit}>
-            <form className="form-control w-full p-5 flex gap-5 xs:p-2 xs:gap-2">
+            <form className="form-control pb-0 w-full p-5 flex gap-5 xs:p-2 xs:gap-2">
                 <TextInput label="Enter Email"
                     placeHolder="Email"
                     type="email"
@@ -69,7 +67,10 @@ const SigninPage = () => {
                     Sign in
                 </button>
                 <hr />
-                <p className="text-center xs:text-sm">Don&apos;t have an account? <a href="/register" className="font-bold hover:text-neutral-500 cursor-pointer">Create an account</a></p>
+                <div className="flex justify-between">
+                    <a href="/register" className="font-bold hover:text-neutral-500 cursor-pointer">Create an account</a>
+                    <a href="/forgot" className="font-bold text-neutral-400  hover:text-neutral-800 cursor-pointer">Forgot password?</a>
+                </div>
             </form>
 
             <div className="divider">OR</div>

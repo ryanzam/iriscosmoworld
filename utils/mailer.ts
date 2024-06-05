@@ -100,3 +100,62 @@ export async function emailStatusOrder(user: any, status: string) {
         console.log(error)
     }
 }
+
+export async function emailResetPassword(email: any, resetPasswordString: string) {
+    try {
+        let emailMsg = {
+            from: '"IrisCosmoWorld" <iriscosmoworld@gmail.com>',
+            to: email,
+            subject: `Reset Password.`,
+            text: "Reset your password by clicking the link below.",
+            html: `<h1>Reset your password<h1>
+            <br />
+            <p>Hello there!</p>
+            <br />
+            <p>We received a request to reset your password for our app. 
+                Please click on the link below to reset your password: 
+                <a href="${process.env.BASE_URL}/api/reset?us=${resetPasswordString}"">Reset Password</a>. 
+                If you did not request a password reset, ignore this email.</p>
+            <br />
+            <br />
+            <p>Cheers,</p>
+            <p>IrisCosmoWorld</p>
+            `,
+        }
+
+        let info = await transporter.sendMail(emailMsg);
+        console.log("Message sent: %s", info.messageId);
+    }
+
+    catch (error) {
+        console.log(error)
+    }
+}
+
+export async function emailNewPasswordChanged(email: any) {
+    try {
+        let emailMsg = {
+            from: '"IrisCosmoWorld" <iriscosmoworld@gmail.com>',
+            to: email,
+            subject: `New Password Updated`,
+            text: "Your password has been updated",
+            html: `<h1>New password updated<h1>
+            <br />
+            <p>Hello there!</p>
+            <br />
+            <p>Your password has been reset.</p>
+            <br />
+            <br />
+            <p>Cheers,</p>
+            <p>IrisCosmoWorld</p>
+            `,
+        }
+
+        let info = await transporter.sendMail(emailMsg);
+        console.log("Message sent: %s", info.messageId);
+    }
+
+    catch (error) {
+        console.log(error)
+    }
+}

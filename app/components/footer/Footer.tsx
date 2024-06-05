@@ -6,22 +6,10 @@ import Image from "next/image";
 
 const Footer: FC = () => {
 
-    const path = usePathname()
-
-    const renderChat = () => {
-        if (path === "/") {
-            return <TawkMessengerReact
-                propertyId="6648b8f79a809f19fb3297f7"
-                widgetId="1hu6151s9"
-            />
-        }
-        return
-    }
-
     return (
         <footer className="footer p-10 bg-base-200 text-base-content mt-4">
             <aside>
-                <Image src="/images/iris_no_bg.png" height={50} width={50} alt="iris"/>
+                <Image src="/images/iris_no_bg.png" height={50} width={50} alt="iris" />
                 <h2 className="font-extrabold">Iris CosmoWorld Ltd.</h2>
                 <p>Providing reliable experience</p>
             </aside>
@@ -49,7 +37,10 @@ const Footer: FC = () => {
                     </div>
                 </fieldset>
             </form>
-            {renderChat()}
+            <TawkMessengerReact
+                propertyId="6648b8f79a809f19fb3297f7"
+                widgetId="1hu6151s9"
+            />
         </footer>
     )
 }

@@ -16,7 +16,7 @@ interface IUserPRops {
     user: UserType
 }
 
-const User:FC<IUserPRops> = ({ user }) => {
+const User: FC<IUserPRops> = ({ user }) => {
 
     const [showAddrModal, setShowAddrModal] = useState(false)
     const [showProfileModal, setShowProfileModal] = useState(false)
@@ -29,7 +29,7 @@ const User:FC<IUserPRops> = ({ user }) => {
         axios.get(`${process.env.BASE_URL}/api/address`)
             .then((res: any) => {
                 setDAddress({ ...res.data[0] })
-            }).catch(err => toast.error("Error fetching address :", err.nessage))
+            }).catch(err => toast.error("Error fetching address: ", err.nessage))
     }, [address.city, address.phone, address.wardNumber, address.street, showAddrModal, showProfileModal])
 
     const onAddrModalClose = () => {
@@ -56,6 +56,8 @@ const User:FC<IUserPRops> = ({ user }) => {
                         className="w-20 h-20 rounded-full mb-auto"
                         src={user?.image ? user?.image : "/profile.jpg"}
                         alt={user?.name}
+                        height={80}
+                        width={80}
                     />
                     <div className="w-full">
                         <div className="flex">
@@ -66,10 +68,10 @@ const User:FC<IUserPRops> = ({ user }) => {
                             </div>
                             <div className="flex flex-col gap-2 ml-auto">
                                 <button className="btn btn-outline btn-primary btn-sm" onClick={() => setShowProfileModal(true)} >
-                                    <FaUserNinja size={20} /> Update Profile
+                                    <FaUserNinja size={20} /> <span className="xs:hidden">Update Profile</span>
                                 </button>
                                 <button className="btn btn-outline btn-sm" onClick={() => setShowPasswordChangeModal(true)} >
-                                    <MdPassword size={20} /> Change Password
+                                    <MdPassword size={20} />  <span className="xs:hidden">Change Password</span>
                                 </button>
                             </div>
                         </div>
@@ -90,7 +92,9 @@ const User:FC<IUserPRops> = ({ user }) => {
                                 onClick={() => setShowAddrModal(true)}
                             >
                                 <GrMapLocation size={20} />
-                                {emptyAddress ? "Add new address" : "Update address"}
+                                {emptyAddress ?
+                                    <span className="xs:hidden">Add new address</span> :
+                                    <span className="xs:hidden">Update address</span>}
                             </button>
                         </div>
                     </div>

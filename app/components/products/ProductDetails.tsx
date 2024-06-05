@@ -53,14 +53,14 @@ const ProductDetails: FC<IProductDetailsProps> = ({ product, user }: IProductDet
             <Breadcrums breadcrums={breadcrumbs} />
             <div className="card card-side bg-base-100 shadow-md">
                 <figure className="flex flex-col w-2/6">
-                    <Image src={imagePreview} alt="product" />
+                    <Image src={imagePreview} alt="product" height={100} width={100}/>
 
                     <div className="flex items-center justify-center p-3">
                         {product.images.map(i => (
                             <a key={i?.public_id} className="inline-block border border-gray-100 p-1 rounded-lg
                              hover:border-blue-400 cursor-pointer" onClick={() => setImagePreview(i.url)}
                             >
-                                <Image className="h-16 w-16" src={i.url} alt="product" />
+                                <Image className="h-16 w-16" src={i.url} alt="product" height={80} width={80} />
                             </a>
                         ))}
                     </div>

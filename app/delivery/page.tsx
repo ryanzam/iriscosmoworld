@@ -64,7 +64,7 @@ const DeliveryPage = async (user: any) => {
                 transaction_uuid,
             };
 
-            await axios.post(`${process.env.BASE_URL}/api/orders`, {
+            await axios.post(`https://iriscosmoworld.vercel.app/api/orders`, {
                 netTotal,
                 address,
                 cartItems
@@ -72,7 +72,7 @@ const DeliveryPage = async (user: any) => {
 
             payEsewa(formData)
 
-            await axios.post(`${process.env.BASE_URL}/api/emailOrder`, {
+            await axios.post(`https://iriscosmoworld.vercel.app/api/emailOrder`, {
                 address,
                 netTotal
             })
@@ -102,7 +102,7 @@ const DeliveryPage = async (user: any) => {
     return (
         <div>
             <Breadcrums breadcrums={breadcrumbs} />
-            <div className="grid grid-cols-[1.3fr_.7fr] gap-5">
+            <div className="grid grid-cols-[1.3fr_.7fr] gap-5 xs:grid-cols-1">
                 <div className="card bg-base-100 shadow-xl mb-1">
                     <div className="card-body">
                         <h2 className="card-title">Delivery Information</h2>
@@ -159,12 +159,12 @@ const DeliveryPage = async (user: any) => {
 
                             <div className="ml-5">
                                 <p>{ci.name.substring(0, 50)}</p>
-                                <p className="mt-1 text-gray-500">
-                                    Total: Rs.{netTotal}
-                                </p>
                             </div>
                         </div>
                     ))}
+                    <p className="mt-1 text-gray-500">
+                        Total: Rs.{netTotal}
+                    </p>
                 </div>
             </div>
         </div>

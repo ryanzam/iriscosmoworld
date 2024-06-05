@@ -91,7 +91,7 @@ const AddressModal: FC<IAddressModalProps> = ({ title, isOpen, onClose, address 
             </div>
 
             <TextInput label="Enter Ward Number"
-                placeHolder="PostalCode"
+                placeHolder="Ward number"
                 type="number"
                 required={true}
                 value={wardNumber}

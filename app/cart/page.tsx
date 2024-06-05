@@ -58,10 +58,10 @@ const CartPage = () => {
                             <figure className="h-48 w-48">
                                 <Image src={item.image} alt="item" height={192} width={192}/>
                             </figure>
-                            <div className="card-body flex-row justify-between xs:ps-1">
+                            <div className="card-body flex-row justify-between xs:ps-1 xs:pe-1">
                                 <div className="flex flex-col justify-center">
                                     <h2 className="card-title">{item.name}</h2>
-                                    <div className="text-sm">{item?.seller}</div>
+                                    <div className="text-sm">Seller: {item?.seller}</div>
                                     <h3 className="font-semibold">Rs.{item.price}</h3>
                                 </div>
 

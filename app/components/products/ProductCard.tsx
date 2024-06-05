@@ -37,7 +37,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
     return (
         <div className="card bg-base-200 shadow-xl mb-5 hover:bg-neutral-100">
             <figure className="h-48 w-full">
-                <Image src={product.images.length > 0 ? product.images[0].url : "/placeholder.jpg"} alt="product"/>
+                <Image src={product.images.length > 0 ? product.images[0].url : "/placeholder.jpg"} alt="product" height={"192"} width={"200"}/>
             </figure>
             <div className="card-body p-3">
                 <h2 className="card-title">

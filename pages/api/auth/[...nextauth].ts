@@ -18,7 +18,7 @@ export const authOptions: AuthOptions = {
             name: "credentials",
             credentials: {
                 email: { label: "email", type: "email" },
-                password: { label: "password", type: "password" }
+                password: { label: "password", type: "password" },
             },
             async authorize(credentials) {
 
@@ -39,7 +39,7 @@ export const authOptions: AuthOptions = {
                     throw new Error("Incorrect credentials")
 
                 if(!user.emailVerified)
-                    return redirect(`${process.env.BASE_URL}/signin`)
+                    throw new Error("Verify your email to continue. Check your email")
 
                 return user
             },
@@ -69,6 +69,9 @@ export const authOptions: AuthOptions = {
             const userFound = await User.findOne({ email });
 
             if (userFound) {
+                if(!userFound.emailVerified) {
+                    return false
+                }
                 toast("Welcome back, " + userFound?.name)
                 return true
             }

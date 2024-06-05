@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import TextInput from "../components/inputs/TextInput";
 import { AuthenticationContext } from "@/context/AuthenticationContext";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
 
@@ -11,12 +12,17 @@ const RegisterPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
 
     const router = useRouter()
     const { registerUser } = useContext(AuthenticationContext)
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
+        if(password !== passwordConfirm) {
+            toast.error("Passwords don't match. Try again.")
+            return
+        }
         setLoading(true)
         registerUser({ name, email, password })
         setLoading(false)
@@ -45,6 +51,14 @@ const RegisterPage = () => {
                     required={true}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    minLength={8}
+                />
+                <TextInput label="Confirm Password"
+                    placeHolder="Password"
+                    type="password"
+                    required={true}
+                    value={passwordConfirm}
+                    onChange={(e) => setPasswordConfirm(e.target.value)}
                     minLength={8}
                 />
                 <button className="btn btn-primary" type="submit">
