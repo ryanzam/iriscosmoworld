@@ -1,3 +1,5 @@
+import { PROD_URL } from "./constants";
+
 let nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
@@ -21,7 +23,7 @@ export async function emailVerification(user: any, uniqueStr: string) {
             <br />
             <p>Hello,</p>
             <br />
-            <p>Click <a href="${process.env.BASE_URL}/api/emailVerify?us=${uniqueStr}">the link </a> to verify your email.</p>
+            <p>Click <a href="${PROD_URL}/api/emailVerify?us=${uniqueStr}">the link </a> to verify your email.</p>
             <br />
             <br />
             <p>Cheers,</p>
@@ -47,7 +49,7 @@ export async function emailOrder(user: any, address: any, total: number) {
             html: `<p>Dear ${user?.name}, </p>
             <p>Thanks for shopping with us! Your order of Rs.${total} is confirmed.</p>
             <br />
-            <a href="${process.env.BASE_URL}/user/orders">View Order Details</a>
+            <a href="${PROD_URL}/user/orders">View Order Details</a>
             <br />
             <div>
                 <b>Ordered item(s) will be delivered to:</b>
@@ -114,7 +116,7 @@ export async function emailResetPassword(email: any, resetPasswordString: string
             <br />
             <p>We received a request to reset your password for our app. 
                 Please click on the link below to reset your password: 
-                <a href="${process.env.BASE_URL}/api/reset?us=${resetPasswordString}"">Reset Password</a>. 
+                <a href="${PROD_URL}/api/reset?us=${resetPasswordString}"">Reset Password</a>. 
                 If you did not request a password reset, ignore this email.</p>
             <br />
             <br />
