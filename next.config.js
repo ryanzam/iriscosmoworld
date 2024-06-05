@@ -6,8 +6,8 @@ const nextConfig = {
         ]
     },
     env: {
-        BASE_URL: process.env.NODE_ENV === "Production" ? "https://iriscosmoworld.vercel.app" : "http://localhost:3000",
-        NEXTAUTH_URL: process.env.NODE_ENV === "Production" ? "https://iriscosmoworld.vercel.app" : "http://localhost:3000",
+        BASE_URL: "https://iriscosmoworld.vercel.app",
+        NEXTAUTH_URL: "https://iriscosmoworld.vercel.app",
     }
 }
 
