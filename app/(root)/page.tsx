@@ -24,7 +24,6 @@ export default async function Home({ searchParams }: { searchParams: IParams }) 
   return (
     <div className='mt-1'>
       <Products data={data} />
-      <Footer />
     </div>
   )
 }

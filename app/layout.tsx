@@ -5,12 +5,13 @@ import Nav from './components/navbar/Nav'
 import Container from './components/Container'
 import GlobalProvider from './GlobalProviders'
 import getSignedinUser from './actions/getSignedinUser'
+import Footer from './components/footer/Footer'
 
 const nunito = Nunito({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Iris CosmoWorld',
-  description: 'An online store',
+  title: 'Iris Cosmo World',
+  description: 'A store located in bharatpur-10, Nepal',
 }
 
 export default async function RootLayout({
@@ -25,10 +26,11 @@ export default async function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <GlobalProvider>
-          <Nav user={signedInUser}/>
+          <Nav user={signedInUser} />
           <Container>
             {children}
           </Container>
+          <Footer />
         </GlobalProvider>
       </body>
     </html>

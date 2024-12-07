@@ -48,7 +48,7 @@ const CartPage = () => {
     return (
         <div>
             <div className="flex justify-between">
-                <h3 className="mb-3 xs:mt-3 xs:ms-2">{cartItems.length} Items(s) in cart.</h3>
+                <h3 className='my-3' className="mb-3 xs:mt-3 xs:ms-2">{cartItems.length} Items(s) in cart.</h3>
                 {grossTotal < 100 && <div className="badge badge-secondary badge-outline">Get 10% off on Rs. 100 or more</div>}
             </div>
             <div className="grid grid-cols-[1.5fr_.5fr] gap-5 xs:grid-cols-1">
@@ -62,7 +62,7 @@ const CartPage = () => {
                                 <div className="flex flex-col justify-center">
                                     <h2 className="card-title">{item.name}</h2>
                                     <div className="text-sm">Seller: {item?.seller}</div>
-                                    <h3 className="font-semibold">Rs.{item.price}</h3>
+                                    <h3 className='my-3' className="font-semibold">Rs.{item.price}</h3>
                                 </div>
 
                                 <div className="flex items-center justify-end">
@@ -83,9 +83,9 @@ const CartPage = () => {
                 </div>
                 <div className="card  bg-base-100 shadow-xl p-5 flex flex-col gap-3">
                     <div className="grid grid-cols-2 gap-3">
-                        <h3>Gross Total</h3><h3 className="text-end">Rs.{grossTotal}</h3>
-                        <h3>Discount(10%)</h3><h3 className="text-end">Rs.{discount}</h3>
-                        <h3 className="font-bold">Total</h3><h3 className="text-end font-bold">Rs.{netTotal}</h3>
+                        <h3 className='my-3'>Gross Total</h3><h3 className='my-3' className="text-end">Rs.{grossTotal}</h3>
+                        <h3 className='my-3'>Discount(10%)</h3><h3 className='my-3' className="text-end">Rs.{discount}</h3>
+                        <h3 className='my-3' className="font-bold">Total</h3><h3 className='my-3' className="text-end font-bold">Rs.{netTotal}</h3>
                     </div>
                     <hr className="my-3" />
                     <Link className="btn btn-sm btn-accent" href={"/delivery"}>Proceed</Link>

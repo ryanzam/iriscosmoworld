@@ -24,7 +24,7 @@ const Empty: FC<IEmptyProps> = ({ title, alertClass = "", showResetBtn = false }
         <div className={`alert ` + alertClass}>
             {renderSvg()}
             <div>
-                <h3 className="font-bold">{title}</h3>
+                <h3 className='my-3' className="font-bold">{title}</h3>
                 {showResetBtn && <div className="text-xs">Try changing filters</div>}
             </div>
             {showResetBtn && <button className="btn btn-sm" onClick={() => router.push("/")}>

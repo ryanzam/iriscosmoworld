@@ -70,7 +70,7 @@ const ProductDetails: FC<IProductDetailsProps> = ({ product, user }: IProductDet
                         <h2 className="card-title">{product.name}</h2>
                         <p>{product.description}</p>
 
-                        <h3 className="font-semibold">Rs.{product.price}</h3>
+                        <h3 className='my-3' className="font-semibold">Rs.{product.price}</h3>
                     </div>
 
                     <div className="flex">
