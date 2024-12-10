@@ -5,7 +5,7 @@ export default function PrivacyPage() {
         <div className='w-[80%] mx-auto my-10'>
             <p><strong>Privacy Policy for Iris Cosmo World</strong></p>
             <p><strong>Last Updated:</strong> 05.12.2024</p>
-            <p className='my-3'>At Iris Cosmo World, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website [Your Website URL], including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the "Site").</p>
+            <p className='my-3'>At Iris Cosmo World, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website [Your Website URL], including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the &quot;Site&quot;).</p>
             <p>Please read this Privacy Policy carefully. By using our Site, you consent to the practices described herein.</p>
             <hr />
             <h3 className='my-3'><strong>1. Information We Collect</strong></h3>
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
             <h4 className='my-3'><strong>4.1 Access and Update Information</strong></h4>
             <p>You can review and update your account information by logging into your account on the Site.</p>
             <h4 className='my-3'><strong>4.2 Opt-Out of Communications</strong></h4>
-            <p>You can unsubscribe from promotional emails by clicking the "unsubscribe" link in our messages. Note that you may still receive transactional communications.</p>
+            <p>You can unsubscribe from promotional emails by clicking the &quot;unsubscribe&quot; link in our messages. Note that you may still receive transactional communications.</p>
             <h4 className='my-3'><strong>4.3 Do Not Track</strong></h4>
             <p>Some web browsers include a &ldquo;Do Not Track&rdquo; feature. Our Site currently does not respond to such signals.</p>
             <hr />
@@ -63,11 +63,11 @@ export default function PrivacyPage() {
             <h3 className='my-3'><strong>6. Third-Party Links</strong></h3>
             <p>Our Site may contain links to third-party websites. We are not responsible for the privacy practices or content of such sites. Please review their policies before providing personal information.</p>
             <hr />
-            <h3 className='my-3'><strong>7. Children's Privacy</strong></h3>
+            <h3 className='my-3'><strong>7. Children&apos;s Privacy</strong></h3>
             <p>Our Site is not intended for individuals under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have collected information from a child, please contact us immediately.</p>
             <hr />
             <h3 className='my-3'><strong>8. Changes to This Privacy Policy</strong></h3>
-            <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with the "Last Updated" date. Your continued use of the Site after changes are posted constitutes your acceptance of the revised policy.</p>
+            <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with the &quot;Last Updated&quot; date. Your continued use of the Site after changes are posted constitutes your acceptance of the revised policy.</p>
             <hr />
             <h3 className='my-3'><strong>9. Contact Us</strong></h3>
             <p>If you have any questions about this Privacy Policy or our practices, please contact us at:<br /><p>Iris Cosmo World<br /> Bharatpur-10<br /> iriscosmoworld@gmail.com</p>

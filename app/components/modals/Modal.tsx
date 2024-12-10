@@ -14,7 +14,7 @@ const Modal: FC<IModalProps> = ({ title, modalBody, isOpen, onClose, onSubmit })
             <div className="modal-box shadow-[rgba(0,_0,_0,_0.4)_00px_20px_100px]">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-4" onClick={onClose}>✕</button>
 
-                <h3 className='my-3' className="font-bold text-lg">{title}</h3>
+                <h3 className='my-3 font-bold text-lg'>{title}</h3>
                 <div className="py-4">
                     {modalBody}
                 </div>

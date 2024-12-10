@@ -132,16 +132,16 @@ const DeliveryPage = async (user: any) => {
                     </div>
                 </div>
                 <div className="card bg-base-200 shadow-xl p-5 flex flex-col gap-3">
-                    <h3 className='my-3' className="font-bold">Summary</h3>
+                    <h3 className='my-3 font-bold'>Summary</h3>
                     <hr />
                     <div className="grid grid-cols-2 gap-3">
-                        <h3 className='my-3'>Gross Total</h3><h3 className='my-3' className="text-end">{grossTotal}</h3>
-                        <h3 className='my-3'>Discount (10%)</h3><h3 className='my-3' className="text-end">{discount}</h3>
-                        <h3 className='my-3' className="font-bold">Total</h3><h3 className='my-3' className="text-end font-bold">{netTotal}</h3>
+                        <h3 className='my-3'>Gross Total</h3><h3 className='my-3 text-end'>{grossTotal}</h3>
+                        <h3 className='my-3'>Discount (10%)</h3><h3 className='my-3 text-end'>{discount}</h3>
+                        <h3 className='my-3 font-bold'>Total</h3><h3 className='my-3 text-end font-bold'>{netTotal}</h3>
                     </div>
 
                     <hr />
-                    <h3 className='my-3' className="font-bold">Item(s) in your cart</h3>
+                    <h3 className='my-3 font-bold'>Item(s) in your cart</h3>
                     <hr />
 
                     {cartItems?.map(ci => (

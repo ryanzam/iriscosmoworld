@@ -5,7 +5,7 @@ export default function TermsofusePage() {
         <div className='w-[80%] mx-auto my-10'>
             <h1 className='text-3xl'>Terms of Use for Iris Cosmo World</h1>
             <p><strong>Last Updated: 01.12.2024</strong></p>
-            <p className='my-3'>Welcome to Iris Cosmo World! These Terms of Use ("Terms") govern your use of the website and any services, products, or content provided by Iris Cosmo World ("we," "us," or "our"). By accessing or using the Site, you agree to be bound by these Terms. If you do not agree with these Terms, please do not use the Site.</p>
+            <p className='my-3'>Welcome to Iris Cosmo World! These Terms of Use (&quot;Terms&quot;) govern your use of the website and any services, products, or content provided by Iris Cosmo World (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;). By accessing or using the Site, you agree to be bound by these Terms. If you do not agree with these Terms, please do not use the Site.</p>
             <h3 className='my-3'>1. <strong>Acceptance of Terms</strong></h3>
             <p>By accessing or using the Site, you agree to comply with and be bound by these Terms, our Privacy Policy, and any other policies or guidelines that may apply to specific sections of the Site. We reserve the right to update or modify these Terms at any time, and such changes will be effective when posted on the Site. You are encouraged to review these Terms periodically.</p>
             <h3 className='my-3'>2. <strong>Eligibility</strong></h3>
@@ -17,7 +17,7 @@ export default function TermsofusePage() {
             <ul>
                 <li>Engage in any fraudulent, abusive, or unlawful behavior.</li>
                 <li>Interfere with or disrupt the Site or servers or networks connected to the Site.</li>
-                <li>Use any automated systems or software to extract data or interfere with the Site's operation.</li>
+                <li>Use any automated systems or software to extract data or interfere with the Site&apos;s operation.</li>
                 <li>Violate any applicable laws, rules, or regulations.</li>
             </ul>
             <h3 className='my-3'>5. <strong>Product Information and Availability</strong></h3>
@@ -35,7 +35,7 @@ export default function TermsofusePage() {
             <h3 className='my-3'>11. <strong>Third-Party Links</strong></h3>
             <p>The Site may contain links to third-party websites or services. These links are provided for your convenience, and we are not responsible for the content, accuracy, or practices of any third-party websites. Your use of third-party websites is at your own risk and subject to their terms of use.</p>
             <h3 className='my-3'>12. <strong>Disclaimers and Limitation of Liability</strong></h3>
-            <p>The Site and all products and services offered are provided "as is" and without warranty of any kind, either express or implied. To the maximum extent permitted by law, we disclaim all warranties, including but not limited to implied warranties of merchantability and fitness for a particular purpose. We do not guarantee the accuracy, completeness, or reliability of the Site or any content.</p>
+            <p>The Site and all products and services offered are provided &quot;as is&quot; and without warranty of any kind, either express or implied. To the maximum extent permitted by law, we disclaim all warranties, including but not limited to implied warranties of merchantability and fitness for a particular purpose. We do not guarantee the accuracy, completeness, or reliability of the Site or any content.</p>
             <p>In no event shall Iris Cosmo World be liable for any direct, indirect, incidental, special, or consequential damages, including but not limited to lost profits, data, or business interruption, arising from your use of the Site or any products purchased through the Site.</p>
             <h3 className='my-3'>13. <strong>Indemnification</strong></h3>
             <p>You agree to indemnify, defend, and hold harmless Iris Cosmo World, its affiliates, officers, directors, employees, and agents from any claims, losses, damages, liabilities, or expenses (including legal fees) arising out of your use of the Site, violation of these Terms, or infringement of any intellectual property or other rights.</p>
