@@ -13,7 +13,7 @@ const Footer: FC = () => {
         <footer className="w-full footer p-10 bg-base-200 text-base-content mt-4 flex flex-col items-center">
             <div className="w-full flex items-center justify-between">
                 <aside className="flex flex-col items-center">
-                    <Image src="/images/logo.png" height={50} width={50} alt="iris" />
+                    <Image src="/images/logo.jpg" height={50} width={50} alt="iris" />
                     <h2 className="font-extrabold">Iris Cosmo World</h2>
                 </aside>
 
