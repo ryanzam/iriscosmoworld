@@ -20,8 +20,8 @@ const Footer: FC = () => {
                 <div>
                     <header className="footer-title">Payment method</header>
                     <span className="flex gap-3">
-                        <img src="/images/esewa.png" alt="esewa" style={{ height: '30px' }} />
-                        <img src="/images/fonepay.png" alt="esewa" style={{ height: '30px' }} />
+                        <img src="/images/esewa.jpg" alt="esewa" style={{ height: '30px' }} />
+                        <img src="/images/fonepay.jpg" alt="esewa" style={{ height: '30px' }} />
                     </span>
                 </div>
 

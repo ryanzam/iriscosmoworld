@@ -53,7 +53,7 @@ const Nav: FC<INavProps> = ({ user }) => {
         <div className="navbar bg-base-200 shadow-md mb-5 flex justify-between sm:flex xs:flex-col xs:gap-1 xs:mb-0">
             <div className="flex">
                 <a href="/" className="normal-case text-xl flex flex-row items-center">
-                    <Image src="/images/logo.png" height={40} width={40} alt="iris" />
+                    <Image src="/images/logo.jpg" height={40} width={40} alt="iris" />
                     <span className="font-semibold">Iris Cosmo World</span>
                 </a>
             </div>

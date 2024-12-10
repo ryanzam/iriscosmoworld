@@ -37,7 +37,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
     return (
         <div className="card bg-base-200 shadow-xl mb-5 hover:bg-neutral-100">
             <figure className="h-48 w-full">
-                <Image src={product.images.length > 0 ? product.images[0].url : "/placeholder.jpg"} alt="product" height={"192"} width={"200"}/>
+                <Image src={product.images.length > 0 ? product.images[0].url : "/placeholder.jpg"} alt="product" height={"192"} width={"200"} />
             </figure>
             <div className="card-body p-3">
                 <h2 className="card-title">
@@ -61,7 +61,10 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
 
                 <div className="flex justify-between items-center">
                     <div>
-                        <div className="text-md text-lg font-semibold">Rs.{product.price}</div>
+                        <div className="text-md text-lg font-semibold">
+                            Rs.{product.price}
+                            <span className="text-sm text-secondary line-through ml-2">Rs.{Math.ceil(product.price + product.price * .05)}</span>
+                        </div>
                         <div className="badge">Free Delivery</div>
                     </div>
                     <div className="card-actions">
