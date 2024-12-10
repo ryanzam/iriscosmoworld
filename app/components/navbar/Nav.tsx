@@ -39,9 +39,9 @@ const Nav: FC<INavProps> = ({ user }) => {
 
     const searchBar = () => {
         if(!(path === "/")) return
-        return <form className="xs:order-2" onSubmit={handleSubmit}>
+        return <form className="xs:ml-4" onSubmit={handleSubmit}>
         <div className="join">
-            <input type="text" className="input input-bordered join-item" placeholder="Search..."
+            <input type="text" className="input input-bordered join-item xs:w-[60%]" placeholder="Search..."
                 value={search} onChange={e => setSearch(e.target.value)}
             />
             <button className="btn border-gray-300 join-item rounded-r-full">Search</button>
@@ -50,17 +50,17 @@ const Nav: FC<INavProps> = ({ user }) => {
     }
 
     return (
-        <div className="navbar bg-base-200 shadow-md mb-5 flex justify-between sm:flex xs:flex-col xs:gap-1 xs:mb-0">
-            <div className="flex">
+        <div className="navbar bg-base-200 shadow-md flex justify-between sm:flex">
+            <div className="flex xs:gap-2">
                 <a href="/" className="normal-case text-xl flex flex-row items-center">
                     <Image src="/images/logo.jpg" height={40} width={40} alt="iris" />
-                    <span className="font-semibold">Iris Cosmo World</span>
+                    <span className="font-semibold xs:hidden">Iris Cosmo World</span>
                 </a>
             </div>
 
             {searchBar()}
 
-            <div className="flex-none gap-3">
+            <div className="flex-none gap-3 xs:gap-0">
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle">
                         <div className="indicator">

@@ -17,14 +17,6 @@ const Footer: FC = () => {
                     <h2 className="font-extrabold">Iris Cosmo World</h2>
                 </aside>
 
-                <div>
-                    <header className="footer-title">Payment method</header>
-                    <span className="flex gap-3">
-                        <img src="/images/esewa.jpg" alt="esewa" style={{ height: '30px' }} />
-                        <img src="/images/fonepay.jpg" alt="esewa" style={{ height: '30px' }} />
-                    </span>
-                </div>
-
                 <nav>
                     <header className="footer-title">Contact Us</header>
                     <span className="flex gap-2">
@@ -48,10 +40,10 @@ const Footer: FC = () => {
                 </span>
             </nav>
 
-            <TawkMessengerReact
+{/*             <TawkMessengerReact
                 propertyId="6648b8f79a809f19fb3297f7"
                 widgetId="1hu6151s9"
-            />
+            /> */}
         </footer>
     )
 }
