@@ -6,6 +6,7 @@ import Container from './components/Container'
 import GlobalProvider from './GlobalProviders'
 import getSignedinUser from './actions/getSignedinUser'
 import Footer from './components/footer/Footer'
+import { Analytics } from '@vercel/analytics/next';
 
 const nunito = Nunito({ subsets: ['latin'] })
 
@@ -29,6 +30,7 @@ export default async function RootLayout({
           <Nav user={signedInUser} />
           <Container>
             {children}
+            <Analytics />
           </Container>
           <Footer />
         </GlobalProvider>

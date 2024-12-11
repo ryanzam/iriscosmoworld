@@ -49,7 +49,7 @@ const Products: FC<IProductsProps> = ({ data }: IProductsProps) => {
     const renderProductsTitle = () => {
         if (category || pageNum || minMax || search || ratings) return
         
-        return <h1 className="text-2xl font-semibold py-3">Popular products</h1>
+        return <h1 className="text-2xl font-semibold py-3">All products</h1>
     }
 
     const renderProducts = () => {
