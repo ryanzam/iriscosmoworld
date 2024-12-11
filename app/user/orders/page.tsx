@@ -57,8 +57,7 @@ const Orders = () => {
     }
 
     return (
-        <div className="">
-
+        <div className="xs:mt-2">
             {renderOrders()}
         </div>
     )

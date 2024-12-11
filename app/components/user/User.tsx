@@ -51,7 +51,7 @@ const User: FC<IUserPRops> = ({ user }) => {
 
     return (
         <>
-            <div className="card p-3 border xs:p-0">
+            <div className="card p-3 border xs:p-1">
                 <div className="flex items-start p-3 xs:p-0 xs:flex-col xs:items-center">
                     <Image
                         className="w-20 h-20 rounded-full mb-auto"
@@ -63,7 +63,7 @@ const User: FC<IUserPRops> = ({ user }) => {
                     <div className="w-full">
                         <div className="flex">
                             <div>
-                                <h5 className="font-semibold text-lg">{user?.name}</h5>
+                                <h5 className="font-semibold text-lg">Username: {user?.name}</h5>
                                 <h5 className="font-semibold">Email: <span className="font-light">{user?.email}</span></h5>
                                 <h5 className="font-semibold">Created on: <span className="font-light text-sm">{user?.createdAt?.toISOString().split("T")[0]}</span></h5>
                             </div>
