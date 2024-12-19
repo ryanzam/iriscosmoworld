@@ -7,6 +7,7 @@ import Link from "next/link";
 import { CartItemType, CartItemsContext } from "@/context/CartContext";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const StarRatings = dynamic(() => import("react-star-ratings"), {
     ssr: false,
@@ -35,7 +36,17 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
     }
 
     return (
-        <div className="card bg-base-200 shadow-xl mb-5 hover:bg-neutral-100">
+        <motion.div
+            whileHover={{
+                boxShadow: "0px 0px 10px 0px #cd35ff",
+                scale: 0.98,
+                transition: {
+                    duration: 0.2,
+                    ease: "easeInOut"
+                }
+            }}
+            className="card bg-base-200 shadow-xl mb-5 hover:bg-neutral-100"
+        >
             <figure className="h-48 w-full">
                 <Image src={product.images.length > 0 ? product.images[0].url : "/placeholder.jpg"} alt="product" height={"192"} width={"200"} />
             </figure>
@@ -74,7 +85,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

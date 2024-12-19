@@ -16,6 +16,7 @@
     "countries-list": "^3.0.5",
     "crypto-js": "^4.2.0",
     "mongoose": "^7.5.3",
+    "motion": "^11.15.0",
     "next": "^14.2.3",
     "next-auth": "^4.24.7",
     "next-cloudinary": "^6.5.2",

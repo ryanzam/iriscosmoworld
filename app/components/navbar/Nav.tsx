@@ -50,7 +50,7 @@ const Nav: FC<INavProps> = ({ user }) => {
     }
 
     return (
-        <div className="navbar bg-base-200 shadow-md flex justify-between sm:flex">
+        <div className="navbar bg-base-200 shadow-md flex justify-between sm:flex fixed bg-opacity-40 backdrop-blur-md z-50">
             <div className="flex xs:gap-2">
                 <a href="/" className="normal-case text-xl flex flex-row items-center">
                     <Image src="/images/logo.jpg" height={40} width={40} alt="iris" />

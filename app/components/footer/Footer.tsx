@@ -6,7 +6,7 @@ import { CiMail } from "react-icons/ci";
 import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 import { FC } from "react";
 import Image from "next/image";
-
+import { motion } from "framer-motion";
 const Footer: FC = () => {
 
     return (
@@ -15,25 +15,55 @@ const Footer: FC = () => {
                 <aside className="flex flex-col items-center">
                     <Image src="/images/logo.jpg" height={50} width={50} alt="iris" />
                     <h2 className="font-extrabold">Iris Cosmo World</h2>
+                    <p className="text-xs">Bharatpur-10, Chitwan</p>
                 </aside>
 
                 <nav>
                     <header className="footer-title">Contact Us</header>
                     <span className="flex gap-2">
-                        <a href="https://www.tiktok.com/@iris.cosmo.world" target="_blank" className="link link-hover">
+                        <motion.a 
+                            whileHover={{
+                                scale: 1.2,
+                                color: "#cd35ff",
+                                transition: {
+                                    duration: 0.2,
+                                    ease: "easeInOut"
+                                }
+                            }}
+                            href="https://www.tiktok.com/@iris.cosmo.world" target="_blank" className="link link-hover">
                             <RiTiktokLine fontSize={30} />
-                        </a>
-                        <a href="https://www.instagram.com/iris_cosmo_world" target="_blank" className="link link-hover">
+                        </motion.a>
+                        
+                        <motion.a 
+                            whileHover={{
+                                scale: 1.2,
+                                color: "#cd35ff",
+                                transition: {
+                                    duration: 0.2,
+                                    ease: "easeInOut"
+                                }
+                            }}
+                            href="https://www.instagram.com/iris_cosmo_world" target="_blank" className="link link-hover">
                             <FaInstagram fontSize={30} />
-                        </a>
-                        <a href="/contact" className="link link-hover">
+                        </motion.a>
+
+                        <motion.a 
+                            whileHover={{
+                                scale: 1.2,
+                                color: "#cd35ff",
+                                transition: {
+                                    duration: 0.2,
+                                    ease: "easeInOut"
+                                }
+                            }}
+                            href="/contact" className="link link-hover">
                             <CiMail fontSize={30} />
-                        </a>
+                        </motion.a>
                     </span>
                 </nav>
             </div>
 
-            <nav className="pt-10">
+            <nav className="pt-0">
                 <span className="flex gap-2">
                     <a href="/termsofuse" className="link link-hover">Terms of use |</a>
                     <a href="/privacy" className="link link-hover">Privacy policy |</a>
