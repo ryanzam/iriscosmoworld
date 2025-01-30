@@ -4,7 +4,6 @@ import { Categories } from "@/models/categories";
 import dynamic from "next/dynamic";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
-import { CiFilter } from "react-icons/ci";
 
 const StarRatings = dynamic(() => import("react-star-ratings"), {
     ssr: false,
