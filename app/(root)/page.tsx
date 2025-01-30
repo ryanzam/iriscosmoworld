@@ -23,7 +23,7 @@ export default async function Home({ searchParams }: { searchParams: IProductPar
   const data = await fetchProducts(searchParams)
 
   return (
-    <div className=''>
+    <div>
       <div className=''>
         <hr className='my-3' />
         <div className="grid grid-cols-4 gap-x-5 xs:grid-cols-1">
