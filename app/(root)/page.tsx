@@ -1,7 +1,3 @@
-import axios from 'axios'
-import { PROD_URL } from '@/utils/constants';
-import ProductCard from '../components/products/ProductCard';
-import { IProduct } from '@/models/product';
 import CategoryCard from '../components/categories/Categories';
 import LatestProducts from '../components/latest/LatestProducts';
 
@@ -15,7 +11,6 @@ export interface IProductParams {
 }
 
 export default async function Home({ searchParams }: { searchParams: IProductParams }) {
-
 
   return (
     <div>

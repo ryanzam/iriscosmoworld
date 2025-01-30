@@ -1,6 +1,7 @@
 import React from 'react'
 import Products from './Products'
-import { fetchProducts, IProductParams } from '../(root)/page'
+import { IProductParams } from '../(root)/page'
+import { fetchProducts } from '../components/latest/LatestProducts'
 
 const ProductPage = async ({ searchParams }: { searchParams: IProductParams }) => {
 

@@ -6,7 +6,6 @@ import ProductCard from "@/app/components/products/ProductCard"
 import ProductFilters from "../components/products/ProductFilters"
 import Empty from "../components/Empty"
 import Pagination from "../components/Pagination"
-import Carousel from "../components/Carousel"
 import { useSearchParams } from 'next/navigation'
 import Hero from "../components/hero/Hero"
 
