@@ -1,4 +1,4 @@
-import { fetchProducts } from "@/app/(root)/page"
+import { fetchProducts } from "@/app/components/latest/LatestProducts";
 import ProductsTable from "@/app/components/products/ProductsTable"
 
 export interface IParams {
