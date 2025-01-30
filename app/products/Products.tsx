@@ -64,17 +64,19 @@ const Products: FC<IProductsProps> = ({ data }: IProductsProps) => {
             return <Hero imgpath="/images/wellness.jpg" category={category} />
         }
 
-        return 
+        return
     }
 
     return (
-        <div className="grid grid-cols-[.5fr_1.5fr] gap-5 xs:flex xs:flex-col xs:gap-1">
-            <ProductFilters />
-            <div>
-                {renderHero()}
-                {renderProducts()}
+        <>
+            <div className="grid grid-cols-[.5fr_1.5fr] gap-5 xs:flex xs:flex-col xs:gap-1">
+                <ProductFilters />
+                <div>
+                    {renderHero()}
+                    {renderProducts()}
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

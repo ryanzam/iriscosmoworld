@@ -53,8 +53,8 @@ const HomeLayout = ({ children }: any) => {
       </div>
 
       <div className='mt-1'>
-        <div className='my-10 xs:my-3'>
-          <h3 className='uppercase font-bold xs:hidden mt-10'>Latest products</h3>
+        <div className='my-10 xs:my-0'>
+          <h3 className='uppercase font-bold mt-10 xs:mt-4'>Latest products</h3>
 
           <div className='flex justify-between items-center'>
             <h3 className='text-secondary'>On Sale</h3>
@@ -64,17 +64,16 @@ const HomeLayout = ({ children }: any) => {
         </div>
 
         <div className="card card-side bg-base-200 shadow-xl my-10 flex-row-reverse">
-          <figure>
+          <figure className='w-1/2'>
             <img
               src="https://img.freepik.com/free-photo/collection-beauty-care-products-with-pink-tones_23-2151005531.jpg"
               alt="cosmetics" />
           </figure>
-          <div className="card-body">
-
-            <div className="flex flex-col justify-between p-4 leading-normal">
-              <LuBadgeCheck size={50} />
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Get high quality products!</h5>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Choose from a wide range of collection.</p>
+          <div className="card-body xs:p-2">
+            <div className="flex flex-col justify-between p-4 leading-normal xs:p-0">
+              <LuBadgeCheck size={50} className='xs:h-6'/>
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white xs:text-sm">Get high quality products!</h5>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 xs:text-sm">Choose from a wide range of collection.</p>
               <div className="card-actions hover:opacity-[.7]">
                 <button onClick={showAllProducts} className="btn btn-outline btn-secondary">Shop now</button>
               </div>

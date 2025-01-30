@@ -26,9 +26,9 @@ const Carousel: FC = () => {
         setCurrentImgIdx((currentImgIdx - 1 + images.length) % images.length)
     }
 
-    return <div className="carousel w-full">
+    return <div className="carousel w-full xs:h-64">
         <div className="carousel-item relative w-full">
-            <Image src={images[currentImgIdx]} className="w-full max-h-96" alt="carousel" width="400" height="200" />
+            <Image src={images[currentImgIdx]} className="w-full max-h-96" alt="carousel" width="400" height="300" />
             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                 <a onClick={prevImage} className="btn btn-circle">❮</a>
                 <a onClick={nextImage} className="btn btn-circle">❯</a>
