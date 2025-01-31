@@ -29,7 +29,7 @@ const RegisterPage = () => {
     }
 
     return (
-        <div className="card w-1/2 xs:w-3/4 bg-base-100 shadow-2xl m-auto mt-14 flex items-center" onSubmit={handleSubmit}>
+        <div className="card w-1/2 xs:w-11/12 bg-base-100 shadow-2xl m-auto mt-14 flex items-center" onSubmit={handleSubmit}>
             <form className="form-control w-full p-5 flex gap-5">
                 <TextInput label="Enter Full name"
                     placeHolder="Full name"

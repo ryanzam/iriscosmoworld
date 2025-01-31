@@ -43,7 +43,7 @@ const SigninPage = () => {
     }
 
     return (
-        <div className="card w-1/2 xs:w-3/4 bg-base-100 shadow-2xl m-auto mt-14 flex items-center py-5" onSubmit={handleSubmit}>
+        <div className="card w-1/2 xs:w-11/12 bg-base-100 shadow-2xl m-auto mt-14 flex items-center py-5" onSubmit={handleSubmit}>
             <form className="form-control pb-0 w-full p-5 flex gap-5 xs:p-2 xs:gap-2">
                 <TextInput label="Enter Email"
                     placeHolder="Email"
