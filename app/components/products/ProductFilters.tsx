@@ -112,9 +112,9 @@ const ProductFilters = () => {
 
             <div className="flex ">
                 <div className="dropdown dropdown-bottom xs:block hidden">
-                    <div tabIndex={0} role="button" className="btn m-1">Price</div>
+                    <div tabIndex={0} role="button" className="btn btn-outline btn-primary m-1">Price</div>
 
-                    <div tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                    <div tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-[1] w-52 p-3 shadow">
                         <div className="grid grid-cols-3 gap-1">
                             <div className="">
                                 <input className="w-full p-2 border rounded-sm input-sm" type="number"
@@ -138,21 +138,49 @@ const ProductFilters = () => {
                 </div>
 
                 <div className="dropdown dropdown-bottom xs:block hidden">
-                    <div tabIndex={0} role="button" className="btn m-1">Rating</div>
+                    <div tabIndex={0} role="button" className="btn btn-outline btn-primary m-1">Rating</div>
 
-                    <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                        <li><a>Item 3</a></li>
-                        <li><a>Item 2</a></li>
-                    </ul>
+                    <div tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-[1] w-52 p-3 shadow">
+                        {[1, 2, 3, 4, 5].map(r => (
+                            <div key={r} className="flex items-center">
+                                <input id={`rating-${r}`} type="checkbox"
+                                    name="ratings"
+                                    className="w-4 h-4 focus:ring-blue-500"
+                                    value={r}
+                                    checked={handleChecked("ratings", `${r}`)}
+                                    onChange={() => handleChange("ratings", `${r}`)}
+                                />
+                                <label htmlFor={`rating-${r}`}>
+                                    <StarRatings rating={r}
+                                        numberOfStars={5}
+                                        starRatedColor="#ffab04"
+                                        starSpacing="1px"
+                                        starDimension="20px"
+                                        name="ratings"
+                                    />
+                                </label>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 <div className="dropdown dropdown-bottom xs:block hidden">
-                    <div tabIndex={0} role="button" className="btn m-1">Category</div>
+                    <div tabIndex={0} role="button" className="btn btn-outline btn-primary m-1">Category</div>
 
-                    <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                        <li><a>Item 4</a></li>
-                        <li><a>Item 2</a></li>
-                    </ul>
+                    <div tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-[1] w-52 p-3 shadow">
+                        {Categories.map((c: string, idx) => (
+                            <div key={idx} className="flex items-center">
+                                <input id={`${c}`} type="checkbox"
+                                    name="category"
+                                    className="w-4 h-4 focus:ring-blue-500"
+                                    value={`${idx}`}
+                                    checked={handleChecked("category", c)}
+                                    onChange={() => handleChange("category", c)}
+                                />
+                                <label htmlFor={`${c}`} className="ml-1">{c}</label>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

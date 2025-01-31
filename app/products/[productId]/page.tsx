@@ -12,12 +12,12 @@ const getProduct = async (pid: string) => {
     return data;
 }
 
-export default async function ProductPage({ params }:  {params: IParams}) {
+export default async function ProductPage({ params }: { params: IParams }) {
 
     const product = await getProduct(params.productId);
     const user = await getSignedinUser()
 
     return (
-        <ProductDetails product={product} user={user}/>
+        <ProductDetails product={product} user={user} />
     )
 }

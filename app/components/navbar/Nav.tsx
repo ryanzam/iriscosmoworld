@@ -24,7 +24,7 @@ const Nav: FC<INavProps> = ({ user }) => {
         e.preventDefault();
 
         if (search) {
-            router.push("/?search=" + search);
+            router.push("/products?search=" + search);
             setSearch("")
         }
     }
@@ -38,15 +38,14 @@ const Nav: FC<INavProps> = ({ user }) => {
     }
 
     const searchBar = () => {
-        if(!(path === "/")) return
         return <form className="xs:ml-4" onSubmit={handleSubmit}>
-        <div className="join">
-            <input type="text" className="input input-bordered join-item xs:w-[60%]" placeholder="Search..."
-                value={search} onChange={e => setSearch(e.target.value)}
-            />
-            <button className="btn border-gray-300 join-item rounded-r-full">Search</button>
-        </div>
-    </form>
+            <div className="join">
+                <input type="text" className="input input-bordered join-item xs:w-[60%]" placeholder="Search..."
+                    value={search} onChange={e => setSearch(e.target.value)}
+                />
+                <button className="btn border-gray-300 join-item rounded-r-full">Search</button>
+            </div>
+        </form>
     }
 
     return (

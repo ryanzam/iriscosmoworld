@@ -35,7 +35,11 @@ const Products: FC<IProductsProps> = ({ data }: IProductsProps) => {
             </div>
         }
         return (
-            <div className="mt-1">
+            <div className="mt-1 xs:mt-0">
+                {search && <div className="my-2">
+                    <p>{data.products.length} results found for <span className="font-bold">{search}</span></p>
+                </div>}
+
                 <div className="grid grid-cols-3 gap-x-5 xs:grid-cols-1">
                     {data.products.map(p => (
                         <ProductCard key={p._id} product={p} />
