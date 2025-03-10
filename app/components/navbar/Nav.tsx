@@ -72,7 +72,7 @@ const Nav: FC<INavProps> = ({ user }) => {
                             <span className="font-bold text-lg">{cartItems.length} Items</span>
                             <span className="text-base-500">Subtotal: €{getGrossTotal(cartItems)}</span>
                             <div className="card-actions">
-                                <button className="btn btn-primary btn-block btn-sm" disabled={!(cartItems.length > 0)} onClick={handleViewCart}>View cart</button>
+                                <button className="btn bg-black btn-sm text-white rounded-full hover:bg-neutral-600" disabled={!(cartItems.length > 0)} onClick={handleViewCart}>View cart</button>
                             </div>
                         </div>
                     </div>
