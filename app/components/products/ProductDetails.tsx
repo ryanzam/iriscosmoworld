@@ -49,7 +49,7 @@ const ProductDetails: FC<IProductDetailsProps> = ({ product, user }: IProductDet
         product.productreviews?.some((pr: ReviewType) => pr.user._id === user._id) : true
 
     return (
-        <>
+        <div className="p-3">
             <Breadcrums breadcrums={breadcrumbs} />
             <div className="card card-side bg-base-100 shadow-md">
                 <figure className="flex flex-col w-2/6">
@@ -97,7 +97,7 @@ const ProductDetails: FC<IProductDetailsProps> = ({ product, user }: IProductDet
                     </div>
 
                     <div className="card-actions">
-                        <button className="btn btn-primary btn-sm" onClick={handleAddToCart}>Add to cart</button>
+                        <button className="btn bg-black text-white rounded-full hover:bg-neutral-600" onClick={handleAddToCart}>Add to cart</button>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@ const ProductDetails: FC<IProductDetailsProps> = ({ product, user }: IProductDet
             {product.productreviews.length > 0 &&
                 <Reviews reviews={product.productreviews} />
             }
-        </>
+        </div>
     )
 }
 

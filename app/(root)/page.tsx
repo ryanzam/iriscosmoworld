@@ -1,4 +1,3 @@
-import CategoryCard from '../components/categories/Categories';
 import LatestProducts from '../components/latest/LatestProducts';
 
 export interface IProductParams {
@@ -17,12 +16,6 @@ export default async function Home({ searchParams }: { searchParams: IProductPar
       <div className=''>
         <hr className='my-3' />
         <LatestProducts />
-      </div>
-
-      <div>
-        <h3 className='uppercase font-bold mt-10 mb-2'>Explore Categories</h3>
-        <hr className='my-3 xs:my-0' />
-        <CategoryCard />
       </div>
     </div>
   )

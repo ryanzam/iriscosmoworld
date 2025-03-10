@@ -1,11 +1,9 @@
 "use client"
 import React from 'react'
-import Carousel from '../components/Carousel'
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import { IoPricetagsOutline } from "react-icons/io5";
-import { TbTruckDelivery } from "react-icons/tb";
 import { usePathname, useRouter } from 'next/navigation';
 import { LuBadgeCheck } from "react-icons/lu";
+import HeroSection from '../components/HeroSection';
+import FeaturedSection from '../components/FeaturedSection';
 
 const HomeLayout = ({ children }: any) => {
 
@@ -17,48 +15,16 @@ const HomeLayout = ({ children }: any) => {
   }
 
   return (
-    <>
-      <Carousel />
+    <div className='min-h-screen'>
+      <HeroSection />
+      <FeaturedSection />
 
-      <div className='flex bg-pink-300 w-full justify-between p-10 mt-[-7px] xs:py-3 xs:px-3'>
-        <div className='flex items-center gap-2 xs:flex-col'>
-          <div className='bg-white p-3 rounded-full'>
-            <IoMdCheckmarkCircleOutline size={30} />
-          </div>
-          <div>
-            <h4 className='text-xl font-bold xs:hidden'>We offer you</h4>
-            <p className='xs:font-bold'>Best products</p>
-          </div>
-        </div>
-
-        <div className='flex items-center gap-2 xs:flex-col'>
-          <div className='bg-white p-3 rounded-full'>
-            <IoPricetagsOutline size={30} />
-          </div>
-          <div>
-            <h4 className='text-xl font-bold xs:hidden'>We offer you</h4>
-            <p className='xs:font-bold'>Best price</p>
-          </div>
-        </div>
-
-        <div className='flex items-center gap-2 xs:flex-col'>
-          <div className='bg-white p-3 rounded-full'>
-            <TbTruckDelivery size={30} />
-          </div>
-          <div>
-            <h4 className='text-xl font-bold xs:hidden'>We offer you</h4>
-            <p className='xs:font-bold'>Fast Delivery</p>
-          </div>
-        </div>
-      </div>
-
-      <div className='mt-1'>
+      <div className='xs:px-3'>
         <div className='my-10 xs:my-0'>
           <h3 className='uppercase font-bold mt-10 xs:mt-4'>Latest products</h3>
 
           <div className='flex justify-between items-center'>
             <h3 className='text-secondary'>On Sale</h3>
-            <button onClick={showAllProducts} className="btn btn-outline btn-primary btn-sm">All Products</button>
           </div>
           {children}
         </div>
@@ -70,18 +36,20 @@ const HomeLayout = ({ children }: any) => {
               alt="cosmetics" />
           </figure>
           <div className="card-body xs:p-2">
-            <div className="flex flex-col justify-between p-4 leading-normal xs:p-0">
-              <LuBadgeCheck size={50} className='xs:h-6'/>
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white xs:text-sm">Get high quality products!</h5>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 xs:text-sm">Choose from a wide range of collection.</p>
+            <div className="flex flex-col justify-between p-4 leading-normal xs:p-0 gap-5">
+              <LuBadgeCheck size={50} className='xs:h-6' />
+              <div>
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white xs:text-sm">Get high quality products!</h5>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 xs:text-sm">Choose from a wide range of collection.</p>
+              </div>
               <div className="card-actions hover:opacity-[.7]">
-                <button onClick={showAllProducts} className="btn btn-outline btn-secondary">Shop now</button>
+                <button onClick={showAllProducts} className="btn btn-outline btn-secondary rounded-[2rem]">Shop now</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

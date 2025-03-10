@@ -13,6 +13,11 @@ const nunito = Nunito({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Iris Cosmo World',
   description: 'A store located in bharatpur-10, Nepal',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: "any" }
+    ]
+  }
 }
 
 export default async function RootLayout({
