@@ -14,14 +14,14 @@ const Footer: FC = () => {
             <div className="w-full flex items-center justify-between">
                 <aside className="flex flex-col items-center">
                     <Image src="/images/logo.jpg" height={50} width={50} alt="iris" />
-                    <h2 className="font-extrabold">Iris Cosmo World</h2>
+                    <h2 className="font-extrabold text-[18px]">Iris Cosmo World</h2>
                     <p className="text-xs">Bharatpur-10, Chitwan</p>
                 </aside>
 
                 <nav>
                     <header className="footer-title">Contact Us</header>
                     <span className="flex gap-2">
-                        <motion.a 
+                        <motion.a
                             whileHover={{
                                 scale: 1.2,
                                 color: "#cd35ff",
@@ -33,8 +33,8 @@ const Footer: FC = () => {
                             href="https://www.tiktok.com/@iris.cosmo.world" target="_blank" className="link link-hover">
                             <RiTiktokLine fontSize={30} />
                         </motion.a>
-                        
-                        <motion.a 
+
+                        <motion.a
                             whileHover={{
                                 scale: 1.2,
                                 color: "#cd35ff",
@@ -47,7 +47,7 @@ const Footer: FC = () => {
                             <FaInstagram fontSize={30} />
                         </motion.a>
 
-                        <motion.a 
+                        <motion.a
                             whileHover={{
                                 scale: 1.2,
                                 color: "#cd35ff",
@@ -63,14 +63,17 @@ const Footer: FC = () => {
                 </nav>
             </div>
 
-            <nav className="pt-0">
-                <span className="flex gap-2">
+            <div className="w-full border-t py-5 border-gray-300 flex flex-row md:flex-row justify-between items-center">
+                <p className="text-gray-700 text-sm">
+                    &copy;2024 Iris Cosmo World. All rights reserved.
+                </p>
+                <div className="flex justify-between">
                     <a href="/termsofuse" className="link link-hover">Terms of use |</a>
-                    <a href="/privacy" className="link link-hover">Privacy policy |</a>
-                </span>
-            </nav>
+                    <a href="/privacy" className="link link-hover">Privacy policy </a>
+                </div>
+            </div>
 
-{/*             <TawkMessengerReact
+            {/*             <TawkMessengerReact
                 propertyId="6648b8f79a809f19fb3297f7"
                 widgetId="1hu6151s9"
             /> */}

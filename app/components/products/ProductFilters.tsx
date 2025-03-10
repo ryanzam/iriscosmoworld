@@ -61,7 +61,7 @@ const ProductFilters = () => {
                                 <span className="label-text-alt">Max</span>
                             </label>
                         </div>
-                        <button className="btn btn-outline btn-primary btn-sm" onClick={handleBtnClick}>Filter</button>
+                        <button className="btn btn-sm bg-black text-white" onClick={handleBtnClick}>Filter</button>
                     </div>
                 </div>
 
@@ -110,9 +110,9 @@ const ProductFilters = () => {
                 </div>
             </div>
 
-            <div className="flex ">
+            <div className="flex py-3">
                 <div className="dropdown dropdown-bottom xs:block hidden">
-                    <div tabIndex={0} role="button" className="btn btn-outline btn-primary m-1">Price</div>
+                    <div tabIndex={0} role="button" className="bg-black btn text-white btn-sm rounded-full px-5">Price</div>
 
                     <div tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-[1] w-52 p-3 shadow">
                         <div className="grid grid-cols-3 gap-1">
@@ -132,13 +132,13 @@ const ProductFilters = () => {
                                     <span className="label-text-alt">Max</span>
                                 </label>
                             </div>
-                            <button className="btn btn-outline btn-primary btn-sm" onClick={handleBtnClick}>Filter</button>
+                            <button className="bg-black btn text-white btn-sm rounded-full px-5-sm" onClick={handleBtnClick}>Filter</button>
                         </div>
                     </div>
                 </div>
 
                 <div className="dropdown dropdown-bottom xs:block hidden">
-                    <div tabIndex={0} role="button" className="btn btn-outline btn-primary m-1">Rating</div>
+                    <div tabIndex={0} role="button" className="bg-black btn text-white btn-sm rounded-full px-5">Rating</div>
 
                     <div tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-[1] w-52 p-3 shadow">
                         {[1, 2, 3, 4, 5].map(r => (
@@ -165,7 +165,7 @@ const ProductFilters = () => {
                 </div>
 
                 <div className="dropdown dropdown-bottom xs:block hidden">
-                    <div tabIndex={0} role="button" className="btn btn-outline btn-primary m-1">Category</div>
+                    <div tabIndex={0} role="button" className="bg-black btn text-white btn-sm rounded-full px-5">Category</div>
 
                     <div tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-[1] w-52 p-3 shadow">
                         {Categories.map((c: string, idx) => (
