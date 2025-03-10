@@ -38,10 +38,12 @@ const FeaturedSection = () => {
                 </div>
 
                 <div className="rounded-3xl overflow-hidden relative flex flex-col items-end">
-                    <img
-                        src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80"
-                        alt="Woman with face mask"
+                    <Image
+                        src="/images/skincare.jpg"
+                        alt="fragrances"
                         className="w-full h-full object-cover rounded-3xl"
+                        height={200}
+                        width={300}
                     />
                 </div>
 

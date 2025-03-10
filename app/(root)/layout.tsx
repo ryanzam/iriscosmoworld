@@ -34,9 +34,9 @@ const HomeLayout = ({ children }: any) => {
           <figure className='w-1/2'>
             <Image
               src="/images/fragrances.jpg"
-              alt="cosmetics" 
+              alt="cosmetics"
               height={200}
-              width={500}/>
+              width={500} />
           </figure>
           <div className="card-body xs:p-2">
             <div className="flex flex-col justify-between p-4 leading-normal xs:p-0 gap-5">
@@ -45,22 +45,14 @@ const HomeLayout = ({ children }: any) => {
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white xs:text-sm">Get high quality products!</h5>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 xs:text-sm">Choose from a wide range of collection.</p>
               </div>
-            <div className="flex flex-col justify-between p-4 leading-normal xs:p-0 gap-5">
-              <LuBadgeCheck size={50} className='xs:h-6' />
-              <div>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white xs:text-sm">Get high quality products!</h5>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 xs:text-sm">Choose from a wide range of collection.</p>
-              </div>
               <div className="card-actions hover:opacity-[.7]">
-                <button onClick={showAllProducts} className="btn btn-outline btn-secondary rounded-[2rem]">Shop now</button>
                 <button onClick={showAllProducts} className="btn btn-outline btn-secondary rounded-[2rem]">Shop now</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    </div>
+    </div >
   )
 }
 
