@@ -35,7 +35,7 @@ const HeroSection = () => {
 
                         <div className="bg-white rounded-lg p-6 shadow-sm max-w-sm">
                             <p className="text-gray-800">
-                                "Iris Cosmo World delivers elegance and quality products for an affordable price, perfect for everyone."
+                                &apos;Iris Cosmo World delivers elegance and quality products for an affordable price, perfect for everyone.&apos;
                             </p>
                         </div>
 

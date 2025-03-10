@@ -4,6 +4,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { LuBadgeCheck } from "react-icons/lu";
 import HeroSection from '../components/HeroSection';
 import FeaturedSection from '../components/FeaturedSection';
+import Image from "next/image";
 
 const HomeLayout = ({ children }: any) => {
 
@@ -31,9 +32,11 @@ const HomeLayout = ({ children }: any) => {
 
         <div className="card card-side bg-base-200 shadow-xl my-10 flex-row-reverse">
           <figure className='w-1/2'>
-            <img
-              src="https://img.freepik.com/free-photo/collection-beauty-care-products-with-pink-tones_23-2151005531.jpg"
-              alt="cosmetics" />
+            <Image
+              src="/images/fragrances.jpg"
+              alt="cosmetics" 
+              height={200}
+              width={500}/>
           </figure>
           <div className="card-body xs:p-2">
             <div className="flex flex-col justify-between p-4 leading-normal xs:p-0 gap-5">

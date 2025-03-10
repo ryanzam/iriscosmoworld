@@ -1,6 +1,7 @@
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { FaArrowRight } from "react-icons/fa";
+import Image from "next/image";
 
 const FeaturedSection = () => {
 
@@ -13,10 +14,12 @@ const FeaturedSection = () => {
                     <div>
                         <div className="flex items-center justify-between">
                             <div className="overflow-hidden rounded-2xl">
-                                <img
-                                    src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1286&q=80"
+                                <Image
+                                    src="/images/haircare.jpg"
                                     alt="Skincare collection"
                                     className="w-48 h-48 object-cover"
+                                    height={200}
+                                    width={300}
                                 />
                             </div>
                         </div>
