@@ -21,6 +21,7 @@ const FeaturedSection = () => {
                                     height={200}
                                     width={300}
                                 />
+
                             </div>
                         </div>
                         <div className="mt-8">
