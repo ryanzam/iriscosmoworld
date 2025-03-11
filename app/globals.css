@@ -12,11 +12,11 @@ body {
 }
 
 .rc-pagination-item.rc-pagination-item-active {
-  border-color: #4a00ff !important;
+  border-color: #000000 !important;
 }
 
 .rc-pagination-item a {
-  color: #4a00ff !important;
+  color: #494949 !important;
 }
 
 #tawk-bubble-container,

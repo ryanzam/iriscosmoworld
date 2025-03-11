@@ -2,7 +2,7 @@ import React from 'react'
 
 function ProductsLoading() {
     return (
-        <div className='grid grid-cols-[.5fr_1.5fr] gap-5 xs:flex xs:flex-col xs:gap-1 m-5'>
+        <div className='grid grid-cols-[.5fr_1.5fr] gap-5 xs:grid-cols-1 xs:gap-1 m-5'>
             <div className="flex flex-col gap-3 xs:hidden">
                 <div className="skeleton h-4 w-20"></div>
                 <div className="w-full flex flex-row justify-between">

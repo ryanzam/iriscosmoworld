@@ -12,11 +12,9 @@ export interface IProductParams {
 export default async function Home({ searchParams }: { searchParams: IProductParams }) {
 
   return (
-    <div>
-      <div className=''>
-        <hr className='my-3' />
-        <LatestProducts />
-      </div>
+    <div className=''>
+      <hr className='my-3' />
+      <LatestProducts />
     </div>
   )
 }

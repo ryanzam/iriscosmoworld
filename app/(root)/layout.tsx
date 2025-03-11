@@ -25,7 +25,7 @@ const HomeLayout = ({ children }: any) => {
           <h3 className='uppercase font-bold mt-10 xs:mt-4'>Latest products</h3>
 
           <div className='flex justify-between items-center'>
-            <h3 className='text-secondary'>On Sale</h3>
+            <h3 className='text-gray-700 text-xl'>On Sale</h3>
           </div>
           {children}
         </div>
@@ -46,7 +46,7 @@ const HomeLayout = ({ children }: any) => {
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 xs:text-sm">Choose from a wide range of collection.</p>
               </div>
               <div className="card-actions hover:opacity-[.7]">
-                <button onClick={showAllProducts} className="btn btn-outline btn-secondary rounded-[2rem]">Shop now</button>
+                <button onClick={showAllProducts} className="btn btn-lg bg-black text-white rounded-full hover:bg-neutral-700">Shop now</button>
               </div>
             </div>
           </div>

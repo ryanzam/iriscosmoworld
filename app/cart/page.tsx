@@ -89,7 +89,7 @@ const CartPage = () => {
                         <h3 className='my-0 font-bold'>Total</h3><h3 className='my-0 text-end font-bold'>Rs.{netTotal}</h3>
                     </div>
                     <hr className="my-0" />
-                    <Link className="btn btn-sm btn-accent" href={"/delivery"}>Proceed</Link>
+                    <Link className="btn btn-sm bg-black text-white" href={"/delivery"}>Proceed</Link>
                     <Link className="btn btn-sm" href={"/"}>Return home</Link>
                 </div>
             </div>

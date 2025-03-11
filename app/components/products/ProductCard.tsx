@@ -77,7 +77,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
                     <div>
                         <div className="text-md text-lg font-semibold">
                             Rs.{product.price}
-                            <span className="text-sm text-secondary line-through ml-2">Rs.{Math.ceil(product.price + product.price * .05)}</span>
+                            <span className="text-sm text-neutral-500 line-through ml-2">Rs.{Math.ceil(product.price + product.price * .05)}</span>
                         </div>
                         <div className="badge">Free Delivery</div>
                     </div>
