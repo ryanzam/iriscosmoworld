@@ -1,1 +1,1 @@
-export const PROD_URL = "https://iriscosmoworld.vercel.app"
+export const PROD_URL = "https://iriscosmo.vercel.app"
