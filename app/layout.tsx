@@ -7,6 +7,7 @@ import GlobalProvider from './GlobalProviders'
 import getSignedinUser from './actions/getSignedinUser'
 import Footer from './components/footer/Footer'
 import { Analytics } from '@vercel/analytics/next';
+import Script from 'next/script'
 
 const nunito = Nunito({ subsets: ['latin'] })
 
@@ -31,6 +32,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
+        <Script
+          src="https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js"
+          strategy="afterInteractive"
+        />
         <GlobalProvider>
           <Nav user={signedInUser} />
           <Container>

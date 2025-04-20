@@ -18,8 +18,3 @@ body {
 .rc-pagination-item a {
   color: #494949 !important;
 }
-
-#tawk-bubble-container,
-.tawk-bubble-container {
-  display: none;
-}
