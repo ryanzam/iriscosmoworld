@@ -8,37 +8,6 @@ import Image from "next/image";
 
 const HomeLayout = ({ children }: any) => {
 
-  useEffect(() => {
-    const initAgent = () => {
-      if (typeof window !== 'undefined' && window.AgentInitializer) {
-        window.AgentInitializer.init({
-          rootId: "JotformAgent-01964e15a9af71a1bbf19b5448a5e6aa6c8f",
-          formID: "01964e15a9af71a1bbf19b5448a5e6aa6c8f",
-          queryParams: ["skipWelcome=1", "maximizable=1"],
-          domain: "https://www.jotform.com",
-          isInitialOpen: false,
-          isDraggable: false,
-          background: "linear-gradient(180deg, #585757 0%, #2a2a2a 100%)",
-          buttonBackgroundColor: "#000000",
-          buttonIconColor: "#ffffff",
-          variant: false,
-          customizations: {
-            greeting: "Yes",
-            greetingMessage: "🙏 How can I help you?",
-            pulse: "Yes",
-            position: "right"
-          }
-        });
-      }
-    };
-
-    if (document.readyState === 'complete') {
-      initAgent();
-    } else {
-      window.addEventListener('DOMContentLoaded', initAgent);
-    }
-  }, []);
-
   const router = useRouter()
   const pathname = usePathname()
 
