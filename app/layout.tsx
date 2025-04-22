@@ -33,8 +33,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <Script
-          src="https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js"
-          strategy="afterInteractive"
+          src="https://static.elfsight.com/platform/platform.js" async
         />
         <GlobalProvider>
           <Nav user={signedInUser} />

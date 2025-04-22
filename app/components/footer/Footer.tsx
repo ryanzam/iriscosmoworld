@@ -72,11 +72,7 @@ const Footer: FC = () => {
                     <a href="/privacy" className="link link-hover">Privacy policy </a>
                 </div>
             </div>
-
-            {/*             <TawkMessengerReact
-                propertyId="6648b8f79a809f19fb3297f7"
-                widgetId="1hu6151s9"
-            /> */}
+            <div className="elfsight-app-f7116b70-69ef-42e3-abc8-cbb7a62241d6" data-elfsight-app-lazy></div>
         </footer>
     )
 }
